@@ -26,7 +26,7 @@ const PublicationItem: React.FC<PublicationItemProps> = ({
   authors,
   venue,
   venueAcronym,
-  year,
+
   abstract,
   bibtex,
   pdfLink,
