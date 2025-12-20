@@ -39,7 +39,13 @@ const PublicationItem: React.FC<PublicationItemProps> = ({
 
   const titleSeed = title.replace(/[^a-zA-Z0-9]/g, '').slice(0, 10) || 'defaultpub';
   const defaultThumbnail = `https://picsum.photos/seed/${titleSeed}/128`;
-  const finalThumbnailUrl = thumbnailUrl || defaultThumbnail;
+
+  let finalThumbnailUrl = thumbnailUrl || defaultThumbnail;
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
+  if (thumbnailUrl && thumbnailUrl.startsWith('/') && !thumbnailUrl.startsWith(basePath)) {
+    finalThumbnailUrl = `${basePath}${thumbnailUrl}`;
+  }
 
   const highlightedAuthors = authors.replace('Sheng-Lun Wei', '<b>Sheng-Lun Wei</b>');
 
@@ -54,10 +60,10 @@ const PublicationItem: React.FC<PublicationItemProps> = ({
           objectFit="cover"
           className="rounded"
           onError={(e) => {
-             e.currentTarget.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==';
-             e.currentTarget.style.backgroundColor = '#e5e7eb';
-             e.currentTarget.width = 128;
-             e.currentTarget.height = 128;
+            e.currentTarget.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==';
+            e.currentTarget.style.backgroundColor = '#e5e7eb';
+            e.currentTarget.width = 128;
+            e.currentTarget.height = 128;
           }}
         />
       </div>
@@ -72,8 +78,8 @@ const PublicationItem: React.FC<PublicationItemProps> = ({
           )}
         </div>
 
-        <p className="text-sm text-gray-600 italic mb-1" dangerouslySetInnerHTML={{ __html: highlightedAuthors }}></p>
-        <p className="text-sm text-gray-600 mb-3">{venue}, {year}</p>
+        <div className="text-sm text-gray-600 italic mb-1" dangerouslySetInnerHTML={{ __html: highlightedAuthors }}></div>
+        <p className="text-sm text-gray-600 mb-3">{venue}</p>
 
         <div className="flex flex-wrap gap-2 text-sm mt-auto pt-2">
           {pdfLink && <Link href={pdfLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center bg-red-100 text-red-700 hover:bg-red-200 px-2 py-1 rounded transition-colors font-medium"><FileText size={14} className="mr-1" />PDF</Link>}
@@ -107,19 +113,19 @@ const PublicationItem: React.FC<PublicationItemProps> = ({
         )}
 
         {showBibtex && bibtex && (
-           <div className="mt-4 p-3 bg-gray-100 rounded border border-gray-200 text-sm text-gray-800">
-             <h4 className="font-semibold mb-1 text-gray-700">BibTeX Citation</h4>
-             <pre className="bg-white p-2 rounded text-xs border font-mono whitespace-pre-wrap break-words"><code>{bibtex}</code></pre>
-             <button
-               onClick={() => navigator.clipboard.writeText(bibtex || '')}
-               className="text-xs bg-blue-100 hover:bg-blue-200 text-blue-700 px-2 py-0.5 rounded mt-2 mr-2 transition-colors"
-             >
-               Copy
-             </button>
-             <button onClick={() => setShowBibtex(false)} className="text-xs text-blue-600 hover:underline mt-2 inline-flex items-center">
-               <ChevronUp size={12} className="mr-0.5" /> Collapse
-             </button>
-           </div>
+          <div className="mt-4 p-3 bg-gray-100 rounded border border-gray-200 text-sm text-gray-800">
+            <h4 className="font-semibold mb-1 text-gray-700">BibTeX Citation</h4>
+            <pre className="bg-white p-2 rounded text-xs border font-mono whitespace-pre-wrap break-words"><code>{bibtex}</code></pre>
+            <button
+              onClick={() => navigator.clipboard.writeText(bibtex || '')}
+              className="text-xs bg-blue-100 hover:bg-blue-200 text-blue-700 px-2 py-0.5 rounded mt-2 mr-2 transition-colors"
+            >
+              Copy
+            </button>
+            <button onClick={() => setShowBibtex(false)} className="text-xs text-blue-600 hover:underline mt-2 inline-flex items-center">
+              <ChevronUp size={12} className="mr-0.5" /> Collapse
+            </button>
+          </div>
         )}
 
       </div>

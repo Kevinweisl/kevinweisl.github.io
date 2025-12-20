@@ -16,12 +16,39 @@ export interface Publication {
 
 export const publicationsData: Publication[] = [
   {
+    title: "Do Before You Judge: Self-Reference as a Pathway to Better LLM Evaluation",
+    authors: "Wei-Hsiang Lin, Sheng-Lun Wei, Hen-Hsen Huang, Hsin-Hsi Chen",
+    venue: "Findings of the Association for Computational Linguistics: EMNLP 2025",
+    venueAcronym: "EMNLP 2025",
+    year: 2025,
+    abstract: "LLM-as-Judge frameworks are increasingly popular for AI evaluation, yet research findings on the relationship between models’ generation and judgment abilities remain inconsistent. We investigate this relationship through systematic dataset- and instance-level analyses across 11 models and 21 diverse tasks. Despite both capabilities relying on the same underlying knowledge, our analyses reveal they are only weakly correlated, primarily due to LLMs’ sensitivity to the responses being judged. To address this, we propose a self-reference-guided evaluation strategy that leverages a model’s own answers as references. This approach significantly strengthens the correlation between generation and judgment abilities, offering a practical path to align these skills and providing a reliable proxy for model selection in evaluation tasks.",
+    bibtex: `@inproceedings{lin-etal-2025-judge,
+    title = "Do Before You Judge: Self-Reference as a Pathway to Better {LLM} Evaluation",
+    author = "Lin, Wei-Hsiang  and Wei, Sheng-Lun  and Huang, Hen-Hsen  and Chen, Hsin-Hsi",
+    booktitle = "Findings of the Association for Computational Linguistics: EMNLP 2025",
+    year = "2025",
+}`,
+    pdfLink: "https://aclanthology.org/2025.findings-emnlp.1342.pdf",
+    featured: true,
+    thumbnailUrl: "/images/publications/do_before_you_judge.png"
+  },
+  {
     title: "Retrieving the Right Law: Enhancing Legal Search with Style Translation",
     authors: "Szu-Ju Chen, Jing Jin, Sheng-Lun Wei, Chien-Hung Chen, Hsin-Hsi Chen",
     venue: "International ACM SIGIR Conference on Research and Development in Information Retrieval",
     venueAcronym: "SIGIR 2025",
     year: 2025,
-    featured: true
+    abstract: "Legal question answering requires accurate retrieval of relevant laws, yet the significant writing style gap between user queries and legal provisions poses a major challenge. Existing datasets and retrieval methods often struggle to capture the complexity of legal language, limiting retrieval effectiveness. In this study, we introduce the Legal Query-to-Provision Retrieval (LQPR) task and construct Query2Provision (Q2P), a dataset designed to enhance law retrieval by incorporating diverse case scenarios and linguistic structures representative of real-world legal inquiries. To address the style disparity, we propose a style translation approach that transforms informal user queries into a more formal legal tone and simplifies complex legal provisions for better alignment. Our experiments demonstrate that integrating writing style transformation significantly improves retrieval performance. The dataset is available at https://github.com/ntunlplab/Query2Provision",
+    bibtex: `@inproceedings{10.1145/3726302.3730246,
+author = {Chen, Szu-Ju and Jin, Jing and Wei, Sheng-Lun and Chen, Chien-Hung and Chen, Hsin-Hsi},
+title = {Retrieving the Right Law: Enhancing Legal Search with Style Translation},
+year = {2025},
+doi = {10.1145/3726302.3730246},
+booktitle = {Proceedings of the 48th International ACM SIGIR Conference on Research and Development in Information Retrieval},
+}`,
+    pdfLink: "https://dl.acm.org/doi/10.1145/3726302.3730246",
+    featured: true,
+    thumbnailUrl: "/images/publications/retrieving_the_right_law.png"
   },
   {
     title: "Induct-Learn: Short Phrase Prompting with Instruction Induction",
@@ -38,6 +65,7 @@ export const publicationsData: Publication[] = [
 }`,
     pdfLink: "https://aclanthology.org/2024.emnlp-main.297",
     featured: true,
+    thumbnailUrl: "/images/publications/induct_learn.png"
   },
   {
     title: "Unveiling Selection Biases: Exploring Order and Token Sensitivity in Large Language Models",
@@ -55,6 +83,7 @@ export const publicationsData: Publication[] = [
     pdfLink: "https://aclanthology.org/2024.findings-acl.333",
     codeLink: "https://github.com/Kevinweisl/unveiling-selection-biases",
     featured: true,
+    thumbnailUrl: "/images/publications/unveiling_selection_biases.png"
   },
   {
     title: "Disease Classification on Admission and on Discharge with Residual CNN-Transformer",
@@ -69,7 +98,8 @@ export const publicationsData: Publication[] = [
     booktitle = {IEEE/WIC/ACM International Conference on Web Intelligence and Intelligent Agent Technology},
     year = {2021}
 }`,
-    pdfLink: "https://dl.acm.org/doi/10.1145/3486622.3493946"
+    pdfLink: "https://dl.acm.org/doi/10.1145/3486622.3493946",
+    thumbnailUrl: "/images/publications/disease_classification.png"
   },
   {
     title: "NL2KB: Resolving Vocabulary Gap between Natural Language and Knowledge Base in Knowledge Base Construction and Retrieval",
@@ -85,6 +115,7 @@ export const publicationsData: Publication[] = [
     year={2016}
 }`,
     pdfLink: "https://aclanthology.org/C16-2059",
+    thumbnailUrl: "/images/publications/nl2kb.png"
   },
   {
     title: "NTUNLP approaches to recognizing and disambiguating entities in long and short text at the ERD challenge 2014",
@@ -100,6 +131,7 @@ export const publicationsData: Publication[] = [
     year = {2014}
 }`,
     pdfLink: "https://dl.acm.org/doi/10.1145/2633211.2634363",
+    thumbnailUrl: "/images/publications/ntunlp_erd.png"
   }
-  // Add more publications here
-];
+];  // Add more publications here
+
