@@ -1,10 +1,8 @@
 import React from 'react';
+import type { ExperienceDetail } from '@/data/experience';
 
-interface ExperienceItemProps {
-  title: string;
-  institution: string;
-  period: string;
-  description?: string | string[];
+interface ExperienceItemProps extends ExperienceDetail {
+  compact?: boolean;
 }
 
 const ExperienceItem: React.FC<ExperienceItemProps> = ({
@@ -12,6 +10,7 @@ const ExperienceItem: React.FC<ExperienceItemProps> = ({
   institution,
   period,
   description,
+  compact = false,
 }) => {
   const descText =
     typeof description === 'string'
@@ -19,6 +18,10 @@ const ExperienceItem: React.FC<ExperienceItemProps> = ({
       : Array.isArray(description) && description.length > 0
         ? description.join(', ')
         : null;
+
+  const lines = descText?.split('\n');
+  const mainDesc = lines?.[0] ?? descText;
+  const subDesc = !compact && lines && lines.length > 1 ? lines[1] : null;
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-[120px_1fr] gap-1 sm:gap-4 py-3.5 px-5 border-b border-[var(--border)] last:border-b-0">
@@ -32,20 +35,16 @@ const ExperienceItem: React.FC<ExperienceItemProps> = ({
         <div className="text-sm font-medium gradient-text mt-0.5">
           {institution}
         </div>
-        {descText && descText.includes('\n') ? (
-          <>
-            <div className="text-sm text-[var(--text-body)] mt-1 leading-[1.6]">
-              {descText.split('\n')[0]}
-            </div>
-            <div className="text-xs text-[var(--text-muted)] mt-0.5">
-              {descText.split('\n')[1]}
-            </div>
-          </>
-        ) : descText ? (
+        {mainDesc && (
           <div className="text-sm text-[var(--text-body)] mt-1 leading-[1.6]">
-            {descText}
+            {mainDesc}
           </div>
-        ) : null}
+        )}
+        {subDesc && (
+          <div className="text-xs text-[var(--text-muted)] mt-0.5">
+            {subDesc}
+          </div>
+        )}
       </div>
     </div>
   );

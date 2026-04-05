@@ -48,16 +48,9 @@ const PublicationItem: React.FC<Publication> = ({
         dangerouslySetInnerHTML={{ __html: highlightedAuthors }}
       />
       <div className="flex items-center gap-2.5 flex-wrap">
-        {venueAcronym && (
-          <span className="gradient-bg text-white text-[11px] font-bold px-2.5 py-[3px] rounded-[var(--radius)]">
-            {venueAcronym}
-          </span>
-        )}
-        {!venueAcronym && (
-          <span className="gradient-bg text-white text-[11px] font-bold px-2.5 py-[3px] rounded-[var(--radius)]">
-            {venue} {year}
-          </span>
-        )}
+        <span className="gradient-bg text-white text-[11px] font-bold px-2.5 py-[3px] rounded-[var(--radius)]">
+          {venueAcronym || `${venue} ${year}`}
+        </span>
         <div className="flex gap-2 items-center">
           {links.map((link, i) => (
             <React.Fragment key={link.label}>

@@ -4,8 +4,12 @@ import ExperienceList from '@/components/ExperienceList';
 import Section from '@/components/Section';
 
 export const metadata: Metadata = {
-  title: 'Experience - Kevin Wei',
-  description: 'Academic, teaching, and professional experience of Kevin Wei.',
+  title: 'Experience',
+  description: 'Academic, teaching, and professional experience of Sheng-Lun (Kevin) Wei.',
+  openGraph: {
+    title: 'Experience — Kevin Wei',
+    description: 'Academic, teaching, and professional experience of Sheng-Lun (Kevin) Wei.',
+  },
 };
 
 export default function ExperiencePage() {

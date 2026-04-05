@@ -57,25 +57,25 @@ export interface ExperienceDetail {
           title: "Machine Learning Engineer",
           institution: "ShopBack | Taipei, Taiwan",
           period: "2022/05 - 2023/06",
-          description: []
+
         },
         {
           title: "Data Engineer",
           institution: "Junyi Academy | Taipei, Taiwan",
           period: "2020/02 - 2021/02",
-          description: []
+
         },
         {
           title: "Software Engineer, Applied Data Science Team",
           institution: "KKStream Limited, KKBOX Group | Taipei, Taiwan",
           period: "2016/12 - 2020/01",
-          description: []
+
         },
         {
           title: "Software Engineer, College Intern",
           institution: "Hewlett Packard Enterprise | Taipei, Taiwan",
           period: "2015/08 - 2016/06",
-          description: []
+
         }
       ]
     },

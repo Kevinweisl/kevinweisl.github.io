@@ -1,6 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+const heroLinkClass = 'font-semibold no-underline border-b border-[#c7d2fe]/30 hover:border-[#c7d2fe] transition-colors gradient-text italic';
+
+function HeroLink({ href, children }: { href: string; children: React.ReactNode }) {
+  return <Link href={href} target="_blank" rel="noopener noreferrer" className={heroLinkClass}>{children}</Link>;
+}
+
 const Hero = () => {
   return (
     <section
@@ -34,43 +40,15 @@ const Hero = () => {
           </p>
 
           <p className="text-[15px] leading-[1.8] text-white/75 mb-7">
-            Focusing on NLP and Large Language Models. 6+ years as ML Engineer at{' '}
-            <Link
-              href="https://www.shopback.sg/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#c7d2fe] font-semibold no-underline border-b border-[#c7d2fe]/30 hover:border-[#c7d2fe] transition-colors"
-            >
-              ShopBack
-            </Link>
-            ,{' '}
-            <Link
-              href="https://www.junyiacademy.org/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#c7d2fe] font-semibold no-underline border-b border-[#c7d2fe]/30 hover:border-[#c7d2fe] transition-colors"
-            >
-              Junyi Academy
-            </Link>
-            , and{' '}
-            <Link
-              href="https://blendvision.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#c7d2fe] font-semibold no-underline border-b border-[#c7d2fe]/30 hover:border-[#c7d2fe] transition-colors"
-            >
-              KKStream
-            </Link>
-            . Founder of{' '}
-            <Link
-              href="https://www.ccclub.io/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#c7d2fe] font-semibold no-underline border-b border-[#c7d2fe]/30 hover:border-[#c7d2fe] transition-colors"
-            >
-              ccClub
-            </Link>
-            , teaching 3,000+ people to code.
+            I am a CS PhD candidate at <span className="gradient-text italic">National Taiwan University</span>, working on LLM robustness, multimodal AI, and LLM evaluation.
+            With 6+ years of industry experience at{' '}
+            <HeroLink href="https://www.shopback.sg/">ShopBack</HeroLink>,{' '}
+            <HeroLink href="https://www.junyiacademy.org/">Junyi Academy</HeroLink>, and{' '}
+            <HeroLink href="https://blendvision.com/">KKStream</HeroLink>,
+            I bridge the gap between research and real-world applications.
+            I also serve as an adjunct instructor at NTU&apos;s <span className="gradient-text italic">Center of General Education</span> and <span className="gradient-text italic">Department of Economics</span>,
+            and founded <HeroLink href="https://www.ccclub.io/">ccClub</HeroLink> (社團法人攜曦程式推廣學會),
+            a non-profit organization dedicated to programming education, serving 4,000+ learners since 2016.
           </p>
 
           {/* CTA group */}
