@@ -1,73 +1,54 @@
-# CLAUDE.md
+# Always reply in zh-tw
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+## Workflow Orchestration
 
-## Development Commands
+### 1. Plan Node Default
+- Enter plan mode for ANY non-trivial task (3+ steps or architectural decisions)
+- If something goes sideways, STOP and re-plan immediately - don't keep pushing
+- Use plan mode for verification steps, not just building
+- Write detailed specs upfront to reduce ambiguity
 
-- `npm run dev` - Start development server with Turbopack
-- `npm run build` - Create production build
-- `npm run lint` - Run ESLint checks
-- `npm start` - Start production server
+### 2. Subagent Strategy
+- Use subagents liberally to keep main context window clean
+- Offload research, exploration, and parallel analysis to subagents
+- For complex problems, throw more compute at it via subagents
+- One tack per subagent for focused execution
 
-## Architecture Overview
+### 3. Self-Improvement Loop
+- After ANY correction from the user: update `tasks/lessons.md` with the pattern
+- Write rules for yourself that prevent the same mistake
+- Ruthlessly iterate on these lessons until mistake rate drops
+- Review lessons at session start for relevant project
 
-This is Kevin Wei's personal academic homepage built with Next.js 15 and TypeScript, using the App Router pattern with server and client components.
+### 4. Verification Before Done
+- Never mark a task complete without proving it works
+- Diff behavior between main and your changes when relevant
+- Ask yourself: "Would a staff engineer approve this?"
+- Run tests, check logs, demonstrate correctness
 
-### Data Management Pattern
+### 5. Demand Elegance (Balanced)
+- For non-trivial changes: pause and ask "is there a more elegant way?"
+- If a fix feels hacky: "Knowing everything I know now, implement the elegant solution"
+- Skip this for simple, obvious fixes - don't over-engineer
+- Challenge your own work before presenting it
 
-Content is centrally managed in `/src/data/` with TypeScript interfaces:
+### 6. Autonomous Bug Fixing
+- When given a bug report: just fix it. Don't ask for hand-holding
+- Point at logs, errors, failing tests - then resolve them
+- Zero context switching required from the user
+- Go fix failing CI tests without being told how
 
-- **Publications** (`publications.ts`): Academic papers with metadata including venue, authors, links, and `featured` flag for homepage display
-- **Experience** (`experience.ts`): Categorized professional experience with computed exports `currentPhd` and `latestWork` for homepage highlights
+## Task Management
 
-Data is statically imported and type-safe throughout the application.
+1. **Plan First**: Write plan to `tasks/todo.md` with checkable items
+2. **Verify Plan**: Check in before starting implementation
+3. **Track Progress**: Mark items complete as you go
+4. **Explain Changes**: High-level summary at each step
+5. **Document Results**: Add review section to `tasks/todo.md`
+6. **Capture Lessons**: Update `tasks/lessons.md` after corrections
 
-### Component Architecture
+## Core Principles
 
-**Reusable Layout Components:**
-- `Section.tsx` - Standardized section wrapper with consistent spacing and background colors
-- `Hero.tsx` - Homepage profile section
-- `Navbar.tsx` - Responsive navigation with mobile menu (client component)
-
-**Content Display Components:**
-- `PublicationItem.tsx` - Rich publication display with expandable abstract/bibtex
-- `PublicationList.tsx` - Filterable publication list with search (client component)
-- `ExperienceItem.tsx` - Timeline-style experience entries
-- `ExperienceList.tsx` - Categorized experience display
-
-### Page Structure
-
-- **Homepage** (`/`) - Selected publications and experience highlights with links to full pages
-- **Publications** (`/publications`) - Full searchable publication list
-- **Experience** (`/experience`) - Complete professional timeline
-
-Pages use Next.js Metadata API for SEO and follow server component pattern by default.
-
-### Styling System
-
-Uses Tailwind CSS v4 with utility-first approach:
-- Color scheme: indigo/blue primary, gray neutrals
-- Responsive design with mobile-first approach
-- Interactive elements with hover states and transitions
-- Card-based layouts for content display
-
-### Import Pattern
-
-Uses absolute imports with `@/` prefix (configured in `tsconfig.json`):
-```typescript
-import Hero from '@/components/Hero';
-import { currentPhd } from '@/data/experience';
-```
-
-### Content Updates
-
-To add new content:
-1. **Publications**: Add entries to `publications.ts` array with proper typing
-2. **Experience**: Add to appropriate category in `experience.ts`
-3. Components automatically render new data due to map operations
-
-### Development Notes
-
-- Client components are marked with `'use client'` directive and used sparingly for interactivity
-- Search functionality is implemented client-side with debouncing
-- Homepage shows filtered content using `featured` flags and computed data exports
+- **Simplicity First**: Make every change as simple as possible. Impact minimal code.
+- **No Laziness**: Find root causes. No temporary fixes. Senior developer standards.
+- **Minimat Impact**: Changes should only touch what's necessary. Avoid introducing bugs.

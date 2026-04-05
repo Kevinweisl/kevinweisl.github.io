@@ -1,26 +1,84 @@
 @import "tailwindcss";
 
+/* ===== Design System: CSS Variables ===== */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-primary: #fafafc;
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+  --bg-nav: rgba(250, 250, 252, 0.88);
+  --bg-footer: #0f172a;
+
+  --text-primary: #1a1a2e;
+  --text-body: #4a4a5a;
+  --text-muted: #8a8a9a;
+  --text-nav: #4a4a5a;
+  --text-on-primary: #ffffff;
+  --text-footer: #64748b;
+
+  --grad-start: #0ea5e9;
+  --grad-end: #6366f1;
+  --accent: #4f46e5;
+  --accent-hover: #4338ca;
+  --accent-light: #eef2ff;
+
+  --border: #e8e8ee;
+  --border-card: #e8e8ee;
+
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.04);
+  --shadow-card-hover: 0 12px 32px rgba(79, 70, 229, 0.1);
+
+  --radius: 6px;
+  --transition: 0.2s ease;
 }
 
+.dark {
+  --bg-primary: #0a0a12;
+  --bg-secondary: #10101c;
+  --bg-card: #16162a;
+  --bg-nav: rgba(10, 10, 18, 0.9);
+  --bg-footer: #06060c;
+
+  --text-primary: #e8e8f0;
+  --text-body: #9a9ab0;
+  --text-muted: #6a6a80;
+  --text-nav: #9a9ab0;
+  --text-on-primary: #ffffff;
+  --text-footer: #3a3a50;
+
+  --grad-start: #38bdf8;
+  --grad-end: #818cf8;
+  --accent: #818cf8;
+  --accent-hover: #a5b4fc;
+  --accent-light: #1e1b4b;
+
+  --border: #2a2a3e;
+  --border-card: #2a2a3e;
+
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-card-hover: 0 12px 32px rgba(129, 140, 248, 0.1);
+}
+
+/* ===== Tailwind v4 Theme ===== */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-serif: var(--font-newsreader), Georgia, Cambria, serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* ===== Base Styles ===== */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-body);
+  transition: background var(--transition), color var(--transition);
+}
+
+/* ===== Utility Classes ===== */
+.gradient-text {
+  background: linear-gradient(135deg, var(--grad-start), var(--grad-end));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, var(--grad-start), var(--grad-end));
 }

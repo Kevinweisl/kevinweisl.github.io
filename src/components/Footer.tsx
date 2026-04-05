@@ -3,10 +3,11 @@ import React from 'react';
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
   return (
-    <footer className="bg-gray-800 text-gray-300 py-6 mt-auto">
-      <div className="container mx-auto px-4 text-center text-sm">
-        <p suppressHydrationWarning>&copy; {currentYear} Kevin Wei. All Rights Reserved.</p>
-      </div>
+    <footer
+      className="py-7 mt-auto text-center text-[13px]"
+      style={{ background: 'var(--bg-footer)', color: 'var(--text-footer)' }}
+    >
+      <p>&copy; {currentYear} Kevin Wei. All rights reserved.</p>
     </footer>
   );
 };

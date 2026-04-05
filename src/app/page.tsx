@@ -1,15 +1,10 @@
-import Link from 'next/link';
 import type { Metadata } from 'next';
 
 import Hero from '@/components/Hero';
 import Section from '@/components/Section';
-import ExperienceItem from '@/components/ExperienceItem';
 import ContactLinks from '@/components/ContactLinks';
-
 import PublicationList from '@/components/PublicationList';
-
-import { currentPhd, latestWork } from '@/data/experience';
-import { ArrowRight } from 'lucide-react';
+import ExperienceList from '@/components/ExperienceList';
 
 export const metadata: Metadata = {
   title: 'Kevin Wei - Personal Website',
@@ -21,61 +16,42 @@ export default function HomePage() {
   const myGithubUrl = "https://github.com/Kevinweisl";
   const myLinkedinUrl = "https://linkedin.com/in/kevin-wei-02001b91";
   const myGoogleScholarUrl = "https://scholar.google.com/citations?user=200UnXEAAAAJ";
+  const myTwitterUrl = "https://x.com/kevinweisl";
 
   return (
     <>
       <Hero />
 
-      <Section id="publications" title="Selected Publications" bgColor="bg-white">
+      <Section
+        id="publications"
+        title="Selected Publications"
+        gradientWord="Publications"
+        subtitle="Recent research in Natural Language Processing and Large Language Models"
+        viewAllHref="/publications"
+      >
         <PublicationList filter='featured' />
-        <div className="mt-6 text-center">
-          <Link
-            href="/publications"
-            className="inline-flex items-center text-indigo-600 hover:text-indigo-800 font-semibold group">
-            View Full Publications
-            <ArrowRight size={18} className="ml-1 group-hover:translate-x-1 transition-transform" />
-          </Link>
-        </div>
       </Section>
 
-      <Section id="experience" title="Experience Highlights" bgColor="bg-gray-50">
-         <div className="max-w-3xl mx-auto space-y-6">
-            {currentPhd && (
-              <div>
-                 <ExperienceItem {...currentPhd} isFirst={true} />
-              </div>
-            )}
-            {latestWork && (
-              <div>
-                 <ExperienceItem {...latestWork} isFirst={!currentPhd} />
-              </div>
-            )}
-            {!currentPhd && !latestWork && (
-                <p className="text-center text-gray-500">Experience highlights will be shown here.</p>
-            )}
-         </div>
-         <div className="text-center mt-12">
-          <Link href="/experience" className="inline-flex items-center text-indigo-600 hover:text-indigo-800 font-semibold group">
-            View Full Experience
-            <ArrowRight size={18} className="ml-1 group-hover:translate-x-1 transition-transform" />
-          </Link>
-        </div>
+      <Section
+        id="experience"
+        title="Experience"
+        viewAllHref="/experience"
+        alt
+      >
+        <ExperienceList highlight />
       </Section>
 
-      {/* <Section id="blog" title="Blog / Notes" bgColor="bg-white"> */}
-        {/* <BlogPostList /> */}
-      {/* </Section> */}
-
-      <Section id="contact" title="Contact Me" bgColor="bg-gray-100">
-         <div className="text-center">
-          <p className="text-lg text-gray-700 mb-8 max-w-xl mx-auto">
-            Feel free to reach out if you are interested in my research, have collaboration opportunities, or any questions.
+      <Section id="contact" title="">
+        <div className="text-center">
+          <p className="text-lg font-medium mb-8 max-w-xl mx-auto">
+            <span className="gradient-text">Interested in collaboration? Let&apos;s connect.</span>
           </p>
           <ContactLinks
             obfuscatedEmail={myObfuscatedEmail}
             githubUrl={myGithubUrl}
             linkedinUrl={myLinkedinUrl}
             googleScholarUrl={myGoogleScholarUrl}
+            twitterUrl={myTwitterUrl}
           />
         </div>
       </Section>

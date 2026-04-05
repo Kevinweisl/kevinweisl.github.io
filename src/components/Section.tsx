@@ -1,17 +1,62 @@
 import React from 'react';
+import Link from 'next/link';
 
 interface SectionProps {
   id: string;
   title: string;
-  bgColor?: string;
+  gradientWord?: string;
+  subtitle?: string;
+  viewAllHref?: string;
+  alt?: boolean;
   children: React.ReactNode;
 }
 
-const Section: React.FC<SectionProps> = ({ id, title, bgColor = 'bg-white', children }) => {
+const Section: React.FC<SectionProps> = ({
+  id,
+  title,
+  gradientWord,
+  subtitle,
+  viewAllHref,
+  alt = false,
+  children,
+}) => {
+  const renderTitle = () => {
+    if (!gradientWord) {
+      return <h2 className="font-serif text-[28px] font-semibold text-[var(--text-primary)]">{title}</h2>;
+    }
+    const parts = title.split(gradientWord);
+    return (
+      <h2 className="font-serif text-[28px] font-semibold text-[var(--text-primary)]">
+        {parts[0]}<span className="gradient-text">{gradientWord}</span>{parts[1] || ''}
+      </h2>
+    );
+  };
+
   return (
-    <section id={id} className={`${bgColor} py-16 md:py-20`}>
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">{title}</h2>
+    <section
+      id={id}
+      className="py-[72px] px-6 transition-colors duration-200"
+      style={{ background: alt ? 'var(--bg-secondary)' : 'var(--bg-primary)' }}
+    >
+      <div className="max-w-[900px] mx-auto">
+        {(title || subtitle || viewAllHref) && (
+          <div className="flex justify-between items-baseline mb-8">
+            <div>
+              {title && renderTitle()}
+              {subtitle && (
+                <p className="text-[var(--text-muted)] text-sm mt-1.5">{subtitle}</p>
+              )}
+            </div>
+            {viewAllHref && (
+              <Link
+                href={viewAllHref}
+                className="text-[var(--accent)] text-sm font-medium hover:underline"
+              >
+                View all →
+              </Link>
+            )}
+          </div>
+        )}
         {children}
       </div>
     </section>
