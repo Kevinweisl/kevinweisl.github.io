@@ -94,7 +94,7 @@ const Hero = () => {
         <div className="max-w-[260px] mx-auto md:max-w-none">
           <div className="bg-white/[0.08] backdrop-blur-[12px] border border-white/[0.12] rounded-[var(--radius)] overflow-hidden">
             <Image
-              src="/favicon.ico"
+              src="/avatar.ico"
               alt="Kevin Wei"
               width={256}
               height={256}
