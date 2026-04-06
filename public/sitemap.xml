@@ -16,6 +16,16 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://kevinweisl.github.io/notes/2024/llm-selection-bias-part1</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://kevinweisl.github.io/notes/2026/llm-selection-bias-part2</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://kevinweisl.github.io/experience</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

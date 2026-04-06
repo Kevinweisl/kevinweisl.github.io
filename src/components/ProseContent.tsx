@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { X } from 'lucide-react';
 
 export default function ProseContent({ html }: { html: string }) {
@@ -9,21 +9,17 @@ export default function ProseContent({ html }: { html: string }) {
 
   useEffect(() => {
     if (!contentRef.current) return;
-
-    const images = contentRef.current.querySelectorAll('img');
-    const handlers: Array<[HTMLImageElement, () => void]> = [];
-
-    images.forEach((img) => {
+    contentRef.current.querySelectorAll('img').forEach((img) => {
       img.style.cursor = 'zoom-in';
-      const handler = () => setLightboxSrc(img.src);
-      img.addEventListener('click', handler);
-      handlers.push([img, handler]);
     });
-
-    return () => {
-      handlers.forEach(([img, handler]) => img.removeEventListener('click', handler));
-    };
   }, [html]);
+
+  const handleArticleClick = useCallback((e: React.MouseEvent) => {
+    const target = e.target as HTMLElement;
+    if (target.tagName === 'IMG') {
+      setLightboxSrc((target as HTMLImageElement).src);
+    }
+  }, []);
 
   return (
     <>
@@ -31,6 +27,7 @@ export default function ProseContent({ html }: { html: string }) {
         ref={contentRef}
         className="prose"
         dangerouslySetInnerHTML={{ __html: html }}
+        onClick={handleArticleClick}
       />
 
       {lightboxSrc && (

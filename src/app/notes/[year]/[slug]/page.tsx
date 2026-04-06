@@ -18,10 +18,21 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { year, slug } = await params;
   const note = await getNoteBySlug(year, slug);
+  const url = `https://kevinweisl.github.io/notes/${year}/${slug}`;
   return {
     title: note.title,
     description: note.excerpt,
+    alternates: { canonical: url },
     openGraph: {
+      type: 'article',
+      title: `${note.title} — Kevin Wei`,
+      description: note.excerpt,
+      url,
+      publishedTime: note.date,
+      authors: ['Sheng-Lun (Kevin) Wei'],
+    },
+    twitter: {
+      card: 'summary',
       title: `${note.title} — Kevin Wei`,
       description: note.excerpt,
     },
@@ -34,8 +45,19 @@ export default async function NotePage({ params }: Props) {
 
   const formattedDate = formatNoteDate(note.date);
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: note.title,
+    description: note.excerpt,
+    datePublished: note.date,
+    author: { '@type': 'Person', name: 'Sheng-Lun (Kevin) Wei', url: 'https://kevinweisl.github.io' },
+    url: `https://kevinweisl.github.io/notes/${year}/${slug}`,
+  };
+
   return (
     <section className="py-[72px] px-6" style={{ background: 'var(--bg-primary)' }}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <div className="max-w-[700px] mx-auto">
         <Link
           href="/notes"
