@@ -40,7 +40,7 @@ const Section: React.FC<SectionProps> = ({
     >
       <div className="max-w-[900px] mx-auto">
         {(title || subtitle || viewAllHref) && (
-          <div className="flex justify-between items-baseline mb-8">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-2 sm:gap-4 mb-8">
             <div>
               {title && renderTitle()}
               {subtitle && (

@@ -5,6 +5,8 @@ import Section from '@/components/Section';
 import ContactLinks from '@/components/ContactLinks';
 import PublicationList from '@/components/PublicationList';
 import ExperienceList from '@/components/ExperienceList';
+import NoteCard from '@/components/NoteCard';
+import { getRecentNotes } from '@/lib/notes';
 
 export const metadata: Metadata = {
   title: 'Kevin Wei - Personal Website',
@@ -12,6 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
+  const recentNotes = getRecentNotes(3);
   const myObfuscatedEmail = "weisl AT nlg.csie DOT ntu.edu.tw";
   const myGithubUrl = "https://github.com/Kevinweisl";
   const myLinkedinUrl = "https://linkedin.com/in/kevin-wei-02001b91";
@@ -32,11 +35,29 @@ export default function HomePage() {
         <PublicationList filter='featured' />
       </Section>
 
+      {recentNotes.length > 0 && (
+        <Section
+          id="notes"
+          title="Recent Notes"
+          gradientWord="Notes"
+          viewAllHref="/notes"
+          alt
+        >
+          <div
+            className="flex flex-col overflow-hidden border border-[var(--border)] rounded-[var(--radius)]"
+            style={{ gap: '1px', background: 'var(--border)' }}
+          >
+            {recentNotes.map((note) => (
+              <NoteCard key={`${note.year}/${note.slug}`} {...note} />
+            ))}
+          </div>
+        </Section>
+      )}
+
       <Section
         id="experience"
         title="Experience"
         viewAllHref="/experience"
-        alt
       >
         <ExperienceList highlight />
       </Section>
