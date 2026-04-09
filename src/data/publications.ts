@@ -15,6 +15,15 @@ export interface Publication {
 
 export const publicationsData: Publication[] = [
   {
+    title: "No One Fits All: From Fixed Prompting to Learned Routing in Multilingual LLMs",
+    authors: "Wei-Chi Wu, Sheng-Lun Wei, Hen-Hsen Huang, Hsin-Hsi Chen",
+    venue: "Findings of the Association for Computational Linguistics",
+    venueAcronym: "Findings of ACL 2026",
+    year: 2026,
+    abstract: "Translation-based prompting is widely used in multilingual LLMs, yet its effectiveness varies across languages and tasks. Evaluating prompting strategies across ten languages of different resource levels and multiple benchmarks, we show that no single strategy is universally optimal: translation strongly benefits low-resource languages despite imperfect translation quality, while prompt-based self-routing fails. We formulate prompting strategy selection as a learned decision problem and introduce lightweight classifiers that predict whether native or translation-based prompting is optimal for each instance, achieving statistically significant improvements over fixed strategies across four benchmarks, including unseen task formats. Further analysis shows that language resource level, rather than translation quality, determines when translation is beneficial.",
+    featured: true,
+  },
+  {
     title: "Do Multimodal LLMs Understand Order? Measuring the Fragility of Multimodal Reasoning under Input Order Perturbations",
     authors: "Sheng-Lun Wei, Yi-Lin Liao, Hen-Hsen Huang, Hsin-Hsi Chen",
     venue: "International Conference on Language Resources and Evaluation",
@@ -38,15 +47,6 @@ export const publicationsData: Publication[] = [
     year = "2026",
     url = "https://aclanthology.org/2026.findings-eacl.80/",
 }`,
-    featured: true,
-  },
-  {
-    title: "No One Fits All: From Fixed Prompting to Learned Routing in Multilingual LLMs",
-    authors: "Wei-Chi Wu, Sheng-Lun Wei, Hen-Hsen Huang, Hsin-Hsi Chen",
-    venue: "Findings of the Association for Computational Linguistics",
-    venueAcronym: "Findings of ACL 2026",
-    year: 2026,
-    abstract: "Translation-based prompting is widely used in multilingual LLMs, yet its effectiveness varies across languages and tasks. Evaluating prompting strategies across ten languages of different resource levels and multiple benchmarks, we show that no single strategy is universally optimal: translation strongly benefits low-resource languages despite imperfect translation quality, while prompt-based self-routing fails. We formulate prompting strategy selection as a learned decision problem and introduce lightweight classifiers that predict whether native or translation-based prompting is optimal for each instance, achieving statistically significant improvements over fixed strategies across four benchmarks, including unseen task formats. Further analysis shows that language resource level, rather than translation quality, determines when translation is beneficial.",
     featured: true,
   },
   {
