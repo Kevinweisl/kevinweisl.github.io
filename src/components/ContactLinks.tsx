@@ -41,7 +41,7 @@ const ContactLinks: React.FC<ContactLinksProps> = ({
   ];
 
   const cardClassName =
-    'group relative overflow-hidden flex items-center gap-2 text-[var(--text-body)] py-3 px-5.5 rounded-[var(--radius)] border border-[var(--border)] bg-[var(--bg-card)] text-sm font-semibold transition-all duration-200 hover:text-white hover:border-transparent hover:-translate-y-0.5 hover:shadow-[0_6px_16px_rgba(79,70,229,0.2)] cursor-pointer';
+    'group relative overflow-hidden flex items-center gap-2 text-[var(--text-body)] py-3 px-5.5 rounded-[var(--radius)] border border-[var(--border)] bg-[var(--bg-card)] text-[13px] font-semibold transition-all duration-200 hover:text-white hover:border-transparent hover:-translate-y-0.5 hover:shadow-[0_6px_16px_rgba(54,120,142,0.22)] cursor-pointer';
 
   const cardContent = (link: ContactLinkItem) => (
     <>
@@ -106,9 +106,9 @@ const ContactLinks: React.FC<ContactLinksProps> = ({
               <div className="gradient-bg p-2.5 rounded-[var(--radius)]">
                 <Mail size={20} className="text-white" />
               </div>
-              <h3 className="font-serif text-lg font-semibold text-[var(--text-primary)]">Email</h3>
+              <h3 className="font-serif text-[20px] font-semibold text-[var(--text-primary)]">Email</h3>
             </div>
-            <p className="text-[var(--text-body)] text-sm font-mono select-all">
+            <p className="text-[var(--text-body)] text-[16px] font-mono select-all">
               {obfuscatedEmail}
             </p>
           </div>

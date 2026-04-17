@@ -38,7 +38,7 @@ const Navbar: React.FC = () => {
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-[var(--text-nav)] no-underline transition-colors duration-200 hover:text-[var(--accent)]"
+              className="text-[13px] font-medium text-[var(--text-nav)] no-underline transition-colors duration-200 hover:text-[var(--accent)]"
             >
               {link.label}
             </Link>
@@ -68,7 +68,7 @@ const Navbar: React.FC = () => {
               <Link
                 key={link.href}
                 href={link.href}
-                className="block rounded px-3 py-2 text-sm font-medium text-[var(--text-nav)] no-underline transition-colors duration-200 hover:text-[var(--accent)]"
+                className="block rounded px-3 py-2 text-[13px] font-medium text-[var(--text-nav)] no-underline transition-colors duration-200 hover:text-[var(--accent)]"
                 onClick={closeMobileMenu}
               >
                 {link.label}

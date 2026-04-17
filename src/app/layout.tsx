@@ -1,4 +1,4 @@
-import { Inter, Newsreader } from 'next/font/google';
+import { Albert_Sans, Young_Serif, Noto_Sans_TC, Noto_Serif_TC } from 'next/font/google';
 import type { Metadata } from 'next';
 import '@/styles/globals.css';
 import Navbar from '@/components/Navbar';
@@ -36,16 +36,34 @@ export const metadata: Metadata = {
   },
 };
 
-const inter = Inter({
+const albertSans = Albert_Sans({
   subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-albert-sans',
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
 });
 
-const newsreader = Newsreader({
+const youngSerif = Young_Serif({
   subsets: ['latin'],
-  variable: '--font-newsreader',
-  style: ['normal', 'italic'],
+  variable: '--font-young-serif',
+  weight: ['400'],
+  display: 'swap',
+});
+
+const notoSansTC = Noto_Sans_TC({
+  subsets: ['latin'],
+  variable: '--font-noto-sans-tc',
   weight: ['400', '500', '600', '700'],
+  display: 'swap',
+  preload: false,
+});
+
+const notoSerifTC = Noto_Serif_TC({
+  subsets: ['latin'],
+  variable: '--font-noto-serif-tc',
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
+  preload: false,
 });
 
 const themeScript = `
@@ -81,7 +99,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${newsreader.variable} scroll-smooth`} suppressHydrationWarning>
+    <html lang="en" className={`${albertSans.variable} ${youngSerif.variable} ${notoSansTC.variable} ${notoSerifTC.variable} scroll-smooth`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <script

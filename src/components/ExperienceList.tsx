@@ -19,7 +19,7 @@ const ExperienceList: React.FC<ExperienceListProps> = ({ highlight = false }) =>
             key={i}
             className="grid grid-cols-1 md:grid-cols-[100px_1fr] gap-0"
           >
-            <div className="font-serif text-sm font-semibold text-[var(--accent)] md:text-right md:pt-[18px] md:pr-5 pb-2 md:pb-0">
+            <div className="font-serif text-[13px] font-semibold text-[var(--accent)] md:text-right md:pt-[18px] md:pr-5 pb-2 md:pb-0">
               {category.categoryTitle}
             </div>
             <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[var(--radius)] overflow-hidden">

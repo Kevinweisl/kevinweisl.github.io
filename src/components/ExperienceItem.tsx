@@ -29,19 +29,19 @@ const ExperienceItem: React.FC<ExperienceItemProps> = ({
         {period}
       </div>
       <div>
-        <div className="font-serif text-[15px] font-semibold text-[var(--text-primary)]">
+        <div className="font-serif text-[16px] font-semibold text-[var(--text-primary)]">
           {title}
         </div>
-        <div className="text-sm font-medium gradient-text mt-0.5">
+        <div className="text-[13px] font-medium gradient-text mt-0.5">
           {institution}
         </div>
         {mainDesc && (
-          <div className="text-sm text-[var(--text-body)] mt-1 leading-[1.6]">
+          <div className="text-[16px] text-[var(--text-body)] mt-1 leading-[1.6]">
             {mainDesc}
           </div>
         )}
         {subDesc && (
-          <div className="text-xs text-[var(--text-muted)] mt-0.5">
+          <div className="text-[13px] text-[var(--text-muted)] mt-0.5">
             {subDesc}
           </div>
         )}

@@ -58,20 +58,20 @@ export default async function NotePage({ params }: Props) {
   return (
     <section className="py-[72px] px-6" style={{ background: 'var(--bg-primary)' }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <div className="max-w-[700px] mx-auto">
+      <div className="max-w-[70ch] mx-auto">
         <Link
           href="/notes"
-          className="inline-flex items-center gap-1.5 text-sm text-[var(--accent)] hover:underline mb-8"
+          className="inline-flex items-center gap-1.5 text-[13px] text-[var(--accent)] hover:underline mb-8"
         >
           <ArrowLeft size={14} />
           Back to Notes
         </Link>
 
         <header className="mb-10">
-          <h1 className="font-serif text-3xl md:text-[36px] font-bold text-[var(--text-primary)] leading-[1.2] mb-3">
+          <h1 className="font-serif text-[28px] font-bold text-[var(--text-primary)] leading-[1.2] mb-3">
             {note.title}
           </h1>
-          <p className="text-[var(--text-muted)] text-sm">{formattedDate}</p>
+          <p className="text-[var(--text-muted)] text-[13px]">{formattedDate}</p>
         </header>
 
         <ProseContent html={note.contentHtml} />

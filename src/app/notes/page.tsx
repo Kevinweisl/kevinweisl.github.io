@@ -17,7 +17,7 @@ export default function NotesPage() {
   return (
     <section className="py-[72px] px-6" style={{ background: 'var(--bg-primary)' }}>
       <div className="max-w-[900px] mx-auto">
-        <h1 className="font-serif text-3xl md:text-4xl font-semibold text-center mb-8 text-[var(--text-primary)]">
+        <h1 className="font-serif text-[28px] font-semibold text-center mb-8 text-[var(--text-primary)]">
           <span className="gradient-text">Notes</span>
         </h1>
 

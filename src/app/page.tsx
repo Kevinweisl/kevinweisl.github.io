@@ -64,7 +64,7 @@ export default function HomePage() {
 
       <Section id="contact" title="">
         <div className="text-center">
-          <p className="text-lg font-medium mb-8 max-w-xl mx-auto">
+          <p className="text-[20px] font-medium mb-8 max-w-xl mx-auto">
             <span className="gradient-text">Interested in collaboration? Let&apos;s connect.</span>
           </p>
           <ContactLinks

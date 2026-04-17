@@ -44,13 +44,13 @@ const Section: React.FC<SectionProps> = ({
             <div>
               {title && renderTitle()}
               {subtitle && (
-                <p className="text-[var(--text-muted)] text-sm mt-1.5">{subtitle}</p>
+                <p className="text-[var(--text-muted)] text-[13px] mt-1.5">{subtitle}</p>
               )}
             </div>
             {viewAllHref && (
               <Link
                 href={viewAllHref}
-                className="text-[var(--accent)] text-sm font-medium hover:underline"
+                className="text-[var(--accent)] text-[13px] font-medium hover:underline"
               >
                 View all →
               </Link>
