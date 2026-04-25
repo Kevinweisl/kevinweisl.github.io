@@ -1,10 +1,17 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-const heroLinkClass = 'font-semibold no-underline border-b border-[#7cc0d6]/30 hover:border-[#7cc0d6] transition-colors gradient-text italic';
-
 function HeroLink({ href, children }: { href: string; children: React.ReactNode }) {
-  return <Link href={href} target="_blank" rel="noopener noreferrer" className={heroLinkClass}>{children}</Link>;
+  return (
+    <Link
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="font-semibold no-underline hero-link transition-colors gradient-text italic"
+    >
+      {children}
+    </Link>
+  );
 }
 
 const Hero = () => {
@@ -12,18 +19,16 @@ const Hero = () => {
     <section
       id="home"
       className="relative overflow-hidden px-6 py-[72px]"
-      style={{
-        background: 'linear-gradient(135deg, #0c1820 0%, #1a3444 40%, #102838 100%)',
-      }}
+      style={{ background: 'var(--hero-bg)' }}
     >
       {/* Decorative gradient blobs */}
       <div
         className="absolute -top-1/2 -right-[20%] w-[600px] h-[600px] rounded-full pointer-events-none"
-        style={{ background: 'radial-gradient(circle, rgba(90,154,176,0.15) 0%, transparent 70%)' }}
+        style={{ background: `radial-gradient(circle, var(--hero-blob-1) 0%, transparent 70%)` }}
       />
       <div
         className="absolute -bottom-[30%] left-[10%] w-[500px] h-[500px] rounded-full pointer-events-none"
-        style={{ background: 'radial-gradient(circle, rgba(124,192,214,0.12) 0%, transparent 70%)' }}
+        style={{ background: `radial-gradient(circle, var(--hero-blob-2) 0%, transparent 70%)` }}
       />
 
       {/* Inner grid */}
@@ -32,17 +37,17 @@ const Hero = () => {
         {/* Left column — hero text */}
         <div>
           <h1
-            className="font-serif font-bold text-white leading-[1.15] mb-2"
-            style={{ fontSize: 'clamp(34px, 5vw, 48px)' }}
+            className="font-serif font-bold leading-[1.15] mb-2"
+            style={{ fontSize: 'clamp(34px, 5vw, 48px)', color: 'var(--hero-heading)' }}
           >
             Sheng-Lun (Kevin) Wei
           </h1>
 
-          <p className="text-[16px] text-[#7cc0d6] font-medium mb-5">
+          <p className="text-[16px] font-medium mb-5" style={{ color: 'var(--hero-subtitle)' }}>
             CS PhD Candidate @ National Taiwan University
           </p>
 
-          <p className="text-[16px] leading-[1.8] text-white/75 mb-7 max-w-[60ch]">
+          <p className="text-[16px] leading-[1.8] mb-7 max-w-[60ch]" style={{ color: 'var(--hero-body)' }}>
             I am a CS PhD candidate at <span className="gradient-text italic">National Taiwan University</span>, working on LLM biases & fairness, multimodal AI, and LLM evaluation.
             With 6+ years of industry experience at{' '}
             <HeroLink href="https://www.shopback.sg/">ShopBack</HeroLink>,{' '}
@@ -58,40 +63,50 @@ const Hero = () => {
           <div className="flex gap-3 justify-center md:justify-start flex-wrap">
             <Link
               href="#contact"
-              className="bg-white text-[#1a3040] px-7 py-3 rounded-[var(--radius)] font-bold text-[16px] hover:-translate-y-[2px] hover:shadow-[0_8px_20px_rgba(0,0,0,0.2)] transition-all"
+              className="px-7 py-3 rounded-[var(--radius)] font-bold text-[16px] hover:-translate-y-[2px] transition-all"
+              style={{ background: 'var(--hero-cta-bg)', color: 'var(--hero-cta-text)', boxShadow: `0 2px 8px var(--hero-cta-shadow)` }}
             >
               Contact Me
             </Link>
             <Link
               href="/experience"
-              className="inline-flex items-center gap-2 bg-white/10 text-[#b0cfd8] px-7 py-3 rounded-[var(--radius)] font-semibold text-[16px] border border-white/20 hover:bg-white/20 hover:-translate-y-[2px] transition-all"
+              className="inline-flex items-center gap-2 px-7 py-3 rounded-[var(--radius)] font-semibold text-[16px] border hover:-translate-y-[2px] transition-all"
+              style={{ background: 'var(--hero-cta2-bg)', color: 'var(--hero-cta2-text)', borderColor: 'var(--hero-cta2-border)' }}
             >
               About Me
             </Link>
           </div>
         </div>
 
-        {/* Right column — glass card */}
+        {/* Right column — card */}
         <div className="max-w-[260px] mx-auto md:max-w-none">
-          <div className="bg-white/[0.08] backdrop-blur-[12px] border border-white/[0.12] rounded-[var(--radius)] overflow-hidden">
+          <div
+            className="rounded-[var(--radius)] overflow-hidden"
+            style={{ background: 'var(--hero-card-bg)', border: '1px solid var(--hero-card-border)' }}
+          >
             <Image
               src="/avatar.ico"
               alt="Kevin Wei"
               width={256}
               height={256}
-              className="w-full aspect-square object-contain bg-white/5 p-8"
+              className="w-full aspect-square object-contain p-8"
+              style={{ background: 'var(--hero-card-img-bg)' }}
               unoptimized
               priority
             />
             <div className="p-3.5">
-              <p className="text-[13px] font-bold uppercase tracking-[1px] text-[#7cc0d6]/80 mb-1.5">
+              <p
+                className="text-[13px] font-bold uppercase tracking-[1px] mb-1.5"
+                style={{ color: 'var(--hero-label)' }}
+              >
                 Research Interests
               </p>
               <div className="flex flex-wrap gap-1">
                 {['LLM Biases & Fairness', 'LLM-as-a-Judge', 'Multimodal LLMs', 'Trustworthy NLP'].map((tag) => (
                   <span
                     key={tag}
-                    className="text-[13px] px-2 py-[3px] rounded-[var(--radius)] bg-white/10 text-[#b0cfd8] font-medium border border-white/[0.08]"
+                    className="text-[13px] px-2 py-[3px] rounded-[var(--radius)] font-medium"
+                    style={{ background: 'var(--hero-tag-bg)', color: 'var(--hero-tag-text)', border: '1px solid var(--hero-tag-border)' }}
                   >
                     {tag}
                   </span>

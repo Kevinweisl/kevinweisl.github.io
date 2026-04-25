@@ -40,7 +40,7 @@ const PublicationItem: React.FC<Publication> = ({
       className={`py-[18px] px-5 bg-[var(--bg-card)] transition-colors duration-200 ${abstract ? 'cursor-pointer' : 'cursor-default'} hover:bg-[var(--accent-light)]`}
       onClick={handleMainClick}
     >
-      <p className="font-serif text-[20px] font-semibold text-[var(--text-primary)] leading-[1.4] mb-1">
+      <p className="font-serif text-[16px] font-semibold text-[var(--text-primary)] leading-[1.4] mb-1">
         {title}
       </p>
       <p

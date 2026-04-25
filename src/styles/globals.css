@@ -27,6 +27,30 @@
 
   --radius: 6px;
   --transition: 0.2s ease;
+
+  /* Hero section */
+  --hero-bg: linear-gradient(135deg, #eef4f8 0%, #e0ecf2 40%, #eaf1f6 100%);
+  --hero-heading: var(--text-primary);
+  --hero-subtitle: #1f5e70;
+  --hero-body: var(--text-body);
+  --hero-blob-1: rgba(54, 120, 142, 0.07);
+  --hero-blob-2: rgba(90, 154, 176, 0.05);
+  --hero-cta-bg: var(--accent);
+  --hero-cta-text: #ffffff;
+  --hero-cta-shadow: rgba(54, 120, 142, 0.25);
+  --hero-cta2-bg: transparent;
+  --hero-cta2-text: var(--accent);
+  --hero-cta2-border: rgba(54, 120, 142, 0.25);
+  --hero-cta2-hover: rgba(54, 120, 142, 0.06);
+  --hero-card-bg: rgba(54, 120, 142, 0.04);
+  --hero-card-border: rgba(54, 120, 142, 0.12);
+  --hero-card-img-bg: rgba(54, 120, 142, 0.03);
+  --hero-label: #1f5e70;
+  --hero-tag-bg: rgba(54, 120, 142, 0.06);
+  --hero-tag-text: #1f5e70;
+  --hero-tag-border: rgba(54, 120, 142, 0.1);
+  --hero-link-border: rgba(54, 120, 142, 0.3);
+  --hero-link-hover: var(--accent);
 }
 
 .dark {
@@ -52,6 +76,30 @@
 
   --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.3);
   --shadow-card-hover: 0 12px 32px rgba(90, 154, 176, 0.12);
+
+  /* Hero section */
+  --hero-bg: linear-gradient(135deg, #0c1820 0%, #1a3444 40%, #102838 100%);
+  --hero-heading: #ffffff;
+  --hero-subtitle: #7cc0d6;
+  --hero-body: rgba(255, 255, 255, 0.75);
+  --hero-blob-1: rgba(90, 154, 176, 0.15);
+  --hero-blob-2: rgba(124, 192, 214, 0.12);
+  --hero-cta-bg: #ffffff;
+  --hero-cta-text: #1a3040;
+  --hero-cta-shadow: rgba(0, 0, 0, 0.2);
+  --hero-cta2-bg: rgba(255, 255, 255, 0.1);
+  --hero-cta2-text: #b0cfd8;
+  --hero-cta2-border: rgba(255, 255, 255, 0.2);
+  --hero-cta2-hover: rgba(255, 255, 255, 0.2);
+  --hero-card-bg: rgba(255, 255, 255, 0.08);
+  --hero-card-border: rgba(255, 255, 255, 0.12);
+  --hero-card-img-bg: rgba(255, 255, 255, 0.05);
+  --hero-label: rgba(124, 192, 214, 0.8);
+  --hero-tag-bg: rgba(255, 255, 255, 0.1);
+  --hero-tag-text: #b0cfd8;
+  --hero-tag-border: rgba(255, 255, 255, 0.08);
+  --hero-link-border: rgba(124, 192, 214, 0.3);
+  --hero-link-hover: #7cc0d6;
 }
 
 /* ===== Tailwind v4 Theme ===== */
@@ -74,6 +122,14 @@ body {
 
 .gradient-bg {
   background: var(--accent);
+}
+
+/* ===== Hero Link ===== */
+.hero-link {
+  border-bottom: 1px solid var(--hero-link-border);
+}
+.hero-link:hover {
+  border-bottom-color: var(--hero-link-hover);
 }
 
 /* ===== Article Prose Styling ===== */
