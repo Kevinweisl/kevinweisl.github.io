@@ -43,7 +43,7 @@ const Hero = () => {
           </p>
 
           <p className="text-[16px] leading-[1.8] text-white/75 mb-7 max-w-[60ch]">
-            I am a CS PhD candidate at <span className="gradient-text italic">National Taiwan University</span>, working on LLM robustness, multimodal AI, and LLM evaluation.
+            I am a CS PhD candidate at <span className="gradient-text italic">National Taiwan University</span>, working on LLM biases & fairness, multimodal AI, and LLM evaluation.
             With 6+ years of industry experience at{' '}
             <HeroLink href="https://www.shopback.sg/">ShopBack</HeroLink>,{' '}
             <HeroLink href="https://www.junyiacademy.org/">Junyi Academy</HeroLink>, and{' '}
@@ -88,7 +88,7 @@ const Hero = () => {
                 Research Interests
               </p>
               <div className="flex flex-wrap gap-1">
-                {['LLM Robustness & Fairness', 'Multimodal AI', 'LLM-as-a-Judge', 'Information Retrieval'].map((tag) => (
+                {['LLM Biases & Fairness', 'LLM-as-a-Judge', 'Multimodal LLMs', 'Trustworthy NLP'].map((tag) => (
                   <span
                     key={tag}
                     className="text-[13px] px-2 py-[3px] rounded-[var(--radius)] bg-white/10 text-[#b0cfd8] font-medium border border-white/[0.08]"
