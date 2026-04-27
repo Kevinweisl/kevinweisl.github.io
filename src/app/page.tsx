@@ -17,7 +17,7 @@ export default function HomePage() {
   const recentNotes = getRecentNotes(3);
   const myObfuscatedEmail = "weisl AT nlg.csie DOT ntu.edu.tw";
   const myGithubUrl = "https://github.com/Kevinweisl";
-  const myLinkedinUrl = "https://linkedin.com/in/kevin-wei-02001b91";
+  const myLinkedinUrl = "https://www.linkedin.com/in/kevinwei-nlp/";
   const myGoogleScholarUrl = "https://scholar.google.com/citations?user=200UnXEAAAAJ";
   const myTwitterUrl = "https://x.com/kevinweisl";
 

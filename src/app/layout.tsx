@@ -87,7 +87,7 @@ const jsonLd = {
   sameAs: [
     'https://github.com/Kevinweisl',
     'https://scholar.google.com/citations?user=200UnXEAAAAJ',
-    'https://linkedin.com/in/kevin-wei-02001b91',
+    'https://www.linkedin.com/in/kevinwei-nlp/',
     'https://x.com/kevinweisl',
   ],
   knowsAbout: ['LLM Robustness', 'Multimodal AI', 'LLM-as-a-Judge', 'Information Retrieval', 'Natural Language Processing'],
