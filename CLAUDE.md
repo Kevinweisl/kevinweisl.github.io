@@ -52,3 +52,7 @@
 - **Simplicity First**: Make every change as simple as possible. Impact minimal code.
 - **No Laziness**: Find root causes. No temporary fixes. Senior developer standards.
 - **Minimat Impact**: Changes should only touch what's necessary. Avoid introducing bugs.
+
+## TODO
+
+- [ ] ccClub 十年記三篇文章：補齊照片。每篇需要 Kevin 提供照片，Claude 評估適合放的位置。詳細建議清單見對話紀錄，大方向：Part 1（貼文截圖、早期教室、150人場景、Demo Party、大合照）、Part 2（線上教學截圖、南投員旅、法人成立、交棒）、Part 3（團隊合照跨年對比、各次員旅、十年對比照）
