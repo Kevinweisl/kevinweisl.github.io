@@ -10,21 +10,11 @@ const ExperienceItem: React.FC<ExperienceItemProps> = ({
   institution,
   period,
   description,
+  note,
   compact = false,
 }) => {
-  const descText =
-    typeof description === 'string'
-      ? description
-      : Array.isArray(description) && description.length > 0
-        ? description.join(', ')
-        : null;
-
-  const lines = descText?.split('\n');
-  const mainDesc = lines?.[0] ?? descText;
-  const subDesc = !compact && lines && lines.length > 1 ? lines[1] : null;
-
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-[120px_1fr] gap-1 sm:gap-4 py-3.5 px-5 border-b border-[var(--border)] last:border-b-0">
+    <div className="grid grid-cols-1 sm:grid-cols-[120px_1fr] gap-1 sm:gap-4 py-[18px] px-5 border-b border-[var(--border)] last:border-b-0">
       <div className="text-[13px] text-[var(--text-muted)] pt-[3px]" style={{ fontVariantNumeric: 'tabular-nums' }}>
         {period}
       </div>
@@ -32,17 +22,17 @@ const ExperienceItem: React.FC<ExperienceItemProps> = ({
         <div className="font-serif text-[16px] font-semibold text-[var(--text-primary)]">
           {title}
         </div>
-        <div className="text-[13px] font-medium gradient-text mt-0.5">
+        <div className="text-[13px] font-medium accent-text mt-0.5">
           {institution}
         </div>
-        {mainDesc && (
+        {description && (
           <div className="text-[16px] text-[var(--text-body)] mt-1 leading-[1.6]">
-            {mainDesc}
+            {description}
           </div>
         )}
-        {subDesc && (
+        {note && !compact && (
           <div className="text-[13px] text-[var(--text-muted)] mt-0.5">
-            {subDesc}
+            {note}
           </div>
         )}
       </div>

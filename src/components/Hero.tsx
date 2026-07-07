@@ -7,7 +7,7 @@ function HeroLink({ href, children }: { href: string; children: React.ReactNode 
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="font-semibold no-underline hero-link transition-colors gradient-text italic"
+      className="font-semibold no-underline hero-link transition-colors accent-text italic"
     >
       {children}
     </Link>
@@ -48,13 +48,13 @@ const Hero = () => {
           </p>
 
           <p className="text-[16px] leading-[1.8] mb-7 max-w-[60ch]" style={{ color: 'var(--hero-body)' }}>
-            I am a CS PhD candidate at <span className="gradient-text italic">National Taiwan University</span>, working on LLM biases & fairness, multimodal AI, and LLM evaluation.
+            I am a CS PhD candidate at <span className="italic">National Taiwan University</span>, working on LLM biases & fairness, multimodal AI, and LLM evaluation.
             With 6+ years of industry experience at{' '}
             <HeroLink href="https://www.shopback.sg/">ShopBack</HeroLink>,{' '}
             <HeroLink href="https://www.junyiacademy.org/">Junyi Academy</HeroLink>, and{' '}
             <HeroLink href="https://blendvision.com/">KKStream</HeroLink>,
             I bridge the gap between research and real-world applications.
-            I also serve as an adjunct instructor at NTU&apos;s <span className="gradient-text italic">Center of General Education</span> and <span className="gradient-text italic">Department of Economics</span>,
+            I also serve as an adjunct instructor at NTU&apos;s <span className="italic">Center of General Education</span> and <span className="italic">Department of Economics</span>,
             and founded <HeroLink href="https://www.ccclub.io/">ccClub</HeroLink> (社團法人攜曦程式推廣學會),
             a non-profit organization dedicated to programming education, serving 4,000+ learners since 2016.
           </p>
@@ -63,14 +63,14 @@ const Hero = () => {
           <div className="flex gap-3 justify-center md:justify-start flex-wrap">
             <Link
               href="#contact"
-              className="px-7 py-3 rounded-[var(--radius)] font-bold text-[16px] hover:-translate-y-[2px] transition-all"
+              className="px-7 py-3 rounded-[var(--radius)] font-bold text-[16px] hover:-translate-y-[2px] transition-transform duration-200"
               style={{ background: 'var(--hero-cta-bg)', color: 'var(--hero-cta-text)', boxShadow: `0 2px 8px var(--hero-cta-shadow)` }}
             >
               Contact Me
             </Link>
             <Link
               href="/experience"
-              className="inline-flex items-center gap-2 px-7 py-3 rounded-[var(--radius)] font-semibold text-[16px] border hover:-translate-y-[2px] transition-all"
+              className="inline-flex items-center gap-2 px-7 py-3 rounded-[var(--radius)] font-semibold text-[16px] border hover:-translate-y-[2px] transition-transform duration-200"
               style={{ background: 'var(--hero-cta2-bg)', color: 'var(--hero-cta2-text)', borderColor: 'var(--hero-cta2-border)' }}
             >
               About Me

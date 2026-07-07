@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
-import { getAllNotes, getNoteBySlug, formatNoteDate } from '@/lib/notes';
+import { getAllNotes, getNoteBySlug, getAdjacentNotes, formatNoteDate } from '@/lib/notes';
 import ProseContent from '@/components/ProseContent';
+import { siteUrl, fullName } from '@/data/profile';
 
 type Props = {
   params: Promise<{ year: string; slug: string }>;
@@ -18,7 +19,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { year, slug } = await params;
   const note = await getNoteBySlug(year, slug);
-  const url = `https://kevinweisl.github.io/notes/${year}/${slug}`;
+  const url = `${siteUrl}/notes/${year}/${slug}`;
   return {
     title: note.title,
     description: note.excerpt,
@@ -29,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: note.excerpt,
       url,
       publishedTime: note.date,
-      authors: ['Sheng-Lun (Kevin) Wei'],
+      authors: [fullName],
     },
     twitter: {
       card: 'summary',
@@ -42,6 +43,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function NotePage({ params }: Props) {
   const { year, slug } = await params;
   const note = await getNoteBySlug(year, slug);
+  const { newer, older } = getAdjacentNotes(year, slug);
 
   const formattedDate = formatNoteDate(note.date);
 
@@ -51,14 +53,14 @@ export default async function NotePage({ params }: Props) {
     headline: note.title,
     description: note.excerpt,
     datePublished: note.date,
-    author: { '@type': 'Person', name: 'Sheng-Lun (Kevin) Wei', url: 'https://kevinweisl.github.io' },
-    url: `https://kevinweisl.github.io/notes/${year}/${slug}`,
+    author: { '@type': 'Person', name: fullName, url: siteUrl },
+    url: `${siteUrl}/notes/${year}/${slug}`,
   };
 
   return (
     <section className="py-[72px] px-6" style={{ background: 'var(--bg-primary)' }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <div className="max-w-[70ch] mx-auto">
+      <div className="max-w-[68ch] mx-auto">
         <Link
           href="/notes"
           className="inline-flex items-center gap-1.5 text-[13px] text-[var(--accent)] hover:underline mb-8"
@@ -71,10 +73,40 @@ export default async function NotePage({ params }: Props) {
           <h1 className="font-serif text-[28px] font-bold text-[var(--text-primary)] leading-[1.2] mb-3">
             {note.title}
           </h1>
-          <p className="text-[var(--text-muted)] text-[13px]">{formattedDate}</p>
+          <p className="text-[var(--text-muted)] text-[13px]" style={{ fontVariantNumeric: 'tabular-nums' }}>
+            {formattedDate} · {note.readingMinutes} min read
+          </p>
         </header>
 
         <ProseContent html={note.contentHtml} />
+
+        {(older || newer) && (
+          <nav
+            className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-14 pt-8 border-t border-[var(--border)]"
+            aria-label="Adjacent notes"
+          >
+            <div>
+              {older && (
+                <Link href={`/notes/${older.year}/${older.slug}`} className="group block no-underline">
+                  <span className="block text-[13px] text-[var(--text-muted)] mb-1">← Older</span>
+                  <span className="block font-serif text-[16px] text-[var(--text-primary)] leading-[1.4] group-hover:text-[var(--accent)] transition-colors duration-200">
+                    {older.title}
+                  </span>
+                </Link>
+              )}
+            </div>
+            <div className="sm:text-right">
+              {newer && (
+                <Link href={`/notes/${newer.year}/${newer.slug}`} className="group block no-underline">
+                  <span className="block text-[13px] text-[var(--text-muted)] mb-1">Newer →</span>
+                  <span className="block font-serif text-[16px] text-[var(--text-primary)] leading-[1.4] group-hover:text-[var(--accent)] transition-colors duration-200">
+                    {newer.title}
+                  </span>
+                </Link>
+              )}
+            </div>
+          </nav>
+        )}
       </div>
     </section>
   );

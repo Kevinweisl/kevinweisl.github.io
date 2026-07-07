@@ -5,27 +5,30 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ThemeProvider from '@/components/ThemeProvider';
 import React from 'react';
+import { siteUrl, siteName, fullName, socialLinks } from '@/data/profile';
 
-const siteUrl = 'https://kevinweisl.github.io';
+const siteDescription = 'Personal website of Sheng-Lun (Kevin) Wei — CS PhD candidate at NTU, researching LLM robustness, multimodal AI, and LLM evaluation.';
 
 export const metadata: Metadata = {
-  title: { default: 'Kevin Wei', template: '%s | Kevin Wei' },
-  description: 'Personal website of Sheng-Lun (Kevin) Wei — CS PhD candidate at NTU, researching LLM robustness, multimodal AI, and LLM evaluation.',
+  title: { default: siteName, template: `%s | ${siteName}` },
+  description: siteDescription,
   metadataBase: new URL(siteUrl),
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: siteUrl,
-    siteName: 'Kevin Wei',
+    siteName,
     title: 'Kevin Wei — CS PhD Candidate @ NTU',
-    description: 'Personal website of Sheng-Lun (Kevin) Wei — CS PhD candidate at NTU, researching LLM robustness, multimodal AI, and LLM evaluation.',
+    description: siteDescription,
+    images: ['/og.png'],
   },
   twitter: {
-    card: 'summary',
+    card: 'summary_large_image',
     site: '@kevinweisl',
     creator: '@kevinweisl',
     title: 'Kevin Wei — CS PhD Candidate @ NTU',
-    description: 'Personal website of Sheng-Lun (Kevin) Wei — CS PhD candidate at NTU, researching LLM robustness, multimodal AI, and LLM evaluation.',
+    description: siteDescription,
+    images: ['/og.png'],
   },
   alternates: {
     canonical: siteUrl,
@@ -77,7 +80,7 @@ const themeScript = `
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
-  name: 'Sheng-Lun (Kevin) Wei',
+  name: fullName,
   url: siteUrl,
   jobTitle: 'CS PhD Candidate',
   affiliation: {
@@ -85,10 +88,10 @@ const jsonLd = {
     name: 'National Taiwan University',
   },
   sameAs: [
-    'https://github.com/Kevinweisl',
-    'https://scholar.google.com/citations?user=200UnXEAAAAJ',
-    'https://www.linkedin.com/in/kevinwei-nlp/',
-    'https://x.com/kevinweisl',
+    socialLinks.github,
+    socialLinks.googleScholar,
+    socialLinks.linkedin,
+    socialLinks.twitter,
   ],
   knowsAbout: ['LLM Robustness', 'Multimodal AI', 'LLM-as-a-Judge', 'Information Retrieval', 'Natural Language Processing'],
 };

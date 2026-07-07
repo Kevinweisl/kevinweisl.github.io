@@ -1,6 +1,7 @@
 import React from 'react';
 import { publicationsData } from '@/data/publications';
 import PublicationItem from './PublicationItem';
+import CardList from './CardList';
 
 interface PublicationListProps {
   filter?: 'all' | 'featured';
@@ -18,7 +19,7 @@ const PublicationList: React.FC<PublicationListProps> = ({
       if (filter === 'featured' && !pub.featured) return false;
       if (searchTerm) {
         const lower = searchTerm.toLowerCase();
-        const text = `${pub.title} ${pub.authors} ${pub.venue} ${pub.venueAcronym || ''} ${pub.year}`.toLowerCase();
+        const text = `${pub.title} ${pub.authors.join(' ')} ${pub.venue} ${pub.venueAcronym || ''} ${pub.year}`.toLowerCase();
         if (!text.includes(lower)) return false;
       }
       return true;
@@ -34,14 +35,11 @@ const PublicationList: React.FC<PublicationListProps> = ({
   }
 
   return (
-    <div
-      className="flex flex-col overflow-hidden border border-[var(--border)] rounded-[var(--radius)]"
-      style={{ gap: '1px', background: 'var(--border)' }}
-    >
+    <CardList>
       {filteredData.map((pub, index) => (
         <PublicationItem key={pub.doiLink || pub.title || index} {...pub} />
       ))}
-    </div>
+    </CardList>
   );
 };
 

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import type { NoteMeta } from '@/lib/notes';
 import { formatNoteDate } from '@/lib/notes';
 
-const NoteCard: React.FC<NoteMeta> = ({ title, date, excerpt, year, slug }) => {
+const NoteCard: React.FC<NoteMeta> = ({ title, date, excerpt, year, slug, readingMinutes }) => {
   const formattedDate = formatNoteDate(date);
 
   return (
@@ -15,8 +15,11 @@ const NoteCard: React.FC<NoteMeta> = ({ title, date, excerpt, year, slug }) => {
         <h3 className="font-serif text-[20px] font-semibold text-[var(--text-primary)] leading-[1.4]">
           {title}
         </h3>
-        <span className="text-[13px] text-[var(--text-muted)] whitespace-nowrap">
-          {formattedDate}
+        <span
+          className="text-[13px] text-[var(--text-muted)] whitespace-nowrap"
+          style={{ fontVariantNumeric: 'tabular-nums' }}
+        >
+          {formattedDate} · {readingMinutes} min
         </span>
       </div>
       <p className="text-[13px] text-[var(--text-muted)] leading-[1.5]">

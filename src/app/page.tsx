@@ -1,25 +1,15 @@
-import type { Metadata } from 'next';
-
 import Hero from '@/components/Hero';
 import Section from '@/components/Section';
 import ContactLinks from '@/components/ContactLinks';
 import PublicationList from '@/components/PublicationList';
 import ExperienceList from '@/components/ExperienceList';
 import NoteCard from '@/components/NoteCard';
+import CardList from '@/components/CardList';
 import { getRecentNotes } from '@/lib/notes';
-
-export const metadata: Metadata = {
-  title: 'Kevin Wei - Personal Website',
-  description: 'Welcome to the personal website of Kevin Wei.',
-};
+import { obfuscatedEmail, socialLinks } from '@/data/profile';
 
 export default function HomePage() {
   const recentNotes = getRecentNotes(3);
-  const myObfuscatedEmail = "weisl AT nlg.csie DOT ntu.edu.tw";
-  const myGithubUrl = "https://github.com/Kevinweisl";
-  const myLinkedinUrl = "https://www.linkedin.com/in/kevinwei-nlp/";
-  const myGoogleScholarUrl = "https://scholar.google.com/citations?user=200UnXEAAAAJ";
-  const myTwitterUrl = "https://x.com/kevinweisl";
 
   return (
     <>
@@ -43,14 +33,11 @@ export default function HomePage() {
           viewAllHref="/notes"
           alt
         >
-          <div
-            className="flex flex-col overflow-hidden border border-[var(--border)] rounded-[var(--radius)]"
-            style={{ gap: '1px', background: 'var(--border)' }}
-          >
+          <CardList>
             {recentNotes.map((note) => (
               <NoteCard key={`${note.year}/${note.slug}`} {...note} />
             ))}
-          </div>
+          </CardList>
         </Section>
       )}
 
@@ -65,14 +52,14 @@ export default function HomePage() {
       <Section id="contact" title="">
         <div className="text-center">
           <p className="text-[20px] font-medium mb-8 max-w-xl mx-auto">
-            <span className="gradient-text">Interested in collaboration? Let&apos;s connect.</span>
+            <span className="accent-text">Open to research collaborations, talks, and teaching.</span>
           </p>
           <ContactLinks
-            obfuscatedEmail={myObfuscatedEmail}
-            githubUrl={myGithubUrl}
-            linkedinUrl={myLinkedinUrl}
-            googleScholarUrl={myGoogleScholarUrl}
-            twitterUrl={myTwitterUrl}
+            obfuscatedEmail={obfuscatedEmail}
+            githubUrl={socialLinks.github}
+            linkedinUrl={socialLinks.linkedin}
+            googleScholarUrl={socialLinks.googleScholar}
+            twitterUrl={socialLinks.twitter}
           />
         </div>
       </Section>

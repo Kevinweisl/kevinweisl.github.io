@@ -1,6 +1,6 @@
 export interface Publication {
   title: string;
-  authors: string;
+  authors: string[];
   venue: string;
   venueAcronym?: string;
   year: number;
@@ -16,7 +16,7 @@ export interface Publication {
 export const publicationsData: Publication[] = [
   {
     title: "No One Fits All: From Fixed Prompting to Learned Routing in Multilingual LLMs",
-    authors: "Wei-Chi Wu, Sheng-Lun Wei, Hen-Hsen Huang, Hsin-Hsi Chen",
+    authors: ["Wei-Chi Wu", "Sheng-Lun Wei", "Hen-Hsen Huang", "Hsin-Hsi Chen"],
     venue: "Findings of the Association for Computational Linguistics",
     venueAcronym: "Findings of ACL 2026",
     year: 2026,
@@ -32,7 +32,7 @@ export const publicationsData: Publication[] = [
   },
   {
     title: "Do Multimodal LLMs Understand Order? Measuring the Fragility of Multimodal Reasoning under Input Order Perturbations",
-    authors: "Sheng-Lun Wei, Yu-Ling Liao, Hen-Hsen Huang, Hsin-Hsi Chen",
+    authors: ["Sheng-Lun Wei", "Yu-Ling Liao", "Hen-Hsen Huang", "Hsin-Hsi Chen"],
     venue: "International Conference on Language Resources and Evaluation",
     venueAcronym: "LREC 2026",
     year: 2026,
@@ -50,7 +50,7 @@ export const publicationsData: Publication[] = [
   },
   {
     title: "Bias in the Ear of the Listener: Assessing Sensitivity in Audio Language Models Across Linguistic, Demographic, and Positional Variations",
-    authors: "Sheng-Lun Wei, Yu-Ling Liao, Yu-Hung Chang, Hen-Hsen Huang, Hsin-Hsi Chen",
+    authors: ["Sheng-Lun Wei", "Yu-Ling Liao", "Yu-Hung Chang", "Hen-Hsen Huang", "Hsin-Hsi Chen"],
     venue: "Findings of the European Chapter of the Association for Computational Linguistics",
     venueAcronym: "Findings of EACL 2026",
     year: 2026,
@@ -68,7 +68,7 @@ export const publicationsData: Publication[] = [
   },
   {
     title: "Do Before You Judge: Self-Reference as a Pathway to Better LLM Evaluation",
-    authors: "Wei-Hsiang Lin, Sheng-Lun Wei, Hen-Hsen Huang, Hsin-Hsi Chen",
+    authors: ["Wei-Hsiang Lin", "Sheng-Lun Wei", "Hen-Hsen Huang", "Hsin-Hsi Chen"],
     venue: "Findings of the Conference on Empirical Methods in Natural Language Processing",
     venueAcronym: "Findings of EMNLP 2025",
     year: 2025,
@@ -84,7 +84,7 @@ export const publicationsData: Publication[] = [
   },
   {
     title: "Retrieving the Right Law: Enhancing Legal Search with Style Translation",
-    authors: "Szu-Ju Chen, Jing Jin, Sheng-Lun Wei, Chien-Hung Chen, Hsin-Hsi Chen",
+    authors: ["Szu-Ju Chen", "Jing Jin", "Sheng-Lun Wei", "Chien-Hung Chen", "Hsin-Hsi Chen"],
     venue: "International ACM SIGIR Conference on Research and Development in Information Retrieval",
     venueAcronym: "SIGIR 2025",
     year: 2025,
@@ -103,7 +103,7 @@ export const publicationsData: Publication[] = [
   },
   {
     title: "Induct-Learn: Short Phrase Prompting with Instruction Induction",
-    authors: "Po-Chun Chen, Sheng-Lun Wei, Hen-Hsen Huang, Hsin-Hsi Chen",
+    authors: ["Po-Chun Chen", "Sheng-Lun Wei", "Hen-Hsen Huang", "Hsin-Hsi Chen"],
     venue: "Conference on Empirical Methods in Natural Language Processing",
     venueAcronym: "EMNLP 2024",
     year: 2024,
@@ -120,7 +120,7 @@ export const publicationsData: Publication[] = [
   },
   {
     title: "Unveiling Selection Biases: Exploring Order and Token Sensitivity in Large Language Models",
-    authors: "Sheng-Lun Wei, Cheng-Kuang Wu, Hen-Hsen Huang, Hsin-Hsi Chen",
+    authors: ["Sheng-Lun Wei", "Cheng-Kuang Wu", "Hen-Hsen Huang", "Hsin-Hsi Chen"],
     venue: "Findings of the Association for Computational Linguistics",
     venueAcronym: "Findings of ACL 2024",
     year: 2024,
@@ -138,7 +138,7 @@ export const publicationsData: Publication[] = [
   },
   {
     title: "Disease Classification on Admission and on Discharge with Residual CNN-Transformer",
-    authors: "Yu-Ting Lin*, Sheng-Lun Wei*, Hen-Hsen Huang, Hui-Chih Wang, Hsin-Hsi Chen",
+    authors: ["Yu-Ting Lin*", "Sheng-Lun Wei*", "Hen-Hsen Huang", "Hui-Chih Wang", "Hsin-Hsi Chen"],
     venue: "IEEE/WIC/ACM International Conference on Web Intelligence and Intelligent Agent Technology",
     venueAcronym: "WI-IAT 2021",
     year: 2021,
@@ -154,7 +154,7 @@ export const publicationsData: Publication[] = [
   },
   {
     title: "NL2KB: Resolving Vocabulary Gap between Natural Language and Knowledge Base in Knowledge Base Construction and Retrieval",
-    authors: "Sheng-Lun Wei, Yen-Pin Chiu, Hen-Hsen Huang, Hsin-Hsi Chen",
+    authors: ["Sheng-Lun Wei", "Yen-Pin Chiu", "Hen-Hsen Huang", "Hsin-Hsi Chen"],
     venue: "International Conference on Computational Linguistics: System Demonstrations",
     venueAcronym: "COLING 2016",
     year: 2016,
@@ -170,7 +170,7 @@ export const publicationsData: Publication[] = [
   },
   {
     title: "NTUNLP Approaches to Recognizing and Disambiguating Entities in Long and Short Text at the ERD Challenge 2014",
-    authors: "Yen-Pin Chiu, Yong-Siang Shih, Yang-Yin Lee, Chih-Chieh Shao, Ming-Lun Cai, Sheng-Lun Wei, Hsin-Hsi Chen",
+    authors: ["Yen-Pin Chiu", "Yong-Siang Shih", "Yang-Yin Lee", "Chih-Chieh Shao", "Ming-Lun Cai", "Sheng-Lun Wei", "Hsin-Hsi Chen"],
     venue: "International ACM SIGIR Conference Workshop on Entity Recognition & Disambiguation",
     venueAcronym: "SIGIR Workshop 2014",
     year: 2014,

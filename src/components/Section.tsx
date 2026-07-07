@@ -27,7 +27,7 @@ const Section: React.FC<SectionProps> = ({
     const parts = title.split(gradientWord);
     return (
       <h2 className="font-serif text-[28px] font-semibold text-[var(--text-primary)]">
-        {parts[0]}<span className="gradient-text">{gradientWord}</span>{parts[1] || ''}
+        {parts[0]}<span className="accent-text">{gradientWord}</span>{parts[1] || ''}
       </h2>
     );
   };

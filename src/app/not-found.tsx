@@ -38,7 +38,7 @@ export default function NotFound() {
             background: 'var(--accent-light)',
             color: 'var(--accent)',
             padding: '2px 6px',
-            borderRadius: '3px',
+            borderRadius: 'var(--radius)',
             fontSize: '12px',
           }}
         >

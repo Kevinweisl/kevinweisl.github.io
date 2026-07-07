@@ -50,7 +50,7 @@ const Navbar: React.FC = () => {
         <div className="flex items-center gap-3 md:hidden">
           <ThemeToggle />
           <button
-            className="text-[var(--text-nav)] focus:outline-none"
+            className="text-[var(--text-nav)]"
             onClick={toggleMobileMenu}
             aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={isMobileMenuOpen}

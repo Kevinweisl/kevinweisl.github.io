@@ -15,7 +15,7 @@ export default function PublicationsPage() {
     <section className="py-[72px] px-6" style={{ background: 'var(--bg-primary)' }}>
       <div className="max-w-[900px] mx-auto">
         <h1 className="font-serif text-[28px] font-semibold text-center mb-3 text-[var(--text-primary)]">
-          <span className="gradient-text">Publications</span>
+          <span className="accent-text">Publications</span>
         </h1>
         <PublicationSearch />
       </div>

@@ -2,7 +2,13 @@
 
 import React, { useState } from 'react';
 import { Mail, Github, Linkedin, GraduationCap, X } from 'lucide-react';
-import { FaXTwitter } from 'react-icons/fa6';
+
+// X (Twitter) brand mark — lucide has no brand icons, inlined to avoid an icon-library dependency
+const XTwitterIcon = ({ size = 14 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+  </svg>
+);
 
 interface ContactLinksProps {
   obfuscatedEmail: string;
@@ -36,7 +42,7 @@ const ContactLinks: React.FC<ContactLinksProps> = ({
       ? [{ label: 'Scholar', icon: <GraduationCap size={16} />, href: googleScholarUrl }]
       : []),
     ...(twitterUrl
-      ? [{ label: 'Twitter', icon: <FaXTwitter size={14} />, href: twitterUrl }]
+      ? [{ label: 'Twitter', icon: <XTwitterIcon size={14} />, href: twitterUrl }]
       : []),
   ];
 
@@ -46,7 +52,7 @@ const ContactLinks: React.FC<ContactLinksProps> = ({
   const cardContent = (link: ContactLinkItem) => (
     <>
       <span
-        className="absolute inset-0 gradient-bg opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+        className="absolute inset-0 accent-bg opacity-0 group-hover:opacity-100 transition-opacity duration-200"
         aria-hidden="true"
       />
       <span className="relative z-10 flex items-center gap-2">
@@ -103,7 +109,7 @@ const ContactLinks: React.FC<ContactLinksProps> = ({
               <X size={18} />
             </button>
             <div className="flex items-center gap-3 mb-4">
-              <div className="gradient-bg p-2.5 rounded-[var(--radius)]">
+              <div className="accent-bg p-2.5 rounded-[var(--radius)]">
                 <Mail size={20} className="text-white" />
               </div>
               <h3 className="font-serif text-[20px] font-semibold text-[var(--text-primary)]">Email</h3>
