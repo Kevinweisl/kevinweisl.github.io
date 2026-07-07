@@ -1,3 +1,8 @@
+---
+name: write-note
+description: Help Kevin write a new note for his personal website through collaborative dialogue
+---
+
 # Write Note
 
 Help Kevin write a new note for his personal website through collaborative dialogue.
