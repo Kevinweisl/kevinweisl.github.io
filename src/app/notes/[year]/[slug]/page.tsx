@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
-import { getAllNotes, getNoteBySlug, getAdjacentNotes, formatNoteDate } from '@/lib/notes';
+import { getAllNotes, getNoteBySlug, getAdjacentNotes, formatNoteDate, noteHref, noteUrl } from '@/lib/notes';
 import ProseContent from '@/components/ProseContent';
 import { siteUrl, fullName } from '@/data/profile';
 
@@ -19,7 +19,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { year, slug } = await params;
   const note = await getNoteBySlug(year, slug);
-  const url = `${siteUrl}/notes/${year}/${slug}`;
+  const url = noteUrl({ year, slug });
   return {
     title: note.title,
     description: note.excerpt,
@@ -54,7 +54,7 @@ export default async function NotePage({ params }: Props) {
     description: note.excerpt,
     datePublished: note.date,
     author: { '@type': 'Person', name: fullName, url: siteUrl },
-    url: `${siteUrl}/notes/${year}/${slug}`,
+    url: noteUrl({ year, slug }),
   };
 
   return (
@@ -87,7 +87,7 @@ export default async function NotePage({ params }: Props) {
           >
             <div>
               {older && (
-                <Link href={`/notes/${older.year}/${older.slug}`} className="group block no-underline">
+                <Link href={noteHref(older)} className="group block no-underline">
                   <span className="block text-[13px] text-[var(--text-muted)] mb-1">← Older</span>
                   <span className="block font-serif text-[16px] text-[var(--text-primary)] leading-[1.4] group-hover:text-[var(--accent)] transition-colors duration-200">
                     {older.title}
@@ -97,7 +97,7 @@ export default async function NotePage({ params }: Props) {
             </div>
             <div className="sm:text-right">
               {newer && (
-                <Link href={`/notes/${newer.year}/${newer.slug}`} className="group block no-underline">
+                <Link href={noteHref(newer)} className="group block no-underline">
                   <span className="block text-[13px] text-[var(--text-muted)] mb-1">Newer →</span>
                   <span className="block font-serif text-[16px] text-[var(--text-primary)] leading-[1.4] group-hover:text-[var(--accent)] transition-colors duration-200">
                     {newer.title}

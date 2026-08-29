@@ -1,14 +1,14 @@
 import React from 'react';
 import Link from 'next/link';
 import type { NoteMeta } from '@/lib/notes';
-import { formatNoteDate } from '@/lib/notes';
+import { formatNoteDate, noteHref } from '@/lib/notes';
 
 const NoteCard: React.FC<NoteMeta> = ({ title, date, excerpt, year, slug, readingMinutes }) => {
   const formattedDate = formatNoteDate(date);
 
   return (
     <Link
-      href={`/notes/${year}/${slug}`}
+      href={noteHref({ year, slug })}
       className="block py-[18px] px-5 bg-[var(--bg-card)] transition-colors duration-200 hover:bg-[var(--accent-light)]"
     >
       <div className="flex flex-col-reverse sm:flex-row sm:items-baseline sm:justify-between gap-1 sm:gap-4 mb-1">

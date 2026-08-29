@@ -5,6 +5,7 @@ import { remark } from 'remark';
 import remarkGfm from 'remark-gfm';
 import html from 'remark-html';
 import { cache } from 'react';
+import { siteUrl } from '@/data/profile';
 
 const notesDirectory = path.join(process.cwd(), 'content', 'notes');
 
@@ -19,6 +20,16 @@ export interface NoteMeta {
 
 export interface Note extends NoteMeta {
   contentHtml: string;
+}
+
+/** Site-relative href for a note, e.g. "/notes/2024/my-slug". */
+export function noteHref(note: Pick<NoteMeta, 'year' | 'slug'>): string {
+  return `/notes/${note.year}/${note.slug}`;
+}
+
+/** Absolute canonical URL for a note. */
+export function noteUrl(note: Pick<NoteMeta, 'year' | 'slug'>): string {
+  return `${siteUrl}${noteHref(note)}`;
 }
 
 export function formatNoteDate(date: string): string {

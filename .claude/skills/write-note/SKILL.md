@@ -58,7 +58,7 @@ Once all sections are done:
 4. **Generate slug** — from the title, lowercase, hyphens
 5. **Save the file** — write to `content/notes/[year]/[slug].md`
 6. **Verify** — run `npm run build` to confirm static generation works
-7. **Update sitemap** — if needed, remind Kevin to add the note URL to `public/sitemap.xml`
+7. **Sitemap** — nothing to do; `src/app/sitemap.ts` generates it from `content/notes` at build time
 
 ### Optional: Import from Medium
 
