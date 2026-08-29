@@ -5,43 +5,13 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ThemeProvider from '@/components/ThemeProvider';
 import React from 'react';
-import {
-  siteUrl,
-  siteName,
-  fullName,
-  socialLinks,
-  siteDescription,
-  headline,
-  twitterHandle,
-  jobTitle,
-  affiliation,
-  researchInterests,
-} from '@/data/profile';
+import { siteUrl, siteName, fullName, socialLinks, jobTitle, affiliation, researchInterests } from '@/data/profile';
 
+// Per-page identity (canonical, description, OG/Twitter cards) comes from
+// pageMetadata() in src/lib/metadata.ts. Only true site-wide defaults live here.
 export const metadata: Metadata = {
-  title: { default: siteName, template: `%s | ${siteName}` },
-  description: siteDescription,
+  title: { default: siteName, template: `%s — ${siteName}` },
   metadataBase: new URL(siteUrl),
-  openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: siteUrl,
-    siteName,
-    title: headline,
-    description: siteDescription,
-    images: ['/og.png'],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    site: twitterHandle,
-    creator: twitterHandle,
-    title: headline,
-    description: siteDescription,
-    images: ['/og.png'],
-  },
-  alternates: {
-    canonical: siteUrl,
-  },
   robots: {
     index: true,
     follow: true,

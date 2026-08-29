@@ -7,6 +7,9 @@ import NoteCard from '@/components/NoteCard';
 import CardList from '@/components/CardList';
 import { getRecentNotes } from '@/lib/notes';
 import { obfuscatedEmail, socialLinks } from '@/data/profile';
+import { pageMetadata } from '@/lib/metadata';
+
+export const metadata = pageMetadata({ path: '' });
 
 export default function HomePage() {
   const recentNotes = getRecentNotes(3);

@@ -1,14 +1,11 @@
-import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/metadata';
 import PublicationSearch from '@/components/PublicationSearch';
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
+  path: '/publications',
   title: 'Publications',
   description: 'Academic publications by Sheng-Lun (Kevin) Wei in NLP, LLM robustness, multimodal AI, and information retrieval.',
-  openGraph: {
-    title: 'Publications — Kevin Wei',
-    description: 'Academic publications by Sheng-Lun (Kevin) Wei in NLP, LLM robustness, multimodal AI, and information retrieval.',
-  },
-};
+});
 
 export default function PublicationsPage() {
   return (

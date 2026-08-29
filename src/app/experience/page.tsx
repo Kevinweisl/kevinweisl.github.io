@@ -1,16 +1,13 @@
 import React from 'react';
-import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/metadata';
 import ExperienceList from '@/components/ExperienceList';
 import Section from '@/components/Section';
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
+  path: '/experience',
   title: 'Experience',
   description: 'Academic, teaching, and professional experience of Sheng-Lun (Kevin) Wei.',
-  openGraph: {
-    title: 'Experience — Kevin Wei',
-    description: 'Academic, teaching, and professional experience of Sheng-Lun (Kevin) Wei.',
-  },
-};
+});
 
 export default function ExperiencePage() {
   return (

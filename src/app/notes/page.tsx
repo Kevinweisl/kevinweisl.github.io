@@ -1,16 +1,13 @@
-import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/metadata';
 import { getAllNotes } from '@/lib/notes';
 import NoteCard from '@/components/NoteCard';
 import CardList from '@/components/CardList';
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
+  path: '/notes',
   title: 'Notes',
   description: 'Research notes, technical writings, and reflections by Kevin Wei.',
-  openGraph: {
-    title: 'Notes — Kevin Wei',
-    description: 'Research notes, technical writings, and reflections by Kevin Wei.',
-  },
-};
+});
 
 export default function NotesPage() {
   const notes = getAllNotes();

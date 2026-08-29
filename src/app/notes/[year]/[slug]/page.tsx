@@ -4,6 +4,7 @@ import { ArrowLeft } from 'lucide-react';
 import { getAllNotes, getNoteBySlug, getAdjacentNotes, formatNoteDate, noteHref, noteUrl } from '@/lib/notes';
 import ProseContent from '@/components/ProseContent';
 import { siteUrl, fullName } from '@/data/profile';
+import { pageMetadata } from '@/lib/metadata';
 
 type Props = {
   params: Promise<{ year: string; slug: string }>;
@@ -19,25 +20,14 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { year, slug } = await params;
   const note = await getNoteBySlug(year, slug);
-  const url = noteUrl({ year, slug });
-  return {
+  return pageMetadata({
+    path: noteHref({ year, slug }),
     title: note.title,
     description: note.excerpt,
-    alternates: { canonical: url },
-    openGraph: {
-      type: 'article',
-      title: `${note.title} — Kevin Wei`,
-      description: note.excerpt,
-      url,
-      publishedTime: note.date,
-      authors: [fullName],
-    },
-    twitter: {
-      card: 'summary',
-      title: `${note.title} — Kevin Wei`,
-      description: note.excerpt,
-    },
-  };
+    ogType: 'article',
+    article: { publishedTime: note.date, authors: [fullName] },
+    twitterCard: 'summary',
+  });
 }
 
 export default async function NotePage({ params }: Props) {
