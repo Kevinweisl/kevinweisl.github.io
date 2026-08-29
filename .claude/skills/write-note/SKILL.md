@@ -11,7 +11,12 @@ Help Kevin write a new note for his personal website through collaborative dialo
 
 Read the memory file at `/Users/kevin/.claude/projects/-Users-kevin-Documents-kevin-macbook-air-kevin-homepage/memory/project_notes_strategy.md` for Kevin's content strategy and positioning.
 
-Notes are Markdown files stored in `content/notes/[year]/[slug].md` with frontmatter (title, date, excerpt).
+Notes are Markdown files stored in `content/notes/[year]/[slug].md`. Frontmatter contract (enforced at build time by `src/lib/notes.ts` — a violation fails `npm test` and `npm run build`):
+- `title` — required, non-empty
+- `date` — required, **quoted** `"YYYY-MM-DD"` (unquoted YAML turns it into a Date object); its year must equal the `[year]` directory
+- `excerpt` — required, non-empty
+- `draft: true` (boolean) hides the note; any other value is an error. Uncommitted drafts use the `*.draft.md` filename, which is gitignored and never built.
+- `[slug]` — lowercase `a-z0-9` and hyphens only
 
 ## Process
 
@@ -57,7 +62,7 @@ Once all sections are done:
 3. **Generate frontmatter** — title, date (today), excerpt (1-2 sentences)
 4. **Generate slug** — from the title, lowercase, hyphens
 5. **Save the file** — write to `content/notes/[year]/[slug].md`
-6. **Verify** — run `npm run build` to confirm static generation works
+6. **Verify** — run `npm test && npm run build`; `npm test` lints every note's frontmatter in ~1s
 7. **Sitemap** — nothing to do; `src/app/sitemap.ts` generates it from `content/notes` at build time
 
 ### Optional: Import from Medium
