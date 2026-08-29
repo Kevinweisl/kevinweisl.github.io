@@ -1,12 +1,13 @@
 import React from 'react';
 import { pageMetadata } from '@/lib/metadata';
+import { fullName } from '@/data/profile';
 import ExperienceList from '@/components/ExperienceList';
 import Section from '@/components/Section';
 
 export const metadata = pageMetadata({
   path: '/experience',
   title: 'Experience',
-  description: 'Academic, teaching, and professional experience of Sheng-Lun (Kevin) Wei.',
+  description: `Academic, teaching, and professional experience of ${fullName}.`,
 });
 
 export default function ExperiencePage() {

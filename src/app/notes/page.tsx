@@ -1,4 +1,5 @@
 import { pageMetadata } from '@/lib/metadata';
+import { siteName } from '@/data/profile';
 import { getAllNotes } from '@/lib/notes';
 import NoteCard from '@/components/NoteCard';
 import CardList from '@/components/CardList';
@@ -6,7 +7,7 @@ import CardList from '@/components/CardList';
 export const metadata = pageMetadata({
   path: '/notes',
   title: 'Notes',
-  description: 'Research notes, technical writings, and reflections by Kevin Wei.',
+  description: `Research notes, technical writings, and reflections by ${siteName}.`,
 });
 
 export default function NotesPage() {

@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Mail, Github, Linkedin, GraduationCap, X } from 'lucide-react';
+import { obfuscatedEmail, socialLinks } from '@/data/profile';
 
 // X (Twitter) brand mark — lucide has no brand icons, inlined to avoid an icon-library dependency
 const XTwitterIcon = ({ size = 14 }: { size?: number }) => (
@@ -10,14 +11,6 @@ const XTwitterIcon = ({ size = 14 }: { size?: number }) => (
   </svg>
 );
 
-interface ContactLinksProps {
-  obfuscatedEmail: string;
-  githubUrl: string;
-  linkedinUrl: string;
-  googleScholarUrl?: string;
-  twitterUrl?: string;
-}
-
 interface ContactLinkItem {
   label: string;
   icon: React.ReactNode;
@@ -25,24 +18,18 @@ interface ContactLinkItem {
   isEmail?: boolean;
 }
 
-const ContactLinks: React.FC<ContactLinksProps> = ({
-  obfuscatedEmail,
-  githubUrl,
-  linkedinUrl,
-  googleScholarUrl,
-  twitterUrl,
-}) => {
+const ContactLinks: React.FC = () => {
   const [showEmail, setShowEmail] = useState(false);
 
   const links: ContactLinkItem[] = [
     { label: 'Email', icon: <Mail size={16} />, isEmail: true },
-    { label: 'GitHub', icon: <Github size={16} />, href: githubUrl },
-    { label: 'LinkedIn', icon: <Linkedin size={16} />, href: linkedinUrl },
-    ...(googleScholarUrl
-      ? [{ label: 'Scholar', icon: <GraduationCap size={16} />, href: googleScholarUrl }]
+    { label: 'GitHub', icon: <Github size={16} />, href: socialLinks.github },
+    { label: 'LinkedIn', icon: <Linkedin size={16} />, href: socialLinks.linkedin },
+    ...(socialLinks.googleScholar
+      ? [{ label: 'Scholar', icon: <GraduationCap size={16} />, href: socialLinks.googleScholar }]
       : []),
-    ...(twitterUrl
-      ? [{ label: 'Twitter', icon: <XTwitterIcon size={14} />, href: twitterUrl }]
+    ...(socialLinks.twitter
+      ? [{ label: 'Twitter', icon: <XTwitterIcon size={14} />, href: socialLinks.twitter }]
       : []),
   ];
 

@@ -1,10 +1,11 @@
 import { pageMetadata } from '@/lib/metadata';
+import { fullName } from '@/data/profile';
 import PublicationSearch from '@/components/PublicationSearch';
 
 export const metadata = pageMetadata({
   path: '/publications',
   title: 'Publications',
-  description: 'Academic publications by Sheng-Lun (Kevin) Wei in NLP, LLM robustness, multimodal AI, and information retrieval.',
+  description: `Academic publications by ${fullName} in NLP, LLM robustness, multimodal AI, and information retrieval.`,
 });
 
 export default function PublicationsPage() {

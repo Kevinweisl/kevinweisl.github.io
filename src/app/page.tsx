@@ -6,7 +6,6 @@ import ExperienceList from '@/components/ExperienceList';
 import NoteCard from '@/components/NoteCard';
 import CardList from '@/components/CardList';
 import { getRecentNotes } from '@/lib/notes';
-import { obfuscatedEmail, socialLinks } from '@/data/profile';
 import { pageMetadata } from '@/lib/metadata';
 
 export const metadata = pageMetadata({ path: '' });
@@ -57,13 +56,7 @@ export default function HomePage() {
           <p className="text-[20px] font-medium mb-8 max-w-xl mx-auto">
             <span className="accent-text">Open to research collaborations, talks, and teaching.</span>
           </p>
-          <ContactLinks
-            obfuscatedEmail={obfuscatedEmail}
-            githubUrl={socialLinks.github}
-            linkedinUrl={socialLinks.linkedin}
-            googleScholarUrl={socialLinks.googleScholar}
-            twitterUrl={socialLinks.twitter}
-          />
+          <ContactLinks />
         </div>
       </Section>
     </>

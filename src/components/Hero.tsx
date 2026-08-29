@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { jobTitle, affiliation, phdYear, researchInterests } from '@/data/profile';
+import { fullName, siteName, jobTitle, affiliation, affiliationShort, phdYear, researchSummary, researchInterests } from '@/data/profile';
 
 function HeroLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
@@ -41,7 +41,7 @@ const Hero = () => {
             className="font-serif font-bold leading-[1.15] mb-2"
             style={{ fontSize: 'clamp(34px, 5vw, 48px)', color: 'var(--hero-heading)' }}
           >
-            Sheng-Lun (Kevin) Wei
+            {fullName}
           </h1>
 
           <p className="text-[16px] font-medium mb-5" style={{ color: 'var(--hero-subtitle)' }}>
@@ -49,13 +49,13 @@ const Hero = () => {
           </p>
 
           <p className="text-[16px] leading-[1.8] mb-7 max-w-[60ch]" style={{ color: 'var(--hero-body)' }}>
-            I received my PhD in Computer Science from <span className="italic">{affiliation}</span> in {phdYear}, with research on LLM biases &amp; fairness, multimodal AI, and LLM evaluation.
+            I received my PhD in Computer Science from <span className="italic">{affiliation}</span> in {phdYear}, with research on {researchSummary}.
             With 6+ years of industry experience at{' '}
             <HeroLink href="https://www.shopback.sg/">ShopBack</HeroLink>,{' '}
             <HeroLink href="https://www.junyiacademy.org/">Junyi Academy</HeroLink>, and{' '}
             <HeroLink href="https://blendvision.com/">KKStream</HeroLink>,
             I bridge the gap between research and real-world applications.
-            I currently serve as an adjunct instructor at NTU&apos;s <span className="italic">Center of General Education</span> and <span className="italic">Department of Economics</span>,
+            I currently serve as an {jobTitle.toLowerCase()} at {affiliationShort}&apos;s <span className="italic">Center of General Education</span> and <span className="italic">Department of Economics</span>,
             and founded <HeroLink href="https://www.ccclub.io/">ccClub</HeroLink> (社團法人攜曦程式推廣學會),
             a non-profit organization dedicated to programming education, serving 4,000+ learners since 2016.
           </p>
@@ -87,7 +87,7 @@ const Hero = () => {
           >
             <Image
               src="/avatar.ico"
-              alt="Kevin Wei"
+              alt={siteName}
               width={256}
               height={256}
               className="w-full aspect-square object-contain p-8"

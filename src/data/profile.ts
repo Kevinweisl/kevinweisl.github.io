@@ -14,8 +14,11 @@ export const phdYear = 2026;
 /** One-line headline used for og:title / twitter:title on the homepage. */
 export const headline = `${siteName} — ${jobTitle} @ ${affiliationShort}`;
 
+/** Prose fragment shared by siteDescription and the hero bio. */
+export const researchSummary = 'LLM biases & fairness, multimodal AI, and LLM evaluation';
+
 /** Site-wide <meta name="description">. */
-export const siteDescription = `Personal website of ${fullName} — CS PhD (${affiliationShort}, ${phdYear}) and ${jobTitle.toLowerCase()} at ${affiliationShort}, researching LLM biases & fairness, multimodal AI, and LLM evaluation.`;
+export const siteDescription = `Personal website of ${fullName} — CS PhD (${affiliationShort}, ${phdYear}) and ${jobTitle.toLowerCase()} at ${affiliationShort}, researching ${researchSummary}.`;
 
 /** Single source for the hero tags and JSON-LD knowsAbout. */
 export const researchInterests = ['LLM Biases & Fairness', 'LLM-as-a-Judge', 'Multimodal LLMs', 'Trustworthy NLP'];

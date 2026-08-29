@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
+import { siteName } from '@/data/profile';
 
 const navLinks = [
   { href: '/publications', label: 'Publications' },
@@ -29,7 +30,7 @@ const Navbar: React.FC = () => {
           className="font-serif text-xl font-semibold text-[var(--text-primary)] no-underline"
           onClick={closeMobileMenu}
         >
-          Kevin Wei
+          {siteName}
         </Link>
 
         {/* Desktop links */}

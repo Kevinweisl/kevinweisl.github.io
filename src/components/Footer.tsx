@@ -1,4 +1,5 @@
 import React from 'react';
+import { siteName } from '@/data/profile';
 
 const Footer: React.FC = () => {
   return (
@@ -6,7 +7,7 @@ const Footer: React.FC = () => {
       className="py-7 mt-auto text-center text-[13px]"
       style={{ background: 'var(--bg-footer)', color: 'var(--text-footer)' }}
     >
-      <p>&copy; {new Date().getFullYear()} Kevin Wei. All rights reserved.</p>
+      <p>&copy; {new Date().getFullYear()} {siteName}. All rights reserved.</p>
     </footer>
   );
 };
