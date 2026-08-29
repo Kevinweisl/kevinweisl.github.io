@@ -16,10 +16,10 @@
 - [x] commit
 
 ## 6. 路由清單一處 + robots.ts
-- [ ] src/data/routes.ts；Navbar / sitemap / 各頁 pageMetadata 讀它
-- [ ] src/app/robots.ts；刪 public/robots.txt
-- [ ] build；sitemap.xml 逐字節相同；robots.txt 三欄位相同
-- [ ] commit
+- [x] src/data/routes.ts；Navbar / sitemap / 各頁 pageMetadata 讀它
+- [x] src/app/robots.ts；刪 public/robots.txt
+- [x] build；sitemap.xml 逐字節相同；robots.txt 三欄位相同
+- [x] commit
 
 ## 7. theme 字串契約測試
 - [ ] src/lib/theme.test.ts（4 個測試）；theme.ts 加一行註解

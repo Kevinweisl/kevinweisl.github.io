@@ -15,7 +15,7 @@ export type Theme = (typeof THEMES)[number];
 
 /** localStorage key holding the visitor's explicit choice. */
 export const THEME_STORAGE_KEY = 'theme';
-/** Class on <html> that activates the dark token block. */
+/** Class on <html> that activates the dark token block. Mirrored by hand in globals.css and ThemeToggle.tsx; theme.test.ts fails if they drift. */
 export const DARK_CLASS = 'dark';
 /** OS preference consulted when the visitor has made no explicit choice. */
 export const COLOR_SCHEME_QUERY = '(prefers-color-scheme: dark)';
