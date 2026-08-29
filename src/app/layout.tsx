@@ -5,9 +5,18 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ThemeProvider from '@/components/ThemeProvider';
 import React from 'react';
-import { siteUrl, siteName, fullName, socialLinks } from '@/data/profile';
-
-const siteDescription = 'Personal website of Sheng-Lun (Kevin) Wei — CS PhD (NTU, 2026) and adjunct instructor at NTU, researching LLM robustness, multimodal AI, and LLM evaluation.';
+import {
+  siteUrl,
+  siteName,
+  fullName,
+  socialLinks,
+  siteDescription,
+  headline,
+  twitterHandle,
+  jobTitle,
+  affiliation,
+  researchInterests,
+} from '@/data/profile';
 
 export const metadata: Metadata = {
   title: { default: siteName, template: `%s | ${siteName}` },
@@ -18,15 +27,15 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: siteUrl,
     siteName,
-    title: 'Kevin Wei — Adjunct Instructor @ NTU',
+    title: headline,
     description: siteDescription,
     images: ['/og.png'],
   },
   twitter: {
     card: 'summary_large_image',
-    site: '@kevinweisl',
-    creator: '@kevinweisl',
-    title: 'Kevin Wei — Adjunct Instructor @ NTU',
+    site: twitterHandle,
+    creator: twitterHandle,
+    title: headline,
     description: siteDescription,
     images: ['/og.png'],
   },
@@ -82,10 +91,10 @@ const jsonLd = {
   '@type': 'Person',
   name: fullName,
   url: siteUrl,
-  jobTitle: 'Adjunct Instructor',
+  jobTitle,
   affiliation: {
     '@type': 'Organization',
-    name: 'National Taiwan University',
+    name: affiliation,
   },
   sameAs: [
     socialLinks.github,
@@ -93,7 +102,7 @@ const jsonLd = {
     socialLinks.linkedin,
     socialLinks.twitter,
   ],
-  knowsAbout: ['LLM Robustness', 'Multimodal AI', 'LLM-as-a-Judge', 'Information Retrieval', 'Natural Language Processing'],
+  knowsAbout: researchInterests,
 };
 
 export default function RootLayout({

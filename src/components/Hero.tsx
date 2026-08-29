@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { jobTitle, affiliation, phdYear, researchInterests } from '@/data/profile';
 
 function HeroLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
@@ -44,11 +45,11 @@ const Hero = () => {
           </h1>
 
           <p className="text-[16px] font-medium mb-5" style={{ color: 'var(--hero-subtitle)' }}>
-            Adjunct Instructor @ National Taiwan University
+            {jobTitle} @ {affiliation}
           </p>
 
           <p className="text-[16px] leading-[1.8] mb-7 max-w-[60ch]" style={{ color: 'var(--hero-body)' }}>
-            I received my PhD in Computer Science from <span className="italic">National Taiwan University</span> in 2026, with research on LLM biases &amp; fairness, multimodal AI, and LLM evaluation.
+            I received my PhD in Computer Science from <span className="italic">{affiliation}</span> in {phdYear}, with research on LLM biases &amp; fairness, multimodal AI, and LLM evaluation.
             With 6+ years of industry experience at{' '}
             <HeroLink href="https://www.shopback.sg/">ShopBack</HeroLink>,{' '}
             <HeroLink href="https://www.junyiacademy.org/">Junyi Academy</HeroLink>, and{' '}
@@ -102,7 +103,7 @@ const Hero = () => {
                 Research Interests
               </p>
               <div className="flex flex-wrap gap-1">
-                {['LLM Biases & Fairness', 'LLM-as-a-Judge', 'Multimodal LLMs', 'Trustworthy NLP'].map((tag) => (
+                {researchInterests.map((tag) => (
                   <span
                     key={tag}
                     className="text-[13px] px-2 py-[3px] rounded-[var(--radius)] font-medium"

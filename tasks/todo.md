@@ -1,47 +1,56 @@
-# Todo — 2026-07-07 全面修正 + 上線
+# Todo — 2026-08-29 架構審查 candidates 2–6
 
-## A. Housekeeping / 部署準備
-- [x] .gitignore 加入 .playwright-mcp/
-- [x] 刪除根目錄 hero-dark-mode.png / hero-light-mode.png（先確認是否可做 og.png 素材）
-- [x] Commit 工具鏈遷移（write-note command→skill、skills-lock.json、.agents/、.claude/skills/、tasks/）
-- [x] deploy.yml: npm install → npm ci
+計畫全文：`~/.claude/plans/noble-bouncing-crystal.md`。每項一個 commit，順序 1→2→3→6→4→5。
 
-## B. 重構（未來營運）
-- [x] src/app/sitemap.ts 自動產生 sitemap，刪除 public/sitemap.xml
-- [x] notes.ts: draft: true 支援 + date 缺漏 fail-soft（Invalid Date fallback）
-- [x] src/data/profile.ts：siteUrl / 姓名 / 社群連結收斂一處
-- [x] publications.ts authors 改 string[]，PublicationItem 移除 dangerouslySetInnerHTML
-- [x] CardList wrapper 收斂三處重複列表容器
-- [x] experience.ts 副描述改顯式 note 欄位，移除 \n split
-- [x] react-icons → 內嵌 X SVG，移除依賴
+## 1. 縮圖移除（已完成，只需 commit）
+- [x] commit `content: Remove publication thumbnails`
 
-## C. UI 專業度
-- [x] Young Serif 假粗體：Hero/Section/NoteCard/note page/globals prose 改 font-normal
-- [x] globals.css：::selection、:focus-visible、scrollbar-color、text-wrap balance/pretty
-- [x] CJK 排版：line-break strict、text-spacing-trim、hanging-punctuation、max-width 68ch
-- [x] Navbar 移除 focus:outline-none
-- [x] Hero 非連結機構名去 accent 色（只留 italic）
-- [x] Hero CTA transition-all → transition-transform
-- [x] Footer 年份動態化
-- [x] 首頁 metadata 覆寫刪除、聯絡區文案改具體
-- [x] PublicationItem 展開面板 16px → 14px
-- [x] not-found borderRadius 3px → var(--radius)
-- [x] 列表項 py 統一、NoteCard 日期 tabular-nums
-- [x] .gradient-text/.gradient-bg 改名 .accent-text/.accent-bg（grep CSS + TSX，含 inline style）
+## 2. profile.ts 成為真正的 seam
+- [ ] profile.ts 新增 publicationName / twitterHandle / jobTitle / affiliation(+Short) / phdYear / headline / siteDescription / researchInterests
+- [ ] Hero.tsx 讀常數（副標、bio 內的機構與年份、research tags）
+- [ ] layout.tsx 讀常數（siteDescription、og/twitter title、handle、JSON-LD jobTitle/affiliation/knowsAbout）
+- [ ] PublicationItem.tsx `startsWith(publicationName)`（保留 startsWith，因為有 `"Sheng-Lun Wei*"`）
+- [ ] build；grep Hero/layout 無 literal 職稱/機構/2026
+- [ ] commit
 
-## D. 內容 / 功能
-- [x] PublicationItem render doiLink + thumbnailUrl
-- [x] Notes 上一篇/下一篇導覽
-- [x] Notes 閱讀時間（CJK 字元計）
-- [x] og.png + metadata（openGraph.images、twitter summary_large_image）
+## 3. pageMetadata() 統一頁面身分
+- [ ] 新增 src/lib/metadata.ts
+- [ ] layout.tsx 只留 site-wide 欄位；template 改 `%s — Kevin Wei`
+- [ ] page.tsx / notes / publications / experience / not-found / [slug] 全部改用 pageMetadata
+- [ ] build；四頁 canonical 各自正確、twitter:title 與 `<title>` 一致
+- [ ] commit
 
-## E. 驗證與部署
-- [x] npm run build 通過
-- [x] 依 lessons.md：實際瀏覽 home / publications / notes 列表 / note 內頁（light + dark）
-- [x] 分邏輯 commit → push main（觸發 GitHub Pages 部署，ccClub Part 1 上線）
+## 6. noteHref / noteUrl
+- [ ] notes.ts 新增兩個 helper
+- [ ] 六個呼叫點替換（sitemap、[slug] ×4、NoteCard）
+- [ ] SKILL.md 刪除「更新 public/sitemap.xml」步驟
+- [ ] build；`grep -rn '/notes/\${' src/` 只剩 helper；sitemap.xml 不變
+- [ ] commit
 
-## 需要 Kevin 提供（無法自動完成）
-- [ ] 真人照頭像（取代 avatar.ico 亮藍色方塊）
-- [ ] CV PDF（public/cv.pdf + Hero CTA）
-- [ ] ORCID / Semantic Scholar ID
-- [ ] ccClub 三篇文章照片（見 tasks/ccclub-plan.md）
+## 4. notes module + vitest
+- [ ] 加 vitest devDep + test script；**重新產生並 commit package-lock.json**
+- [ ] vitest.config.ts（alias、TZ=Pacific/Kiritimati）
+- [ ] 抽出 src/lib/reading-time.ts + 測試
+- [ ] fixture tree src/lib/__fixtures__/
+- [ ] notes.ts 改寫：createNotesReader、parseNoteFile、驗證規則、byNewestFirst、closure memo
+- [ ] notes.test.ts（約 20 個）
+- [ ] npm test 綠；build；out/sitemap.xml 與 out/notes/** 不變
+- [ ] deploy.yml 在 npm ci 與 build 之間插入 npm test
+- [ ] SKILL.md 補 frontmatter 契約
+- [ ] commit
+
+## 5. theme module
+- [ ] src/lib/theme.ts（常數、resolve/apply/toggle、themeInitScript）
+- [ ] globals.css 三條規則
+- [ ] ThemeToggle.tsx 靜態雙 icon/label
+- [ ] ThemeSync.tsx；刪除 ThemeProvider.tsx；layout.tsx 接線
+- [ ] build；grep 無 `aria-label="Switch to`、lucide-sun ×2、data-theme-only 4/4、script 含 remove(C) 與 catch
+- [ ] 瀏覽器驗證：關 JS + theme=dark → Sun；首次點擊正確；dev 無 hydration 警告
+- [ ] commit
+
+## 收尾
+- [ ] tasks/lessons.md 補本次教訓
+- [ ] Review 段落
+
+## Review
+_(完成後補)_

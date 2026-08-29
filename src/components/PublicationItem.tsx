@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { ChevronUp } from 'lucide-react';
 import type { Publication } from '@/data/publications';
+import { publicationName } from '@/data/profile';
 
 const PublicationItem: React.FC<Publication> = ({
   title,
@@ -44,7 +45,7 @@ const PublicationItem: React.FC<Publication> = ({
         {authors.map((author, i) => (
           <React.Fragment key={author}>
             {i > 0 && ', '}
-            {author.startsWith('Sheng-Lun Wei') ? (
+            {author.startsWith(publicationName) ? (
               <strong className="accent-text font-semibold">{author}</strong>
             ) : (
               author
