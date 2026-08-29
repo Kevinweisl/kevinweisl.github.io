@@ -3,9 +3,10 @@ import type { Metadata } from 'next';
 import '@/styles/globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import ThemeProvider from '@/components/ThemeProvider';
+import ThemeSync from '@/components/ThemeSync';
 import React from 'react';
 import { siteUrl, siteName, fullName, socialLinks, jobTitle, affiliation, researchInterests } from '@/data/profile';
+import { themeInitScript } from '@/lib/theme';
 
 // Per-page identity (canonical, description, OG/Twitter cards) comes from
 // pageMetadata() in src/lib/metadata.ts. Only true site-wide defaults live here.
@@ -48,14 +49,6 @@ const notoSerifTC = Noto_Serif_TC({
   preload: false,
 });
 
-const themeScript = `
-(function() {
-  var t = localStorage.getItem('theme');
-  if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  if (t === 'dark') document.documentElement.classList.add('dark');
-})();
-`;
-
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
@@ -83,20 +76,19 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${albertSans.variable} ${youngSerif.variable} ${notoSansTC.variable} ${notoSerifTC.variable} scroll-smooth`} suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
       <body className="flex flex-col min-h-screen font-sans antialiased">
-        <ThemeProvider>
-          <Navbar />
-          <main className="flex-grow">
-            {children}
-          </main>
-          <Footer />
-        </ThemeProvider>
+        <ThemeSync />
+        <Navbar />
+        <main className="flex-grow">
+          {children}
+        </main>
+        <Footer />
       </body>
     </html>
   );

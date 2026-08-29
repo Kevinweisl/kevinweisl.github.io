@@ -144,6 +144,28 @@ h1, h2, h3 {
   background: var(--accent);
 }
 
+/* ===== Theme Toggle ===== */
+/*
+  One static HTML serves both themes, so the toggle ships BOTH icons and BOTH
+  screen-reader labels; `.dark` on <html> (set pre-paint by themeInitScript in
+  src/lib/theme.ts) picks the visible pair. display:none also removes the wrong
+  label from the accessibility tree, so the accessible name is always correct
+  before any JavaScript runs. `block` matches Tailwind preflight's `svg {
+  display: block }`, so the dark-mode Sun sits in the same box as the
+  light-mode Moon (the sr-only span is absolutely positioned; block is
+  harmless there). These rules are unlayered and beat Tailwind utilities;
+  keep them scoped to .theme-toggle.
+*/
+.theme-toggle [data-theme-only='dark'] {
+  display: none;
+}
+.dark .theme-toggle [data-theme-only='light'] {
+  display: none;
+}
+.dark .theme-toggle [data-theme-only='dark'] {
+  display: block;
+}
+
 /* ===== Hero Link ===== */
 .hero-link {
   border-bottom: 1px solid var(--hero-link-border);
