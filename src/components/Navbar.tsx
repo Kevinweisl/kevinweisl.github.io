@@ -5,12 +5,7 @@ import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 import { siteName } from '@/data/profile';
-
-const navLinks = [
-  { href: '/publications', label: 'Publications' },
-  { href: '/notes', label: 'Notes' },
-  { href: '/experience', label: 'Experience' },
-];
+import { navRoutes } from '@/data/routes';
 
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -35,10 +30,10 @@ const Navbar: React.FC = () => {
 
         {/* Desktop links */}
         <div className="hidden md:flex items-center gap-7">
-          {navLinks.map((link) => (
+          {navRoutes.map((link) => (
             <Link
-              key={link.href}
-              href={link.href}
+              key={link.path}
+              href={link.path}
               className="text-[13px] font-medium text-[var(--text-nav)] no-underline transition-colors duration-200 hover:text-[var(--accent)]"
             >
               {link.label}
@@ -65,10 +60,10 @@ const Navbar: React.FC = () => {
       {isMobileMenuOpen && (
         <div className="md:hidden bg-[var(--bg-nav)] backdrop-blur-[20px] border-t border-[var(--border)] px-6 py-4">
           <div className="flex flex-col gap-3">
-            {navLinks.map((link) => (
+            {navRoutes.map((link) => (
               <Link
-                key={link.href}
-                href={link.href}
+                key={link.path}
+                href={link.path}
                 className="block rounded px-3 py-2 text-[13px] font-medium text-[var(--text-nav)] no-underline transition-colors duration-200 hover:text-[var(--accent)]"
                 onClick={closeMobileMenu}
               >

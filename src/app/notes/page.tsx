@@ -1,12 +1,13 @@
 import { pageMetadata } from '@/lib/metadata';
+import { routes } from '@/data/routes';
 import { siteName } from '@/data/profile';
 import { getAllNotes } from '@/lib/notes';
 import NoteCard from '@/components/NoteCard';
 import CardList from '@/components/CardList';
 
 export const metadata = pageMetadata({
-  path: '/notes',
-  title: 'Notes',
+  path: routes.notes.path,
+  title: routes.notes.label,
   description: `Research notes, technical writings, and reflections by ${siteName}.`,
 });
 

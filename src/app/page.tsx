@@ -7,8 +7,9 @@ import NoteCard from '@/components/NoteCard';
 import CardList from '@/components/CardList';
 import { getRecentNotes } from '@/lib/notes';
 import { pageMetadata } from '@/lib/metadata';
+import { routes } from '@/data/routes';
 
-export const metadata = pageMetadata({ path: '' });
+export const metadata = pageMetadata({ path: routes.home.path });
 
 export default function HomePage() {
   const recentNotes = getRecentNotes(3);

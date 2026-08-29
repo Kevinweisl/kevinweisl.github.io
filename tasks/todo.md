@@ -10,10 +10,10 @@
 - [x] commit
 
 ## 5. title 形狀單一擁有者
-- [ ] metadata.ts：`pageTitle()`、`title: { absolute }`、`article?` 單一共變欄位、`noindex?`
-- [ ] layout.tsx 移除 template；not-found 用 `noindex: true`；[slug] 移除 ogType/twitterCard
-- [ ] build；metadata 表與 319aabd 一致，404 無 canonical
-- [ ] commit
+- [x] metadata.ts：`pageTitle()`、`title: { absolute }`、`article?` 單一共變欄位、`noindex?`
+- [x] layout.tsx 移除 template；not-found 用 `noindex: true`；[slug] 移除 ogType/twitterCard
+- [x] build；metadata 表與 319aabd 一致，404 無 canonical
+- [x] commit
 
 ## 6. 路由清單一處 + robots.ts
 - [ ] src/data/routes.ts；Navbar / sitemap / 各頁 pageMetadata 讀它
