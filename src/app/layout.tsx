@@ -11,7 +11,7 @@ import { themeInitScript } from '@/lib/theme';
 // Per-page identity (canonical, description, OG/Twitter cards) comes from
 // pageMetadata() in src/lib/metadata.ts. Only true site-wide defaults live here.
 export const metadata: Metadata = {
-  title: { default: siteName, template: `%s — ${siteName}` },
+  title: siteName,
   metadataBase: new URL(siteUrl),
   robots: {
     index: true,

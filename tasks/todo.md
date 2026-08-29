@@ -3,11 +3,11 @@
 計畫全文：`~/.claude/plans/noble-bouncing-crystal.md`。每項一個 commit，順序 4 → 5 → 6 → 7。
 
 ## 4. 補完 profile seam
-- [ ] profile.ts 加 `researchSummary`，siteDescription 引用它
-- [ ] Hero / Navbar / Footer / 三個 page description 讀 siteName / fullName / researchSummary
-- [ ] ContactLinks 直接 import profile，刪五個 props；page.tsx 改 `<ContactLinks />`
-- [ ] build；`grep "Kevin Wei" src/**/*.tsx` 為零
-- [ ] commit
+- [x] profile.ts 加 `researchSummary`，siteDescription 引用它
+- [x] Hero / Navbar / Footer / 三個 page description 讀 siteName / fullName / researchSummary
+- [x] ContactLinks 直接 import profile，刪五個 props；page.tsx 改 `<ContactLinks />`
+- [x] build；`grep "Kevin Wei" src/**/*.tsx` 為零
+- [x] commit
 
 ## 5. title 形狀單一擁有者
 - [ ] metadata.ts：`pageTitle()`、`title: { absolute }`、`article?` 單一共變欄位、`noindex?`

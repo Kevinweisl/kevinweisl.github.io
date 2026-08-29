@@ -1,34 +1,44 @@
 import type { Metadata } from 'next';
 import { siteName, siteUrl, headline, siteDescription, twitterHandle } from '@/data/profile';
 
+/** The one place the "<page> — <site>" title shape is defined. */
+export function pageTitle(title?: string): string {
+  return title ? `${title} — ${siteName}` : siteName;
+}
+
 interface PageMeta {
   /** Route path starting with '/', or '' for the homepage. */
   path: string;
-  /** Page title without the site suffix. Omit for the homepage, which uses the site headline. */
+  /** Page title without the site suffix. Omit for the homepage. */
   title?: string;
   description?: string;
-  ogType?: 'website' | 'article';
+  /** Present ⇒ og:type article, article:* tags, twitter summary card. Absent ⇒ website. */
   article?: { publishedTime: string; authors: string[] };
-  twitterCard?: 'summary' | 'summary_large_image';
+  /** Present ⇒ robots noindex/nofollow and no canonical (error pages). */
+  noindex?: boolean;
 }
 
 /**
- * Everything a page needs to identify itself — canonical URL, <title>, and the
+ * Everything a page needs to identify itself — <title>, canonical URL, and the
  * OpenGraph / Twitter cards — derived from a path and a title so no route can
- * forget one of them. Emits complete openGraph/twitter objects because Next
+ * forget one of them. Sets `title.absolute` so the layout has no template to
+ * keep in step with; emits complete openGraph/twitter objects because Next
  * replaces (does not merge) nested metadata objects from parent segments.
  */
 export function pageMetadata(meta: PageMeta): Metadata {
   const url = `${siteUrl}${meta.path}`;
-  const socialTitle = meta.title ? `${meta.title} — ${siteName}` : headline;
+  const docTitle = pageTitle(meta.title);
+  // The homepage <title> is the bare site name; its social card carries the headline.
+  const socialTitle = meta.title ? docTitle : headline;
   const description = meta.description ?? siteDescription;
   return {
-    // Bare string → layout's `%s — Kevin Wei` template applies to <title>.
-    title: meta.title ?? { absolute: siteName },
+    title: { absolute: docTitle },
     description,
-    alternates: { canonical: url },
+    ...(meta.noindex
+      ? { robots: { index: false, follow: false } }
+      : { alternates: { canonical: url } }),
     openGraph: {
-      type: meta.ogType ?? 'website',
+      type: meta.article ? 'article' : 'website',
       locale: 'en_US',
       siteName,
       url,
@@ -38,7 +48,7 @@ export function pageMetadata(meta: PageMeta): Metadata {
       ...(meta.article ?? {}),
     },
     twitter: {
-      card: meta.twitterCard ?? 'summary_large_image',
+      card: meta.article ? 'summary' : 'summary_large_image',
       site: twitterHandle,
       creator: twitterHandle,
       title: socialTitle,

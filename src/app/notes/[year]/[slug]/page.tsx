@@ -24,9 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     path: noteHref({ year, slug }),
     title: note.title,
     description: note.excerpt,
-    ogType: 'article',
     article: { publishedTime: note.date, authors: [fullName] },
-    twitterCard: 'summary',
   });
 }
 
