@@ -9,7 +9,6 @@ export interface Publication {
   pdfLink?: string;
   doiLink?: string;
   codeLink?: string;
-  thumbnailUrl?: string;
   featured?: boolean;
 }
 
@@ -87,7 +86,6 @@ export const publicationsData: Publication[] = [
     booktitle = "Findings of the Association for Computational Linguistics: EMNLP 2025",
     year = "2025",
 }`,
-    thumbnailUrl: "/images/publications/do_before_you_judge.png",
   },
   {
     title: "Retrieving the Right Law: Enhancing Legal Search with Style Translation",
@@ -106,7 +104,6 @@ export const publicationsData: Publication[] = [
     doi = {10.1145/3726302.3730246},
 }`,
     featured: true,
-    thumbnailUrl: "/images/publications/retrieving_the_right_law.png",
   },
   {
     title: "Induct-Learn: Short Phrase Prompting with Instruction Induction",
@@ -123,7 +120,6 @@ export const publicationsData: Publication[] = [
 }`,
     pdfLink: "https://aclanthology.org/2024.emnlp-main.297",
     codeLink: "https://github.com/ntunlplab/Induct-Learn",
-    thumbnailUrl: "/images/publications/induct_learn.png",
   },
   {
     title: "Unveiling Selection Biases: Exploring Order and Token Sensitivity in Large Language Models",
@@ -141,7 +137,6 @@ export const publicationsData: Publication[] = [
     pdfLink: "https://aclanthology.org/2024.findings-acl.333",
     codeLink: "https://github.com/Kevinweisl/unveiling-selection-biases",
     featured: true,
-    thumbnailUrl: "/images/publications/unveiling_selection_biases.png",
   },
   {
     title: "Disease Classification on Admission and on Discharge with Residual CNN-Transformer",
@@ -157,7 +152,6 @@ export const publicationsData: Publication[] = [
     year = {2021}
 }`,
     pdfLink: "https://dl.acm.org/doi/10.1145/3486622.3493946",
-    thumbnailUrl: "/images/publications/disease_classification.png",
   },
   {
     title: "NL2KB: Resolving Vocabulary Gap between Natural Language and Knowledge Base in Knowledge Base Construction and Retrieval",
@@ -173,7 +167,6 @@ export const publicationsData: Publication[] = [
     year={2016}
 }`,
     pdfLink: "https://aclanthology.org/C16-2059",
-    thumbnailUrl: "/images/publications/nl2kb.png",
   },
   {
     title: "NTUNLP Approaches to Recognizing and Disambiguating Entities in Long and Short Text at the ERD Challenge 2014",
@@ -189,6 +182,5 @@ export const publicationsData: Publication[] = [
     year = {2014}
 }`,
     pdfLink: "https://dl.acm.org/doi/10.1145/2633211.2634363",
-    thumbnailUrl: "/images/publications/ntunlp_erd.png",
   },
 ];

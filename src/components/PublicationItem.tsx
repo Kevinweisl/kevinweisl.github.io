@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { ChevronUp } from 'lucide-react';
 import type { Publication } from '@/data/publications';
@@ -17,7 +16,6 @@ const PublicationItem: React.FC<Publication> = ({
   pdfLink,
   doiLink,
   codeLink,
-  thumbnailUrl,
 }) => {
   const [showAbstract, setShowAbstract] = useState(false);
   const [showBibtex, setShowBibtex] = useState(false);
@@ -39,64 +37,49 @@ const PublicationItem: React.FC<Publication> = ({
       className={`py-[18px] px-5 bg-[var(--bg-card)] transition-colors duration-200 ${abstract ? 'cursor-pointer' : 'cursor-default'} hover:bg-[var(--accent-light)]`}
       onClick={handleMainClick}
     >
-      <div className="flex gap-4">
-        <div className="flex-1 min-w-0">
-          <p className="font-serif text-[16px] font-semibold text-[var(--text-primary)] leading-[1.4] mb-1">
-            {title}
-          </p>
-          <p className="text-[13px] text-[var(--text-muted)] mb-2">
-            {authors.map((author, i) => (
-              <React.Fragment key={author}>
-                {i > 0 && ', '}
-                {author.startsWith('Sheng-Lun Wei') ? (
-                  <strong className="accent-text font-semibold">{author}</strong>
-                ) : (
-                  author
-                )}
-              </React.Fragment>
-            ))}
-          </p>
-          <div className="flex items-center gap-2.5 flex-wrap">
-            <span className="accent-bg text-white text-[13px] font-bold px-2.5 py-[3px] rounded-[var(--radius)]">
-              {venueAcronym || `${venue} ${year}`}
-            </span>
-            <div className="flex gap-2 items-center">
-              {links.map((link, i) => (
-                <React.Fragment key={link.label}>
-                  {i > 0 && <span className="text-[var(--text-muted)] text-[13px]">·</span>}
-                  {link.href ? (
-                    <Link
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[13px] font-medium text-[var(--accent)] hover:underline"
-                    >
-                      {link.label}
-                    </Link>
-                  ) : (
-                    <button
-                      onClick={link.onClick}
-                      className="text-[13px] font-medium text-[var(--accent)] hover:underline cursor-pointer"
-                    >
-                      {link.label}
-                    </button>
-                  )}
-                </React.Fragment>
-              ))}
-            </div>
-          </div>
+      <p className="font-serif text-[16px] font-semibold text-[var(--text-primary)] leading-[1.4] mb-1">
+        {title}
+      </p>
+      <p className="text-[13px] text-[var(--text-muted)] mb-2">
+        {authors.map((author, i) => (
+          <React.Fragment key={author}>
+            {i > 0 && ', '}
+            {author.startsWith('Sheng-Lun Wei') ? (
+              <strong className="accent-text font-semibold">{author}</strong>
+            ) : (
+              author
+            )}
+          </React.Fragment>
+        ))}
+      </p>
+      <div className="flex items-center gap-2.5 flex-wrap">
+        <span className="accent-bg text-white text-[13px] font-bold px-2.5 py-[3px] rounded-[var(--radius)]">
+          {venueAcronym || `${venue} ${year}`}
+        </span>
+        <div className="flex gap-2 items-center">
+          {links.map((link, i) => (
+            <React.Fragment key={link.label}>
+              {i > 0 && <span className="text-[var(--text-muted)] text-[13px]">·</span>}
+              {link.href ? (
+                <Link
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[13px] font-medium text-[var(--accent)] hover:underline"
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <button
+                  onClick={link.onClick}
+                  className="text-[13px] font-medium text-[var(--accent)] hover:underline cursor-pointer"
+                >
+                  {link.label}
+                </button>
+              )}
+            </React.Fragment>
+          ))}
         </div>
-
-        {thumbnailUrl && (
-          <Image
-            src={thumbnailUrl}
-            alt=""
-            width={96}
-            height={96}
-            className="hidden sm:block w-24 h-24 shrink-0 object-cover rounded-[var(--radius)] border border-[var(--border)]"
-            unoptimized
-          />
-        )}
       </div>
 
       {showAbstract && abstract && (
