@@ -7,7 +7,7 @@ import ThemeProvider from '@/components/ThemeProvider';
 import React from 'react';
 import { siteUrl, siteName, fullName, socialLinks } from '@/data/profile';
 
-const siteDescription = 'Personal website of Sheng-Lun (Kevin) Wei — CS PhD candidate at NTU, researching LLM robustness, multimodal AI, and LLM evaluation.';
+const siteDescription = 'Personal website of Sheng-Lun (Kevin) Wei — CS PhD (NTU, 2026) and adjunct instructor at NTU, researching LLM robustness, multimodal AI, and LLM evaluation.';
 
 export const metadata: Metadata = {
   title: { default: siteName, template: `%s | ${siteName}` },
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: siteUrl,
     siteName,
-    title: 'Kevin Wei — CS PhD Candidate @ NTU',
+    title: 'Kevin Wei — Adjunct Instructor @ NTU',
     description: siteDescription,
     images: ['/og.png'],
   },
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     site: '@kevinweisl',
     creator: '@kevinweisl',
-    title: 'Kevin Wei — CS PhD Candidate @ NTU',
+    title: 'Kevin Wei — Adjunct Instructor @ NTU',
     description: siteDescription,
     images: ['/og.png'],
   },
@@ -82,7 +82,7 @@ const jsonLd = {
   '@type': 'Person',
   name: fullName,
   url: siteUrl,
-  jobTitle: 'CS PhD Candidate',
+  jobTitle: 'Adjunct Instructor',
   affiliation: {
     '@type': 'Organization',
     name: 'National Taiwan University',

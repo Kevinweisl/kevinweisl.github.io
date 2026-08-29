@@ -44,17 +44,17 @@ const Hero = () => {
           </h1>
 
           <p className="text-[16px] font-medium mb-5" style={{ color: 'var(--hero-subtitle)' }}>
-            CS PhD Candidate @ National Taiwan University
+            Adjunct Instructor @ National Taiwan University
           </p>
 
           <p className="text-[16px] leading-[1.8] mb-7 max-w-[60ch]" style={{ color: 'var(--hero-body)' }}>
-            I am a CS PhD candidate at <span className="italic">National Taiwan University</span>, working on LLM biases & fairness, multimodal AI, and LLM evaluation.
+            I received my PhD in Computer Science from <span className="italic">National Taiwan University</span> in 2026, with research on LLM biases &amp; fairness, multimodal AI, and LLM evaluation.
             With 6+ years of industry experience at{' '}
             <HeroLink href="https://www.shopback.sg/">ShopBack</HeroLink>,{' '}
             <HeroLink href="https://www.junyiacademy.org/">Junyi Academy</HeroLink>, and{' '}
             <HeroLink href="https://blendvision.com/">KKStream</HeroLink>,
             I bridge the gap between research and real-world applications.
-            I also serve as an adjunct instructor at NTU&apos;s <span className="italic">Center of General Education</span> and <span className="italic">Department of Economics</span>,
+            I currently serve as an adjunct instructor at NTU&apos;s <span className="italic">Center of General Education</span> and <span className="italic">Department of Economics</span>,
             and founded <HeroLink href="https://www.ccclub.io/">ccClub</HeroLink> (社團法人攜曦程式推廣學會),
             a non-profit organization dedicated to programming education, serving 4,000+ learners since 2016.
           </p>

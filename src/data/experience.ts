@@ -19,7 +19,7 @@ export interface ExperienceDetail {
         {
           title: "PhD, Computer Science",
           institution: "National Taiwan University",
-          period: "2019 - Present (Expected 2026)",
+          period: "2026",
           description: "Main Research Area: Large Language Model"
         },
         {
