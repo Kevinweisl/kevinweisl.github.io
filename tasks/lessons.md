@@ -33,3 +33,19 @@
 **Mistake**: Three rounds of widening a normaliser. Beyond `/_next/static/*` hashes, the RSC flight payload embeds chunk paths *without* the `/_next/` prefix, a per-build id (`"b":"…"`), and 21-char random React fragment keys.
 
 **Rule**: Normalise all three before diffing, or use a character-level `difflib` pass to see exactly what differs instead of guessing at regexes.
+
+## 2026-08-29 — Proving "rendered output unchanged" after a JSX refactor
+
+**Context**: Replacing literals with `{constant}` in JSX and diffing `out/` before/after.
+
+**Mistake**: Expected byte-identical HTML. React emits `<!-- -->` between adjacent JSX expressions (`{year} {siteName}`), and the RSC flight payload splits the same text into adjacent JSON strings. Two rounds of widening a regex normaliser before switching approach.
+
+**Rule**: For "no visible change" claims, compare the *rendered text* — strip `<script>` blocks and tags, unescape, collapse whitespace — plus the meta/alt attribute sets. Don't chase markup-level equality across a JSX-shape change.
+
+## 2026-08-29 — This shell is zsh: `PIPESTATUS` is empty
+
+**Context**: A commit gate built on `${PIPESTATUS[0]}` after piped `npm test | grep`.
+
+**Mistake**: zsh spells it `$pipestatus` (lowercase). The variables were empty, the gate failed closed — safe, but a wasted round trip after every check had actually passed.
+
+**Rule**: In this environment use `${pipestatus[1]}` (zsh is 1-indexed) or avoid pipes on the command whose status matters (`npm test > log; status=$?; grep … log`).
