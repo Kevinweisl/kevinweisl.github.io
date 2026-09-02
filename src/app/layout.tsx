@@ -1,12 +1,10 @@
 import { Albert_Sans, Young_Serif, Noto_Sans_TC, Noto_Serif_TC } from 'next/font/google';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import '@/styles/globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import ThemeSync from '@/components/ThemeSync';
 import React from 'react';
 import { siteUrl, siteName, fullName, socialLinks, jobTitle, affiliation, researchInterests } from '@/data/profile';
-import { themeInitScript } from '@/lib/theme';
 
 // Per-page identity (canonical, description, OG/Twitter cards) comes from
 // pageMetadata() in src/lib/metadata.ts. Only true site-wide defaults live here.
@@ -17,6 +15,13 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+};
+
+// Dark only: tell the browser so native scrollbars, form controls and the
+// mobile chrome match the page instead of flashing light. #0a1519 = --bg-primary.
+export const viewport: Viewport = {
+  colorScheme: 'dark',
+  themeColor: '#0a1519',
 };
 
 const albertSans = Albert_Sans({
@@ -74,16 +79,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${albertSans.variable} ${youngSerif.variable} ${notoSansTC.variable} ${notoSerifTC.variable} scroll-smooth`} suppressHydrationWarning>
+    <html lang="en" className={`${albertSans.variable} ${youngSerif.variable} ${notoSansTC.variable} ${notoSerifTC.variable} scroll-smooth`}>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
       <body className="flex flex-col min-h-screen font-sans antialiased">
-        <ThemeSync />
         <Navbar />
         <main className="flex-grow">
           {children}

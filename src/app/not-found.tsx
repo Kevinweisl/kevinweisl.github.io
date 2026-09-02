@@ -47,7 +47,7 @@ export default function NotFound() {
       <div className="flex gap-3 flex-wrap justify-center">
         <Link
           href="/"
-          className="text-[14px] font-medium text-white no-underline transition-transform duration-200 hover:-translate-y-px"
+          className="text-[14px] font-medium text-[var(--text-on-primary)] no-underline transition-transform duration-200 hover:-translate-y-px"
           style={{
             background: 'var(--accent)',
             padding: '11px 24px',

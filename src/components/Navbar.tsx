@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
-import ThemeToggle from './ThemeToggle';
 import { siteName } from '@/data/profile';
 import { navRoutes } from '@/data/routes';
 
@@ -39,21 +38,17 @@ const Navbar: React.FC = () => {
               {link.label}
             </Link>
           ))}
-          <ThemeToggle />
         </div>
 
-        {/* Mobile: theme toggle + hamburger */}
-        <div className="flex items-center gap-3 md:hidden">
-          <ThemeToggle />
-          <button
-            className="text-[var(--text-nav)]"
-            onClick={toggleMobileMenu}
-            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={isMobileMenuOpen}
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
+        {/* Mobile: hamburger */}
+        <button
+          className="md:hidden text-[var(--text-nav)]"
+          onClick={toggleMobileMenu}
+          aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={isMobileMenuOpen}
+        >
+          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
       </div>
 
       {/* Mobile menu */}

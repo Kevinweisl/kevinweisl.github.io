@@ -54,7 +54,7 @@ const PublicationItem: React.FC<Publication> = ({
         ))}
       </p>
       <div className="flex items-center gap-2.5 flex-wrap">
-        <span className="accent-bg text-white text-[13px] font-bold px-2.5 py-[3px] rounded-[var(--radius)]">
+        <span className="accent-bg text-[var(--text-on-primary)] text-[13px] font-bold px-2.5 py-[3px] rounded-[var(--radius)]">
           {venueAcronym || `${venue} ${year}`}
         </span>
         <div className="flex gap-2 items-center">

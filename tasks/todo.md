@@ -1,47 +1,58 @@
-# Todo — 2026-09-02 配色改版：把 ccClub logo 帶進網站
+# Todo — 2026-09-03 只留深色：拆掉雙主題機制
 
-比較頁：`tasks/palette-options.html`（也發布為 Artifact）。
+計畫全文：`~/.claude/plans/sprightly-riding-flask.md`。
 
 ## 起因
-現況只吸收了 logo 三色裡的一個（teal），而且色相比 logo 更藍。粉紅與冰藍從未進站，
-根因是 `.impeccable.md` 的品牌色是憑印象寫的，第二色記成不存在的 Coral Red `#D24E42`。
+Kevin：「淺色跟深色兩種有點不必要，留著深色即可。」雙主題的成本在上一輪配色改版
+放大了一倍 —— 每個顏色算兩次對比、驗兩個底、7 個測試只為了守 CSS ↔ TS 契約。
 
-## 1. 取色與提案
-- [x] 對 logo 實際取色：冰藍 `#CADFE3` 72.7%、teal `#487981` 9.1%、粉紅 `#E288B3` 7.0%
-- [x] 四個方向各做一份實體樣本（同一份真實內容 × 不同 token），可切淺／深色
-- [x] 每案逐對算 WCAG 對比度，全部 ≥ 4.5
+## 1. 刪機制
+- [x] 刪 `src/lib/theme.ts`、`theme.test.ts`、`ThemeToggle.tsx`、`ThemeSync.tsx`（互相引用，一起刪）
+- [x] `layout.tsx`：拿掉 inline init script、`<ThemeSync />`、`suppressHydrationWarning`
+- [x] `layout.tsx`：新增 `viewport = { colorScheme: 'dark', themeColor: '#0a1519' }`
+- [x] `Navbar.tsx`：拿掉兩處 `<ThemeToggle />`；手機 wrapper 只剩一個子元素 → 漢堡按鈕直接提升到 nav 列
 
-## 2. Kevin 的選擇
-- [x] 淺色：**C 冰藍底當家**，但卡片不要浮成白色
-- [x] 深色：**C**，但 hero 的斜體字要改成粉色
+## 2. `globals.css`
+- [x] 42 個 `.dark` 值逐字搬進 `:root`（程式化替換，非手抄），刪 `.dark` block
+- [x] `html { color-scheme: dark }`
+- [x] 刪整段 Theme Toggle（註解 + 三條 `[data-theme-only]` 規則）
+- [x] `.dark .prose img` 併進 `.prose img`（這條是文章圖片邊框，不是 toggle plumbing）
+- [x] 重寫三處兩主題時期的註解
 
-## 3. 落地
-- [x] `globals.css` 兩組 token 全換；卡片 `#ffffff` → `#eff5f6`（貼著底色提亮，不再是白色塊）
-- [x] 新增 `--hero-link`：hero 斜體連結不再借用 `--accent`，淺色維持 teal（僅底線粉），深色文字本身轉粉
-- [x] `Hero.tsx` 移除 `accent-text`，顏色交給 `.hero-link` 一個類別擁有
-- [x] `ContactLinks.tsx` 兩個舊字面值換成 token（`--shadow-contact-hover`、`--text-on-primary`）
-- [x] 驗證：token 覆蓋率（無單邊定義）＋ 全部文字對比度 ≥ AA
-- [x] 36 測試綠、build 綠、三種頁型（首頁／清單／文章）淺深色實地走過
-- [x] `.impeccable.md` 品牌色改為從素材取的實際值＋面積佔比
+## 3. 順手修：三個「白字疊在 accent 上」
+深色成為唯一模式後這是每個訪客都看到的 bug（白字 on `#7fb6c0` ≈ 2.2）。
+上一輪已建 `--text-on-primary`（`#08181d`，8.07）但只用在 ContactLinks hover：
+- [x] `PublicationItem.tsx` venue 徽章
+- [x] `ContactLinks.tsx` 信件 modal 的 icon
+- [x] `not-found.tsx` 404 的 CTA
+
+## 4. 文件
+- [x] `.impeccable.md`：約束改為 dark only；「冰藍底當家」改為「深 teal 底、冰藍留作 CTA」
+- [x] `tasks/ccclub-plan.md`：「深色模式自動加邊框」→「自動加邊框」
+
+## 驗證
+- [x] `npm test` **29 綠**（36 − 7）；`npm run build` 綠
+- [x] `grep` `src/`：`.dark` / `data-theme-only` / `ThemeToggle` / `ThemeSync` / `themeInitScript` / `prefers-color-scheme` / `suppressHydrationWarning` **全部歸零**（只剩 globals.css 註解裡的一句說明）
+- [x] `text-white` 只剩 `ProseContent.tsx:40`（lightbox 關閉鈕，疊在 `bg-black/80` 上，正確）
+- [x] `out/index.html`：有 `<meta name="color-scheme" content="dark">` 與 `<meta name="theme-color" content="#0a1519">`，`localStorage` 出現 0 次
+- [x] 首頁：`<html>` **沒有** `dark` class 但 body 底色是 `#0a1519` —— 深色值來自 `:root` 無條件生效；`color-scheme` 計算值 `dark`；navbar 無 toggle；漢堡按鈕在 nav 列且 `md:hidden`
+- [x] 文章頁：4 張 `.prose img` 全部有 1px 邊框、8px 內距、5% 白底
+- [x] 404：CTA 深字 on teal = **8.07**
 
 ## Review
 
-**Kevin 的兩點指定都照做了**：淺色卡片從 `#ffffff` 改成 `#eff5f6`，和底色 `#e9f1f3`
-只差 1.04 的對比 —— 靠邊框而不是靠亮度差來讀出「這是一張卡片」。深色 hero 的斜體連結
-（ShopBack / Junyi Academy / KKStream / ccClub）文字轉為粉色 `#EAA9C8`。
+**刪掉的**：4 個檔案、1 支 inline script、1 個 hydration 例外、42 個重複的 token、
+3 條 toggle 規則、7 個契約測試。`src/` 裡不再有任何「主題」的概念。
 
-**順手修掉的既有問題**（都是這次改動會踩到的）：
-- `ContactLinks` hover 的 `text-white` 疊在深色 accent 上只有 3.14，換成 C 的亮 teal 後
-  會掉到 2.24。改走 `--text-on-primary`（深色給深字），變成 8.07。
-  順帶讓那個一直沒被使用的 token 有了實際用途。
-- `ContactLinks` 的 `rgba(54,120,142,0.22)` 是唯一殘留在 TSX 的舊 accent 字面值，換成 token。
-- hero 斜體連結原本借用 `--accent` 上色 —— hero 其餘每個顏色都有自己的 `--hero-*` token，
-  只有它伸手到家族外。加 `--hero-link` 後才有辦法讓兩個主題各走各的。
+**拿到的**：`color-scheme: dark` 讓原生捲軸與 Publications 搜尋框跟著變深；
+`theme-color` 讓手機瀏覽器框架與頁面同色。雙主題時期做不到（要 media-query 陣列）。
 
-**誠實邊界**：
-- `--radius` 跟著 C 從 6px 變成 4px（樣本裡就是這樣，Kevin 是看著它選的）。
-  若不喜歡，改 `globals.css` 一行即可。
-- 「hero 的斜體字」我讀成**斜體連結**。純斜體的機構名（National Taiwan University、
-  Center of General Education、Department of Economics）不是連結，維持內文色。
-  若原意是全部斜體都要轉粉，說一聲就改。
-- `avatar.ico` 自帶淺藍底，在深色 hero 上偏亮 —— 這是圖片本身，非本次改動，未處理。
+**順手修的三個對比度問題**是這次改動的直接後果 —— 它們原本是「一半訪客看到」，
+現在是「全部」。修法是套用上一輪已經建好的 token，沒有新東西。
+
+**有意不做**：
+- `public/og.png` 是淺色的（92% 像素亮度 > 200），現在是網站最後一個淺色資產，
+  每一頁的 `og:image` 都在用。需要重做圖，建議當下一個 task。
+- `avatar.ico` 自帶淡藍底（上一輪已標記）。
+- `--text-on-primary` 現在其實是「疊在 accent 上的字」，改名會擴散 4 個檔案，不值得。
+- `tasks/lessons.md` 的 theme 教訓、`tasks/palette-options.html` 保留，那是歷史。

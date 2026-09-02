@@ -97,7 +97,7 @@ const ContactLinks: React.FC = () => {
             </button>
             <div className="flex items-center gap-3 mb-4">
               <div className="accent-bg p-2.5 rounded-[var(--radius)]">
-                <Mail size={20} className="text-white" />
+                <Mail size={20} className="text-[var(--text-on-primary)]" />
               </div>
               <h3 className="font-serif text-[20px] font-semibold text-[var(--text-primary)]">Email</h3>
             </div>

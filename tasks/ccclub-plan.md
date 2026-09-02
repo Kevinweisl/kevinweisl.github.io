@@ -54,7 +54,7 @@ repo 公開 = commit 了就算 `draft: true` 也能在 GitHub 原始碼看到內
 
 - 放 `public/images/notes/ccclub/`，檔名用英文小寫加連字號（如 `2016-first-class.jpg`）
 - 寬度 1200–1600px、JPG（截圖可用 PNG）
-- Markdown 插入後緊接一行 `*斜體圖說*`——網站會自動置中並套用圖說樣式；深色模式自動加邊框
+- Markdown 插入後緊接一行 `*斜體圖說*`——網站會自動置中並套用圖說樣式；自動加邊框
 - 文章已有 lightbox：讀者點圖可放大，不用擔心細節看不清
 
 ## 發布時的宣傳建議（可選）
