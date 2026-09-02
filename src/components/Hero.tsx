@@ -8,7 +8,7 @@ function HeroLink({ href, children }: { href: string; children: React.ReactNode 
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="font-semibold no-underline hero-link transition-colors accent-text italic"
+      className="font-semibold no-underline hero-link transition-colors italic"
     >
       {children}
     </Link>

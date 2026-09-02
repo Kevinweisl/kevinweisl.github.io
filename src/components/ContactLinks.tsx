@@ -34,7 +34,7 @@ const ContactLinks: React.FC = () => {
   ];
 
   const cardClassName =
-    'group relative overflow-hidden flex items-center gap-2 text-[var(--text-body)] py-3 px-5.5 rounded-[var(--radius)] border border-[var(--border)] bg-[var(--bg-card)] text-[13px] font-semibold transition-all duration-200 hover:text-white hover:border-transparent hover:-translate-y-0.5 hover:shadow-[0_6px_16px_rgba(54,120,142,0.22)] cursor-pointer';
+    'group relative overflow-hidden flex items-center gap-2 text-[var(--text-body)] py-3 px-5.5 rounded-[var(--radius)] border border-[var(--border)] bg-[var(--bg-card)] text-[13px] font-semibold transition-all duration-200 hover:text-[var(--text-on-primary)] hover:border-transparent hover:-translate-y-0.5 hover:shadow-[var(--shadow-contact-hover)] cursor-pointer';
 
   const cardContent = (link: ContactLinkItem) => (
     <>
