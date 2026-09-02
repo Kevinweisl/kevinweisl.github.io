@@ -73,3 +73,11 @@
 **Mistake**: 以為 Artifact 會補就不用寫。python 的 http.server 不送 charset，瀏覽器只能猜。
 
 **Rule**: 這種「本地也要能開、也要能發布成 Artifact」的雙用途檔案，第一行放 `<meta charset="utf-8">`。在 1024 bytes 內所以本地有效；Artifact 裡是重複宣告，瀏覽器直接忽略，無害。順帶：python http.server 會回 304，改完要用 `?v=N` 破快取，不然看到的還是舊的。
+
+## 2026-09-03 — 修一個「字面值疊在 token 上」的對比度 bug 時，要把同一個字面值的所有實例一起修
+
+**Context**: 2026-09-02 配色改版時發現 `ContactLinks` hover 的 `text-white` 疊在深色 accent 上只有 2.2:1，建了 `--text-on-primary` 修掉。隔天拆雙主題的盤點才發現 `PublicationItem` 的 venue 徽章、`ContactLinks` 的 mail icon、`not-found` 的 CTA 是**一模一樣的模式**（`text-white` on `var(--accent)`），當時沒修。
+
+**Mistake**: 修了觸發我注意的那一個，沒有 grep 同一個字面值在同一種表面上的其他出現。四個實例修了一個。
+
+**Rule**: 修任何「硬編顏色疊在 token 表面上」的 bug 時，修完立刻 `grep -rn "<那個字面值>" src/`，逐一判斷每個實例是不是同一個表面。搜尋的是**字面值**（`text-white`、`#fff`、`rgba(255`），不是元件名 —— 同一個 bug 不會只住在一個元件裡。
