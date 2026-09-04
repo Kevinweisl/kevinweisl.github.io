@@ -10,7 +10,7 @@ const ExperienceItem: React.FC<ExperienceItemProps> = ({
   institution,
   period,
   description,
-  note,
+  semesters,
   compact = false,
 }) => {
   return (
@@ -30,9 +30,13 @@ const ExperienceItem: React.FC<ExperienceItemProps> = ({
             {description}
           </div>
         )}
-        {note && !compact && (
+        {semesters && semesters.length > 0 && !compact && (
           <div className="text-[13px] text-[var(--text-muted)] mt-0.5">
-            {note}
+            <strong className="font-semibold">
+              {semesters.length} {semesters.length === 1 ? 'semester' : 'semesters'}
+            </strong>
+            {': '}
+            {semesters.join(', ')}
           </div>
         )}
       </div>

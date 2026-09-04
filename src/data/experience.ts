@@ -3,8 +3,9 @@ export interface ExperienceDetail {
     institution: string;
     period: string;
     description?: string;
-    /** Secondary line shown under the description (e.g. semesters taught). */
-    note?: string;
+    /** Semesters taught, one per entry. The count shown on the page is derived
+     *  from this array's length, so adding a semester is a one-place edit. */
+    semesters?: string[];
   }
 
   export interface ExperienceCategory {
@@ -43,14 +44,31 @@ export interface ExperienceDetail {
           institution: "Center of General Education, National Taiwan University",
           period: "2021 - Present",
           description: "Programming and Web Scraping (GenEdu5010)",
-          note: "2021 Spring, 2021 Fall, 2022 Spring, 2022 Fall, 2023 Spring, 2023 Fall, 2024 Spring, 2025 Spring, 2025 Fall, 2026 Spring"
+          semesters: [
+            "2021 Spring",
+            "2021 Fall",
+            "2022 Spring",
+            "2022 Fall",
+            "2023 Spring",
+            "2023 Fall",
+            "2024 Spring",
+            "2025 Spring",
+            "2025 Fall",
+            "2026 Spring"
+          ]
         },
         {
           title: "Adjunct Instructor",
           institution: "Department of Economics, National Taiwan University",
           period: "2022 - Present",
           description: "Programming (ECON1024)",
-          note: "2022 Spring, 2023 Spring, 2024 Spring, 2025 Spring, 2026 Spring"
+          semesters: [
+            "2022 Spring",
+            "2023 Spring",
+            "2024 Spring",
+            "2025 Spring",
+            "2026 Spring"
+          ]
         }
       ]
     },
