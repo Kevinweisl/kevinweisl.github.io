@@ -9,7 +9,9 @@ export interface Publication {
   pdfLink?: string;
   doiLink?: string;
   codeLink?: string;
-  featured?: boolean;
+  /** Rank on the home page's Selected Publications; absent = not shown there. Order there is
+   *  editorial, not chronological, so it cannot ride on this array's order. */
+  featured?: number;
 }
 
 export const publicationsData: Publication[] = [
@@ -31,7 +33,7 @@ export const publicationsData: Publication[] = [
     url = "https://aclanthology.org/2026.findings-acl.1864/",
     doi = "10.18653/v1/2026.findings-acl.1864",
 }`,
-    featured: true,
+    featured: 3,
   },
   {
     title: "Do Multimodal LLMs Understand Order? Measuring the Fragility of Multimodal Reasoning under Input Order Perturbations",
@@ -69,7 +71,7 @@ export const publicationsData: Publication[] = [
     url = "https://aclanthology.org/2026.findings-eacl.80/",
     doi = "10.18653/v1/2026.findings-eacl.80",
 }`,
-    featured: true,
+    featured: 2,
   },
   {
     title: "Do Before You Judge: Self-Reference as a Pathway to Better LLM Evaluation",
@@ -102,7 +104,7 @@ export const publicationsData: Publication[] = [
     year = {2025},
     doi = {10.1145/3726302.3730246},
 }`,
-    featured: true,
+    featured: 5,
   },
   {
     title: "Induct-Learn: Short Phrase Prompting with Instruction Induction",
@@ -119,7 +121,7 @@ export const publicationsData: Publication[] = [
 }`,
     pdfLink: "https://aclanthology.org/2024.emnlp-main.297",
     codeLink: "https://github.com/ntunlplab/Induct-Learn",
-    featured: true,
+    featured: 4,
   },
   {
     title: "Unveiling Selection Biases: Exploring Order and Token Sensitivity in Large Language Models",
@@ -136,7 +138,7 @@ export const publicationsData: Publication[] = [
 }`,
     pdfLink: "https://aclanthology.org/2024.findings-acl.333",
     codeLink: "https://github.com/Kevinweisl/unveiling-selection-biases",
-    featured: true,
+    featured: 1,
   },
   {
     title: "Disease Classification on Admission and on Discharge with Residual CNN-Transformer",
