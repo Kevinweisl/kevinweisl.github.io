@@ -2,6 +2,7 @@ import { pageMetadata } from '@/lib/metadata';
 import { routes } from '@/data/routes';
 import { fullName } from '@/data/profile';
 import PublicationSearch from '@/components/PublicationSearch';
+import PageShell from '@/components/PageShell';
 
 export const metadata = pageMetadata({
   path: routes.publications.path,
@@ -11,13 +12,8 @@ export const metadata = pageMetadata({
 
 export default function PublicationsPage() {
   return (
-    <section className="py-[72px] px-6" style={{ background: 'var(--bg-primary)' }}>
-      <div className="max-w-[720px] mx-auto">
-        <h1 className="font-serif text-[28px] text-center mb-3 text-[var(--text-primary)]">
-          <span className="brand-text">Publications</span>
-        </h1>
-        <PublicationSearch />
-      </div>
-    </section>
+    <PageShell title={routes.publications.label}>
+      <PublicationSearch />
+    </PageShell>
   );
 }

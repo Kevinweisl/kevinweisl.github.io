@@ -1,9 +1,8 @@
-import React from 'react';
 import { pageMetadata } from '@/lib/metadata';
 import { routes } from '@/data/routes';
 import { fullName } from '@/data/profile';
 import ExperienceList from '@/components/ExperienceList';
-import Section from '@/components/Section';
+import PageShell from '@/components/PageShell';
 
 export const metadata = pageMetadata({
   path: routes.experience.path,
@@ -13,8 +12,8 @@ export const metadata = pageMetadata({
 
 export default function ExperiencePage() {
   return (
-    <Section id="full-experience" title="Experience">
+    <PageShell title={routes.experience.label}>
       <ExperienceList />
-    </Section>
+    </PageShell>
   );
 }
