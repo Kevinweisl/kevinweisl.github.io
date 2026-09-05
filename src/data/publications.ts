@@ -49,7 +49,6 @@ export const publicationsData: Publication[] = [
     year = {2026},
     doi = {10.63317/4jtpgzks8pbr},
 }`,
-    featured: true,
   },
   {
     title: "Bias in the Ear of the Listener: Assessing Sensitivity in Audio Language Models Across Linguistic, Demographic, and Positional Variations",
@@ -120,6 +119,7 @@ export const publicationsData: Publication[] = [
 }`,
     pdfLink: "https://aclanthology.org/2024.emnlp-main.297",
     codeLink: "https://github.com/ntunlplab/Induct-Learn",
+    featured: true,
   },
   {
     title: "Unveiling Selection Biases: Exploring Order and Token Sensitivity in Large Language Models",
