@@ -1,0 +1,112 @@
+<div class="board" style="padding:52px 56px;gap:30px">
+
+  <header style="display:flex;flex-direction:column;gap:14px;border-bottom:2px solid var(--ink);padding-bottom:22px">
+    <div style="display:flex;align-items:baseline;gap:16px">
+      <h1 style="font-family:'Young Serif',Georgia,serif;font-weight:400;font-size:38px;margin:0;letter-spacing:-.015em;line-height:1.05">八個可以改的地方</h1>
+      <span style="margin-left:auto;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3)">kevinweisl.github.io &nbsp;/&nbsp; 2026-09-05</span>
+    </div>
+    <p style="margin:0;font-size:15px;line-height:1.7;color:var(--ink2);max-width:88ch">
+      每一條都是從現在的原始碼量出來的，不是感覺。右邊每張板子是一組前後對照，左半是現況、右半是提案，兩邊都用網站真正的色票與字級畫的。挑你要的，其餘丟掉。
+    </p>
+    <div class="ev" style="margin-top:2px">
+      <span><b>1.09</b> 交替區塊底色的對比</span>
+      <span><b>1.16</b> 卡片對頁面底的對比</span>
+      <span><b>56%</b> 全站文字都是 13px</span>
+      <span><b>27 : 2</b> teal 對粉紅的使用次數</span>
+    </div>
+  </header>
+
+  <table style="width:100%;border-collapse:collapse;font-size:13px;line-height:1.6">
+    <thead>
+      <tr style="border-bottom:1px solid var(--rule2)">
+        <th style="width:40px;text-align:left;padding:0 10px 10px 0;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3)">#</th>
+        <th style="width:62px;text-align:left;padding:0 10px 10px 0;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3)">面向</th>
+        <th style="text-align:left;padding:0 16px 10px 0;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3)">現況問題（實測）</th>
+        <th style="text-align:left;padding:0 16px 10px 0;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3)">提案</th>
+        <th style="width:186px;text-align:left;padding:0 12px 10px 0;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3)">改動範圍</th>
+        <th style="width:76px;text-align:left;padding:0 0 10px 0;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3)">建議</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr style="border-bottom:1px solid var(--rule)">
+        <td style="padding:14px 10px 14px 0;vertical-align:top;font-weight:700;color:var(--mark);font-variant-numeric:tabular-nums">01</td>
+        <td style="padding:14px 10px 14px 0;vertical-align:top;color:var(--ink3)">排版</td>
+        <td style="padding:14px 16px 14px 0;vertical-align:top;color:var(--ink2)">13px 扛了 <b style="color:var(--ink)">28 處</b>、佔全站有標尺寸文字的 <b style="color:var(--ink)">56%</b>。分類標籤、日期、作者、摘要、連結、頁尾、學期共用同一個樣式，五種角色長得一模一樣。</td>
+        <td style="padding:14px 16px 14px 0;vertical-align:top;color:var(--ink)">不加字級，加角色。12px／600／大寫／字距當標籤，13px 當 metadata，16px 當次要正文。靠字重與大小寫分，不靠顏色。</td>
+        <td style="padding:14px 12px 14px 0;vertical-align:top;color:var(--ink3)">globals.css + 6 個元件</td>
+        <td style="padding:14px 0;vertical-align:top"><span style="font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--ink2)">可選</span></td>
+      </tr>
+
+      <tr style="border-bottom:1px solid var(--rule)">
+        <td style="padding:14px 10px 14px 0;vertical-align:top;font-weight:700;color:var(--mark);font-variant-numeric:tabular-nums">02</td>
+        <td style="padding:14px 10px 14px 0;vertical-align:top;color:var(--ink3)">排版</td>
+        <td style="padding:14px 16px 14px 0;vertical-align:top;color:var(--ink2)">交替底色 <span class="mono">#0a1519</span> 對 <span class="mono">#0f1f24</span> 的對比只有 <b style="color:var(--ink)">1.09</b>，肉眼等於沒有，但每個區塊照付 72px 上下留白。內容欄 900px，16px 下一行約 110 字，遠超舒適的 65–75。</td>
+        <td style="padding:14px 16px 14px 0;vertical-align:top;color:var(--ink)">停止用底色分區，改用一條 hairline 加留白差。內容欄收到 720px，標題與 metadata 才跨滿版。</td>
+        <td style="padding:14px 12px 14px 0;vertical-align:top;color:var(--ink3)">Section.tsx + globals.css</td>
+        <td style="padding:14px 0;vertical-align:top"><span style="font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--mark)">先做</span></td>
+      </tr>
+
+      <tr style="border-bottom:1px solid var(--rule)">
+        <td style="padding:14px 10px 14px 0;vertical-align:top;font-weight:700;color:var(--mark);font-variant-numeric:tabular-nums">03</td>
+        <td style="padding:14px 10px 14px 0;vertical-align:top;color:var(--ink3)">字體</td>
+        <td style="padding:14px 16px 14px 0;vertical-align:top;color:var(--ink2)">Young Serif 只出 400 一個字重，body 又設了 <span class="mono">font-synthesis-weight: none</span>。所以 serif 上每一個 <span class="mono">font-semibold</span> ／ <span class="mono">font-bold</span> <b style="color:var(--ink)">完全沒有作用</b>：hero 的名字、所有區塊標題、所有卡片標題、文章的 h1–h3，全部渲染成 400。</td>
+        <td style="padding:14px 16px 14px 0;vertical-align:top;color:var(--ink)">承認它。把 serif 元素上的字重宣告刪掉，階層改用尺寸與留白扛。Young Serif 本身就偏重，夠用。</td>
+        <td style="padding:14px 12px 14px 0;vertical-align:top;color:var(--ink3)">5 個元件，純刪除</td>
+        <td style="padding:14px 0;vertical-align:top"><span style="font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--mark)">先做</span></td>
+      </tr>
+
+      <tr style="border-bottom:1px solid var(--rule)">
+        <td style="padding:14px 10px 14px 0;vertical-align:top;font-weight:700;color:var(--mark);font-variant-numeric:tabular-nums">04</td>
+        <td style="padding:14px 10px 14px 0;vertical-align:top;color:var(--ink3)">排版</td>
+        <td style="padding:14px 16px 14px 0;vertical-align:top;color:var(--ink2)">Experience 有兩層巢狀標籤欄：外層 100px 放分類、內層 120px 放期間。桌機上左側 <b style="color:var(--ink)">220px</b> 幾乎全空，而分類總共只有三個字。</td>
+        <td style="padding:14px 16px 14px 0;vertical-align:top;color:var(--ink)">分類改成跨全寬的大寫標籤列，100px 還給內容。行長變短，反而更好讀。</td>
+        <td style="padding:14px 12px 14px 0;vertical-align:top;color:var(--ink3)">ExperienceList.tsx</td>
+        <td style="padding:14px 0;vertical-align:top"><span style="font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--ink2)">可選</span></td>
+      </tr>
+
+      <tr style="border-bottom:1px solid var(--rule)">
+        <td style="padding:14px 10px 14px 0;vertical-align:top;font-weight:700;color:var(--mark);font-variant-numeric:tabular-nums">05</td>
+        <td style="padding:14px 10px 14px 0;vertical-align:top;color:var(--ink3)">排版</td>
+        <td style="padding:14px 16px 14px 0;vertical-align:top;color:var(--ink2)">venue 徽章是實心 accent 底加粗體，是整張 publication 卡片視覺最重的東西。但它是卡片上<b style="color:var(--ink)">最不重要</b>的資訊，標題反而最輕（見 03）。</td>
+        <td style="padding:14px 16px 14px 0;vertical-align:top;color:var(--ink)">徽章改描邊：透明底、accent 邊框與文字。重量還給標題。</td>
+        <td style="padding:14px 12px 14px 0;vertical-align:top;color:var(--ink3)">PublicationItem.tsx 一行</td>
+        <td style="padding:14px 0;vertical-align:top"><span style="font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--ink2)">可選</span></td>
+      </tr>
+
+      <tr style="border-bottom:1px solid var(--rule)">
+        <td style="padding:14px 10px 14px 0;vertical-align:top;font-weight:700;color:var(--mark);font-variant-numeric:tabular-nums">06</td>
+        <td style="padding:14px 10px 14px 0;vertical-align:top;color:var(--ink3)">顏色</td>
+        <td style="padding:14px 16px 14px 0;vertical-align:top;color:var(--ink2)"><span class="mono">#7fb6c0</span> 一個顏色同時是連結、標題強調字、分類標籤、機構名、venue 底色、作者名、focus ring、引用邊框。<b style="color:var(--ink)">27 處、12 個檔案</b>。機構名長得像連結，但點不下去。</td>
+        <td style="padding:14px 16px 14px 0;vertical-align:top;color:var(--ink)">三職分離：只有可點擊的才用 accent；標籤改用 muted 加字距；品牌強調交給粉紅。機構名回 <span class="mono">--text-body</span>。</td>
+        <td style="padding:14px 12px 14px 0;vertical-align:top;color:var(--ink3)">8 個元件</td>
+        <td style="padding:14px 0;vertical-align:top"><span style="font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--mark)">先做</span></td>
+      </tr>
+
+      <tr style="border-bottom:1px solid var(--rule)">
+        <td style="padding:14px 10px 14px 0;vertical-align:top;font-weight:700;color:var(--mark);font-variant-numeric:tabular-nums">07</td>
+        <td style="padding:14px 10px 14px 0;vertical-align:top;color:var(--ink3)">顏色</td>
+        <td style="padding:14px 16px 14px 0;vertical-align:top;color:var(--ink2)">卡片對頁面底的對比 <b style="color:var(--ink)">1.16</b>，邊框對卡片 <b style="color:var(--ink)">1.29</b>。卡片浮不起來，全靠一條看不見的線在撐，整站沒有邊緣定義。</td>
+        <td style="padding:14px 16px 14px 0;vertical-align:top;color:var(--ink)">提亮<b style="color:var(--ink)">邊框</b>到 <span class="mono">#2b4d57</span>（對卡片 1.76、對頁面底 2.03），不提亮卡片底。你說過卡片不要浮成白色，這個做法剛好只加邊緣不加亮度。</td>
+        <td style="padding:14px 12px 14px 0;vertical-align:top;color:var(--ink3)">globals.css 一行</td>
+        <td style="padding:14px 0;vertical-align:top"><span style="font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--mark)">先做</span></td>
+      </tr>
+
+      <tr>
+        <td style="padding:14px 10px 14px 0;vertical-align:top;font-weight:700;color:var(--mark);font-variant-numeric:tabular-nums">08</td>
+        <td style="padding:14px 10px 14px 0;vertical-align:top;color:var(--ink3)">顏色</td>
+        <td style="padding:14px 16px 14px 0;vertical-align:top;color:var(--ink2)">logo 裡粉紅佔 7.0%、teal 佔 9.1%，幾乎等量。網站上卻是 <b style="color:var(--ink)">teal 27 處對粉紅 2 處</b>，而且那兩處都在 hero。捲過第一屏之後整站是單色的。</td>
+        <td style="padding:14px 16px 14px 0;vertical-align:top;color:var(--ink)">給粉紅三個固定職務：作者列裡你自己的名字、區塊標題的強調字、進行中的標記。其餘維持 teal。</td>
+        <td style="padding:14px 12px 14px 0;vertical-align:top;color:var(--ink3)">3 個元件</td>
+        <td style="padding:14px 0;vertical-align:top"><span style="font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--ink2)">可選</span></td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <p style="margin:0;padding-top:4px;border-top:1px solid var(--rule);font-size:12px;line-height:1.7;color:var(--ink3)">
+    「先做」的四條互不衝突，可以一起上：<b style="color:var(--ink2)">03</b> 只是刪掉沒作用的宣告，<b style="color:var(--ink2)">07</b> 是一行，<b style="color:var(--ink2)">02</b> 與 <b style="color:var(--ink2)">06</b> 是這批裡視覺差異最大的兩條。
+    對比數字都是 WCAG 相對亮度算的，1.0 表示兩色完全一樣。
+  </p>
+
+</div>

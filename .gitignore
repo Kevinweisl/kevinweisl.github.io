@@ -45,3 +45,4 @@ next-env.d.ts
 
 # unpublished note drafts — public repo, keep source out of git until publish day
 content/notes/**/*.draft.md
+tasks/design-review/*-design-review.html

@@ -1,0 +1,89 @@
+<div class="board">
+  <header class="head">
+    <div class="head-top">
+      <span class="num">01</span>
+      <h1 class="title">字級階層</h1>
+      <span class="chip">排版</span>
+    </div>
+    <p class="lede">13px 不是太小，問題是它太忙。分類標籤、日期、作者列、摘要、連結、頁尾、學期清單全都是同一個 13px 灰字，讀者沒有任何線索分辨哪個是標籤、哪個是內容。</p>
+    <div class="ev">
+      <span><b>28</b> 處使用 13px</span>
+      <span><b>56%</b> 佔全站有標尺寸的文字</span>
+      <span><b>5</b> 種角色共用一個樣式</span>
+    </div>
+  </header>
+
+  <div class="split">
+    <section class="pane">
+      <div class="pane-h"><span class="tag t-b">現況</span><span class="pane-note">實際使用次數</span></div>
+      <div class="sample" style="display:flex;flex-direction:column;gap:14px;justify-content:center">
+        <div style="display:flex;align-items:center;gap:12px">
+          <span style="width:46px;font-size:11px;color:var(--s-muted);font-variant-numeric:tabular-nums;text-align:right">28px</span>
+          <span style="height:9px;width:30px;background:var(--s-accent);opacity:.55"></span>
+          <span style="font-size:11px;color:var(--s-muted);font-variant-numeric:tabular-nums">5</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <span style="width:46px;font-size:11px;color:var(--s-muted);font-variant-numeric:tabular-nums;text-align:right">20px</span>
+          <span style="height:9px;width:18px;background:var(--s-accent);opacity:.55"></span>
+          <span style="font-size:11px;color:var(--s-muted);font-variant-numeric:tabular-nums">3</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <span style="width:46px;font-size:11px;color:var(--s-muted);font-variant-numeric:tabular-nums;text-align:right">16px</span>
+          <span style="height:9px;width:60px;background:var(--s-accent);opacity:.55"></span>
+          <span style="font-size:11px;color:var(--s-muted);font-variant-numeric:tabular-nums">10</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <span style="width:46px;font-size:11px;color:var(--s-muted);font-variant-numeric:tabular-nums;text-align:right">14px</span>
+          <span style="height:9px;width:24px;background:var(--s-accent);opacity:.55"></span>
+          <span style="font-size:11px;color:var(--s-muted);font-variant-numeric:tabular-nums">4</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <span style="width:46px;font-size:11px;color:var(--s-pink);font-variant-numeric:tabular-nums;text-align:right;font-weight:600">13px</span>
+          <span style="height:9px;width:168px;background:var(--s-pink)"></span>
+          <span style="font-size:11px;color:var(--s-pink);font-variant-numeric:tabular-nums;font-weight:600">28</span>
+        </div>
+        <div style="margin-top:10px;padding-top:16px;border-top:1px solid var(--s-border);display:flex;flex-direction:column;gap:7px">
+          <div style="font-size:13px;color:var(--s-muted)">ACL 2024</div>
+          <div style="font-size:13px;color:var(--s-muted)">Kevin Wei, Chen-Yu Lin, Wei-Han Chao</div>
+          <div style="font-size:13px;color:var(--s-muted);font-variant-numeric:tabular-nums">2026-08-14 · 6 min</div>
+          <div style="font-size:13px;color:var(--s-muted)">10 semesters: 2021 Spring, 2021 Fall…</div>
+          <div style="font-size:13px;color:var(--s-accent)">Center of General Education, NTU</div>
+        </div>
+      </div>
+      <ul class="crit">
+        <li>五行全都是 13px，重量、字距、大小寫完全相同</li>
+        <li>venue、日期、學期、機構名沒有任何視覺分級</li>
+        <li>16px 到 28px 之間是空的，中間層只能往下擠到 13</li>
+      </ul>
+    </section>
+
+    <section class="pane">
+      <div class="pane-h"><span class="tag t-a">提案</span><span class="pane-note">同樣的內容，分成三個角色</span></div>
+      <div class="sample" style="display:flex;flex-direction:column;gap:14px;justify-content:center">
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <span style="font-size:11px;color:var(--s-muted);letter-spacing:.1em;text-transform:uppercase">Label &nbsp;12 / 600 / uppercase / .08em</span>
+          <span style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--s-muted)">Teaching · Venue · Research Interests</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <span style="font-size:11px;color:var(--s-muted);letter-spacing:.1em;text-transform:uppercase">Meta &nbsp;13 / 400 / tabular</span>
+          <span style="font-size:13px;color:var(--s-muted);font-variant-numeric:tabular-nums">2026-08-14 · 6 min · 10 semesters</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <span style="font-size:11px;color:var(--s-muted);letter-spacing:.1em;text-transform:uppercase">Body &nbsp;16 / 400</span>
+          <span style="font-size:16px;color:var(--s-body);line-height:1.6">Center of General Education, NTU</span>
+        </div>
+        <div style="margin-top:10px;padding-top:16px;border-top:1px solid var(--s-border);display:flex;flex-direction:column;gap:8px">
+          <div style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--s-muted)">ACL 2024</div>
+          <div style="font-family:'Young Serif',Georgia,serif;font-size:20px;color:var(--s-text);line-height:1.35">Robustness of Instruction-Tuned Models</div>
+          <div style="font-size:13px;color:var(--s-muted)"><span style="color:var(--s-pink)">Kevin Wei</span>, Chen-Yu Lin, Wei-Han Chao</div>
+          <div style="font-size:13px;color:var(--s-muted);font-variant-numeric:tabular-nums">2026-08-14 · 6 min</div>
+        </div>
+      </div>
+      <ul class="crit">
+        <li class="good">沒有新增字級，只把 13px 拆成標籤與 metadata 兩種處理</li>
+        <li class="good">標籤靠大寫與字距分辨，不占用顏色</li>
+        <li class="good">16px 這一階回來當次要正文，卡片標題與 metadata 之間不再是懸崖</li>
+      </ul>
+    </section>
+  </div>
+</div>

@@ -12,7 +12,7 @@ const NoteCard: React.FC<NoteMeta> = ({ title, date, excerpt, year, slug, readin
       className="block py-[18px] px-5 bg-[var(--bg-card)] transition-colors duration-200 hover:bg-[var(--accent-light)]"
     >
       <div className="flex flex-col-reverse sm:flex-row sm:items-baseline sm:justify-between gap-1 sm:gap-4 mb-1">
-        <h3 className="font-serif text-[20px] font-semibold text-[var(--text-primary)] leading-[1.4]">
+        <h3 className="font-serif text-[20px] text-[var(--text-primary)] leading-[1.4]">
           {title}
         </h3>
         <span
@@ -22,7 +22,7 @@ const NoteCard: React.FC<NoteMeta> = ({ title, date, excerpt, year, slug, readin
           {formattedDate} · {readingMinutes} min
         </span>
       </div>
-      <p className="text-[13px] text-[var(--text-muted)] leading-[1.5]">
+      <p className="text-[14px] text-[var(--text-body)] leading-[1.5]">
         {excerpt}
       </p>
     </Link>

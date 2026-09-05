@@ -1,0 +1,78 @@
+<div class="board">
+  <header class="head">
+    <div class="head-top">
+      <span class="num">07</span>
+      <h1 class="title">表面層次</h1>
+      <span class="chip">顏色</span>
+    </div>
+    <p class="lede">卡片底對頁面底的對比是 1.16，邊框對卡片是 1.29。三個表面幾乎是同一個顏色，卡片浮不起來，整站沒有邊緣定義。你說過卡片不要浮成白色 —— 所以下面的提案是提亮邊框，不是提亮卡片。</p>
+    <div class="ev">
+      <span><b>1.16</b> 卡片對頁面底</span>
+      <span><b>1.29</b> 邊框對卡片</span>
+      <span><b>1.09</b> 交替區塊底色</span>
+    </div>
+  </header>
+
+  <div class="split">
+    <section class="pane">
+      <div class="pane-h"><span class="tag t-b">現況</span><span class="pane-note">border #1f383f</span></div>
+      <div class="sample" style="display:flex;flex-direction:column;gap:14px;justify-content:center;padding:20px">
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <div style="background:var(--s-card);border:1px solid var(--s-border);border-radius:3px;padding:13px 14px">
+            <div style="font-family:'Young Serif',Georgia,serif;font-size:15px;color:var(--s-text);margin-bottom:4px">ccClub 十年記・下</div>
+            <div style="font-size:11px;color:var(--s-muted);line-height:1.5">交棒之後我怎麼重新看待這個社群，以及為什麼制度比熱情更難建立。</div>
+          </div>
+          <div style="background:var(--s-card);border:1px solid var(--s-border);border-radius:3px;padding:13px 14px">
+            <div style="font-family:'Young Serif',Georgia,serif;font-size:15px;color:var(--s-text);margin-bottom:4px">ccClub 十年記・中</div>
+            <div style="font-size:11px;color:var(--s-muted);line-height:1.5">從線上教學到法人成立，中間隔著一場疫情與一次員旅。</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:0;border:1px solid var(--s-border);border-radius:3px;overflow:hidden;margin-top:4px">
+          <div style="flex:1;background:var(--s-bg);height:38px;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--s-muted)">bg #0a1519</div>
+          <div style="flex:1;background:var(--s-bg2);height:38px;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--s-muted)">alt #0f1f24</div>
+          <div style="flex:1;background:var(--s-card);height:38px;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--s-muted)">card #12242a</div>
+        </div>
+        <div style="font-size:10px;color:var(--s-muted);text-align:center">三格之間有兩條分界線，但你大概看不到</div>
+      </div>
+      <ul class="crit">
+        <li>卡片邊界要湊近螢幕才看得出來</li>
+        <li>hover 時底色換成 accent-light，是全站唯一看得見的表面變化</li>
+        <li>4px 圓角加上看不見的邊框，等於沒有圓角</li>
+      </ul>
+    </section>
+
+    <section class="pane">
+      <div class="pane-h"><span class="tag t-a">提案</span><span class="pane-note">border #2b4d57，卡片底不動</span></div>
+      <div class="sample" style="display:flex;flex-direction:column;gap:14px;justify-content:center;padding:20px">
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <div style="background:var(--s-card);border:1px solid #2b4d57;border-radius:3px;padding:13px 14px">
+            <div style="font-family:'Young Serif',Georgia,serif;font-size:15px;color:var(--s-text);margin-bottom:4px">ccClub 十年記・下</div>
+            <div style="font-size:11px;color:var(--s-muted);line-height:1.5">交棒之後我怎麼重新看待這個社群，以及為什麼制度比熱情更難建立。</div>
+          </div>
+          <div style="background:var(--s-card);border:1px solid #2b4d57;border-radius:3px;padding:13px 14px">
+            <div style="font-family:'Young Serif',Georgia,serif;font-size:15px;color:var(--s-text);margin-bottom:4px">ccClub 十年記・中</div>
+            <div style="font-size:11px;color:var(--s-muted);line-height:1.5">從線上教學到法人成立，中間隔著一場疫情與一次員旅。</div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:7px;margin-top:4px">
+          <div style="font-size:10px;color:var(--s-muted);letter-spacing:.08em;text-transform:uppercase">另外兩條路</div>
+          <div style="display:flex;gap:8px">
+            <div style="flex:1;background:#162c33;border:1px solid var(--s-border);border-radius:3px;height:42px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px">
+              <span style="font-size:10px;color:var(--s-body)">提亮卡片底</span>
+              <span style="font-size:9px;color:var(--s-muted)">#162c33 · 1.27</span>
+            </div>
+            <div style="flex:1;background:var(--s-bg);border-top:1px solid #2b4d57;border-bottom:1px solid #2b4d57;height:42px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px">
+              <span style="font-size:10px;color:var(--s-body)">不用卡片，用分隔線</span>
+              <span style="font-size:9px;color:var(--s-muted)">留白分組</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ul class="crit">
+        <li class="good">邊框對卡片 1.29 → <b>1.76</b>，對頁面底 1.50 → <b>2.03</b></li>
+        <li class="good">卡片亮度一動也沒動，不會有「浮成白色」的問題</li>
+        <li class="good">globals.css 改一行：--border 與 --border-card</li>
+      </ul>
+    </section>
+  </div>
+</div>

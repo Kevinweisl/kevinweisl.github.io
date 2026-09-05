@@ -21,7 +21,7 @@ const Navbar: React.FC = () => {
         {/* Brand */}
         <Link
           href="/"
-          className="font-serif text-xl font-semibold text-[var(--text-primary)] no-underline"
+          className="font-serif text-xl text-[var(--text-primary)] no-underline"
           onClick={closeMobileMenu}
         >
           {siteName}

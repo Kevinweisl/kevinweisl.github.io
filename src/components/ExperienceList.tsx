@@ -10,17 +10,15 @@ const ExperienceList: React.FC<ExperienceListProps> = ({ highlight = false }) =>
   const categories = experienceData;
 
   return (
-    <div className="space-y-5">
+    <div className="space-y-8">
       {categories.map((category, i) => {
         const items = highlight ? category.items.slice(0, 1) : category.items;
 
         return (
-          <div
-            key={i}
-            className="grid grid-cols-1 md:grid-cols-[100px_1fr] gap-0"
-          >
-            <div className="font-serif text-[13px] font-semibold text-[var(--accent)] md:text-right md:pt-[18px] md:pr-5 pb-2 md:pb-0">
-              {category.categoryTitle}
+          <div key={i}>
+            <div className="flex items-center gap-3 mb-3">
+              <span className="label">{category.categoryTitle}</span>
+              <span className="h-px flex-1 bg-[var(--border)]" aria-hidden="true" />
             </div>
             <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[var(--radius)] overflow-hidden">
               {items.map((item, j) => (

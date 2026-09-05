@@ -1,0 +1,69 @@
+<div class="board">
+  <header class="head">
+    <div class="head-top">
+      <span class="num">03</span>
+      <h1 class="title">Young Serif 沒有粗體</h1>
+      <span class="chip">字體</span>
+    </div>
+    <p class="lede">這條不是品味問題，是 CSS 在說謊。Young Serif 只出 400 一個字重，而 body 設了 font-synthesis-weight: none 禁止瀏覽器造假。所以 serif 元素上每一個 font-semibold 與 font-bold 都是空宣告。</p>
+    <div class="ev">
+      <span><b>400</b> Young Serif 唯一的字重</span>
+      <span><b>5</b> 個元件寫了無效的字重</span>
+      <span><b>0</b> 實際生效的</span>
+    </div>
+  </header>
+
+  <div class="split">
+    <section class="pane">
+      <div class="pane-h"><span class="tag t-b">現況</span><span class="pane-note">左邊是 CSS，右邊是螢幕</span></div>
+      <div class="sample" style="font-synthesis-weight:none;display:flex;flex-direction:column;gap:15px;justify-content:center">
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <span style="font-size:11px;color:var(--s-muted);font-family:ui-monospace,SFMono-Regular,Menlo,monospace">Hero h1 · font-serif font-bold</span>
+          <span style="font-family:'Young Serif',Georgia,serif;font-weight:700;font-size:31px;color:var(--s-text);line-height:1.1">Kevin Wei</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <span style="font-size:11px;color:var(--s-muted);font-family:ui-monospace,SFMono-Regular,Menlo,monospace">Section h2 · font-serif font-semibold</span>
+          <span style="font-family:'Young Serif',Georgia,serif;font-weight:600;font-size:24px;color:var(--s-text);line-height:1.2">Selected Publications</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <span style="font-size:11px;color:var(--s-muted);font-family:ui-monospace,SFMono-Regular,Menlo,monospace">NoteCard h3 · font-serif font-semibold</span>
+          <span style="font-family:'Young Serif',Georgia,serif;font-weight:600;font-size:19px;color:var(--s-text);line-height:1.3">ccClub 十年記・下</span>
+        </div>
+        <div style="margin-top:6px;padding:10px 12px;border:1px solid var(--s-border);background:var(--s-card);border-radius:3px">
+          <span style="font-size:11px;color:var(--s-muted);line-height:1.6">三行宣告了 700、600、600，螢幕上三行都是 400。字重完全沒有參與階層。</span>
+        </div>
+      </div>
+      <ul class="crit">
+        <li>階層其實只剩尺寸在扛，但 CSS 讀起來像有三段字重</li>
+        <li>之後有人換字體，這些宣告會突然「醒過來」，版面無預警改變</li>
+        <li>font-synthesis-weight: none 是對的，不該拿掉來換假粗體</li>
+      </ul>
+    </section>
+
+    <section class="pane">
+      <div class="pane-h"><span class="tag t-a">提案</span><span class="pane-note">刪掉宣告，階層交給尺寸與留白</span></div>
+      <div class="sample" style="font-synthesis-weight:none;display:flex;flex-direction:column;gap:15px;justify-content:center">
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <span style="font-size:11px;color:var(--s-muted);font-family:ui-monospace,SFMono-Regular,Menlo,monospace">Hero h1 · font-serif</span>
+          <span style="font-family:'Young Serif',Georgia,serif;font-weight:400;font-size:34px;color:var(--s-text);line-height:1.05;letter-spacing:-.015em">Kevin Wei</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <span style="font-size:11px;color:var(--s-muted);font-family:ui-monospace,SFMono-Regular,Menlo,monospace">Section h2 · font-serif</span>
+          <span style="font-family:'Young Serif',Georgia,serif;font-weight:400;font-size:24px;color:var(--s-text);line-height:1.2">Selected Publications</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <span style="font-size:11px;color:var(--s-muted);font-family:ui-monospace,SFMono-Regular,Menlo,monospace">NoteCard h3 · font-serif</span>
+          <span style="font-family:'Young Serif',Georgia,serif;font-weight:400;font-size:19px;color:var(--s-text);line-height:1.3">ccClub 十年記・下</span>
+        </div>
+        <div style="margin-top:6px;padding:10px 12px;border:1px solid var(--s-border);background:var(--s-card);border-radius:3px">
+          <span style="font-size:11px;color:var(--s-muted);line-height:1.6">畫面完全一樣，因為本來就是這樣渲染的。差別是 CSS 現在說的是實話，而且 hero 加大到 34px 拉開了與區塊標題的距離。</span>
+        </div>
+      </div>
+      <ul class="crit">
+        <li class="good">純刪除，零視覺風險 —— 現在的畫面就是刪除後的畫面</li>
+        <li class="good">Young Serif 400 本來就比一般 serif 重，不需要再加粗</li>
+        <li>另外兩條路：換一個有多字重的展示字體，或標題改用 Albert Sans 600、Young Serif 只留給 hero 的名字</li>
+      </ul>
+    </section>
+  </div>
+</div>

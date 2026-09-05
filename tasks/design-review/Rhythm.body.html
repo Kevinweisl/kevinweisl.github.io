@@ -1,0 +1,65 @@
+<div class="board">
+  <header class="head">
+    <div class="head-top">
+      <span class="num">02</span>
+      <h1 class="title">區塊節奏與行長</h1>
+      <span class="chip">排版</span>
+    </div>
+    <p class="lede">區塊之間靠交替底色分隔，但那兩個底色的對比是 1.09，肉眼看不出來。結果是每個區塊都付了 72px 的留白，卻沒有換到任何分隔感，整頁讀起來是一根沒有斷點的長柱。</p>
+    <div class="ev">
+      <span><b>1.09</b> #0a1519 對 #0f1f24</span>
+      <span><b>900px</b> 內容欄寬</span>
+      <span><b>110</b> 字元一行 @16px</span>
+    </div>
+  </header>
+
+  <div class="split">
+    <section class="pane">
+      <div class="pane-h"><span class="tag t-b">現況</span><span class="pane-note">交替底色 + 滿版 900px</span></div>
+      <div class="sample" style="padding:0;overflow:hidden;display:flex;flex-direction:column">
+        <div style="background:var(--s-bg);padding:22px 20px 20px">
+          <div style="font-family:'Young Serif',Georgia,serif;font-size:19px;color:var(--s-text);margin-bottom:12px">Selected <span style="color:var(--s-accent)">Publications</span></div>
+          <div style="font-size:11px;color:var(--s-muted);line-height:1.65">Recent research in Natural Language Processing and Large Language Models, spanning robustness, retrieval and multimodal grounding across long documents.</div>
+        </div>
+        <div style="background:var(--s-bg2);padding:22px 20px 20px">
+          <div style="font-family:'Young Serif',Georgia,serif;font-size:19px;color:var(--s-text);margin-bottom:12px">Recent <span style="color:var(--s-accent)">Notes</span></div>
+          <div style="font-size:11px;color:var(--s-muted);line-height:1.65">十年記的第三篇，寫的是交棒之後我怎麼重新看待這個社群，以及為什麼制度比熱情更難建立。</div>
+        </div>
+        <div style="background:var(--s-bg);padding:22px 20px 24px">
+          <div style="font-family:'Young Serif',Georgia,serif;font-size:19px;color:var(--s-text);margin-bottom:12px">Experience</div>
+          <div style="font-size:11px;color:var(--s-muted);line-height:1.65">Adjunct Instructor, Center of General Education</div>
+        </div>
+      </div>
+      <ul class="crit">
+        <li>三個區塊、兩種底色，實際上看起來是同一塊</li>
+        <li>72px 的區塊留白買不到分隔，只是把頁面拉長</li>
+        <li>正文跨滿 900px，一行 110 字，眼睛回行時容易跳行</li>
+      </ul>
+    </section>
+
+    <section class="pane">
+      <div class="pane-h"><span class="tag t-a">提案</span><span class="pane-note">單一底色 + hairline + 720px 內容欄</span></div>
+      <div class="sample" style="padding:0;overflow:hidden;display:flex;flex-direction:column;background:var(--s-bg)">
+        <div style="padding:22px 20px 20px;border-bottom:1px solid var(--s-border)">
+          <div style="font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--s-muted);margin-bottom:8px">Publications</div>
+          <div style="font-family:'Young Serif',Georgia,serif;font-size:19px;color:var(--s-text);margin-bottom:10px">Selected Publications</div>
+          <div style="font-size:11px;color:var(--s-muted);line-height:1.65;max-width:44ch">Recent research in Natural Language Processing and Large Language Models, spanning robustness, retrieval and multimodal grounding.</div>
+        </div>
+        <div style="padding:26px 20px 20px;border-bottom:1px solid var(--s-border)">
+          <div style="font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--s-muted);margin-bottom:8px">Notes</div>
+          <div style="font-family:'Young Serif',Georgia,serif;font-size:19px;color:var(--s-text);margin-bottom:10px">Recent Notes</div>
+          <div style="font-size:11px;color:var(--s-muted);line-height:1.65;max-width:44ch">十年記的第三篇，寫的是交棒之後我怎麼重新看待這個社群。</div>
+        </div>
+        <div style="padding:26px 20px 24px">
+          <div style="font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--s-muted);margin-bottom:8px">Experience</div>
+          <div style="font-family:'Young Serif',Georgia,serif;font-size:19px;color:var(--s-text)">Experience</div>
+        </div>
+      </div>
+      <ul class="crit">
+        <li class="good">一條 1px 的線就把區塊分開了，比 1.09 的色差可靠得多</li>
+        <li class="good">大寫小標把「這裡換段了」講清楚，順便補回 01 的標籤層</li>
+        <li class="good">正文收到 720px（約 72 字），標題與 metadata 仍可跨滿版</li>
+      </ul>
+    </section>
+  </div>
+</div>

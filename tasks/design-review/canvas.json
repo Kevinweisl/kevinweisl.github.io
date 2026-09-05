@@ -1,0 +1,25 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html",             "x": 0,    "y": 0,    "w": 1240, "h": 1180 },
+
+    { "file": "TypeScale.dc.html",        "x": 0,    "y": 1360, "w": 1000, "h": 760 },
+    { "file": "Rhythm.dc.html",           "x": 1120, "y": 1360, "w": 1000, "h": 760 },
+    { "file": "SerifWeight.dc.html",      "x": 2240, "y": 1360, "w": 1000, "h": 760 },
+
+    { "file": "ExperienceLayout.dc.html", "x": 0,    "y": 2300, "w": 1000, "h": 760 },
+    { "file": "PubCard.dc.html",          "x": 1120, "y": 2300, "w": 1000, "h": 760 },
+    { "file": "AccentRoles.dc.html",      "x": 2240, "y": 2300, "w": 1000, "h": 760 },
+
+    { "file": "Surfaces.dc.html",         "x": 0,    "y": 3240, "w": 1000, "h": 760 },
+    { "file": "PinkRole.dc.html",         "x": 1120, "y": 3240, "w": 1000, "h": 760 }
+  ],
+  "annotations": [
+    { "id": "read-me", "x": 1320, "y": 120, "w": 300,
+      "text": "從左上的總覽表開始。\n下面九張板子每張一個提案，左半現況、右半提案，兩邊都用網站真正的色票畫的。\n\n數字都是從原始碼量的。" },
+    { "id": "row-layout", "x": -260, "y": 1360, "w": 200,
+      "text": "排版\n01 · 02 · 03 · 04 · 05" },
+    { "id": "row-color", "x": -260, "y": 3240, "w": 200,
+      "text": "顏色\n06 · 07 · 08" }
+  ],
+  "launch": { "view": "canvas" }
+}

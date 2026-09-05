@@ -1,0 +1,147 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Albert+Sans:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+  <style>
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:'Albert Sans','Noto Sans TC',system-ui,-apple-system,sans-serif;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  a{color:var(--mark);text-decoration:none} a:hover{color:#7d1c4a}
+  :root{
+    --paper:#e9ebed; --paper2:#dfe4e7; --ink:#15181b; --ink2:#4e565c; --ink3:#79838a;
+    --rule:#c5ccd1; --rule2:#aeb7bd; --mark:#a32863;
+    --s-bg:#0a1519; --s-bg2:#0f1f24; --s-card:#12242a; --s-text:#e4eef0;
+    --s-body:#93a9af; --s-muted:#7b9096; --s-nav:#89a0a6; --s-accent:#7fb6c0;
+    --s-border:#1f383f; --s-pink:#eaa9c8; --s-on:#08181d;
+  }
+  .board{padding:44px 48px;display:flex;flex-direction:column;gap:26px;height:100%}
+  .head{display:flex;flex-direction:column;gap:12px;
+    border-bottom:1px solid var(--rule2);padding-bottom:18px}
+  .head-top{display:flex;align-items:baseline;gap:14px}
+  .num{font-family:'Albert Sans',system-ui,sans-serif;font-size:13px;font-weight:700;
+    letter-spacing:.14em;color:var(--mark);font-variant-numeric:tabular-nums}
+  .title{font-family:'Young Serif',Georgia,serif;font-weight:400;font-size:27px;
+    margin:0;letter-spacing:-.01em;line-height:1.1}
+  .chip{margin-left:auto;font-size:11px;font-weight:600;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--ink3);border:1px solid var(--rule2);
+    padding:3px 9px;border-radius:2px}
+  .lede{margin:0;font-size:14px;line-height:1.65;color:var(--ink2);max-width:74ch}
+  .ev{display:flex;gap:26px;flex-wrap:wrap}
+  .ev span{font-size:12px;color:var(--ink3);display:flex;align-items:baseline;gap:6px}
+  .ev b{font-size:19px;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;
+    letter-spacing:-.01em}
+  .split{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;flex-grow:1}
+  .pane{display:flex;flex-direction:column;gap:12px;min-width:0}
+  .pane-h{display:flex;align-items:center;gap:10px}
+  .tag{font-size:11px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:2px}
+  .t-b{background:var(--paper2);color:var(--ink2);border:1px solid var(--rule2)}
+  .t-a{background:var(--mark);color:#fff}
+  .pane-note{font-size:12px;color:var(--ink3)}
+  .sample{background:var(--s-bg);border:1px solid #0d1c21;border-radius:3px;
+    padding:20px;flex-grow:1;
+    font-family:'Albert Sans','Noto Sans TC',system-ui,sans-serif}
+  .crit{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px}
+  .crit li{font-size:12px;line-height:1.55;color:var(--ink2);padding-left:14px;position:relative}
+  .crit li::before{content:"";position:absolute;left:0;top:7px;width:5px;height:5px;
+    background:var(--rule2)}
+  .crit li.good::before{background:var(--mark)}
+  .mono{font-variant-numeric:tabular-nums}
+  </style>
+</helmet>
+<div class="board">
+  <header class="head">
+    <div class="head-top">
+      <span class="num">05</span>
+      <h1 class="title">Publication 卡片的重量分配</h1>
+      <span class="chip">排版</span>
+    </div>
+    <p class="lede">venue 徽章是實心 accent 底加 font-bold，是整張卡片上視覺最重的元素。但在一份 publication list 裡，venue 是掃描時最後才看的資訊，標題才是。重量放反了。</p>
+    <div class="ev">
+      <span><b>1</b> 實心色塊 / 卡</span>
+      <span><b>700</b> 徽章字重</span>
+      <span><b>400</b> 標題實際字重</span>
+    </div>
+  </header>
+
+  <div class="split">
+    <section class="pane">
+      <div class="pane-h"><span class="tag t-b">現況</span><span class="pane-note">徽章實心，標題最輕</span></div>
+      <div class="sample" style="font-synthesis-weight:none;display:flex;flex-direction:column;gap:12px;justify-content:center;padding:16px">
+        <div style="background:var(--s-card);border:1px solid var(--s-border);border-radius:3px;padding:16px 16px">
+          <div style="font-family:'Young Serif',Georgia,serif;font-weight:600;font-size:15px;color:var(--s-text);line-height:1.4;margin-bottom:5px">Robustness of Instruction-Tuned Models under Distribution Shift</div>
+          <div style="font-size:12px;color:var(--s-muted);margin-bottom:10px"><span style="color:var(--s-accent);font-weight:600">Kevin Wei</span>, Chen-Yu Lin, Wei-Han Chao</div>
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+            <span style="background:var(--s-accent);color:var(--s-on);font-size:12px;font-weight:700;padding:3px 9px;border-radius:3px">ACL 2024</span>
+            <span style="display:flex;gap:7px;align-items:center;font-size:12px">
+              <span style="color:var(--s-accent);font-weight:500">PDF</span><span style="color:var(--s-muted)">·</span>
+              <span style="color:var(--s-accent);font-weight:500">DOI</span><span style="color:var(--s-muted)">·</span>
+              <span style="color:var(--s-accent);font-weight:500">Code</span><span style="color:var(--s-muted)">·</span>
+              <span style="color:var(--s-accent);font-weight:500">Abstract</span>
+            </span>
+          </div>
+        </div>
+        <div style="background:var(--s-card);border:1px solid var(--s-border);border-radius:3px;padding:16px 16px">
+          <div style="font-family:'Young Serif',Georgia,serif;font-weight:600;font-size:15px;color:var(--s-text);line-height:1.4;margin-bottom:5px">Retrieval-Augmented Grounding for Long Documents</div>
+          <div style="font-size:12px;color:var(--s-muted);margin-bottom:10px"><span style="color:var(--s-accent);font-weight:600">Kevin Wei</span>, Yu-Ting Hsieh</div>
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+            <span style="background:var(--s-accent);color:var(--s-on);font-size:12px;font-weight:700;padding:3px 9px;border-radius:3px">EMNLP 2023</span>
+            <span style="display:flex;gap:7px;align-items:center;font-size:12px">
+              <span style="color:var(--s-accent);font-weight:500">PDF</span><span style="color:var(--s-muted)">·</span>
+              <span style="color:var(--s-accent);font-weight:500">BibTeX</span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <ul class="crit">
+        <li>眼睛先被兩塊實心 teal 抓走，才回頭找標題</li>
+        <li>徽章、作者名、四個連結全是同一個 accent，第一眼分不出誰可點</li>
+        <li>掃十篇論文時，最先看到的是十個 venue 色塊</li>
+      </ul>
+    </section>
+
+    <section class="pane">
+      <div class="pane-h"><span class="tag t-a">提案</span><span class="pane-note">徽章改描邊，重量還給標題</span></div>
+      <div class="sample" style="font-synthesis-weight:none;display:flex;flex-direction:column;gap:12px;justify-content:center;padding:16px">
+        <div style="background:var(--s-card);border:1px solid #2b4d57;border-radius:3px;padding:16px 16px">
+          <div style="display:flex;align-items:center;gap:9px;margin-bottom:7px">
+            <span style="font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--s-muted);border:1px solid var(--s-border);padding:2px 7px;border-radius:2px">ACL 2024</span>
+          </div>
+          <div style="font-family:'Young Serif',Georgia,serif;font-weight:400;font-size:17px;color:var(--s-text);line-height:1.35;margin-bottom:6px">Robustness of Instruction-Tuned Models under Distribution Shift</div>
+          <div style="font-size:12px;color:var(--s-muted);margin-bottom:10px"><span style="color:var(--s-pink)">Kevin Wei</span>, Chen-Yu Lin, Wei-Han Chao</div>
+          <div style="display:flex;gap:7px;align-items:center;font-size:12px">
+            <span style="color:var(--s-accent);border-bottom:1px solid rgba(127,182,192,.45)">PDF</span><span style="color:var(--s-muted)">·</span>
+            <span style="color:var(--s-accent);border-bottom:1px solid rgba(127,182,192,.45)">DOI</span><span style="color:var(--s-muted)">·</span>
+            <span style="color:var(--s-accent);border-bottom:1px solid rgba(127,182,192,.45)">Code</span><span style="color:var(--s-muted)">·</span>
+            <span style="color:var(--s-accent);border-bottom:1px solid rgba(127,182,192,.45)">Abstract</span>
+          </div>
+        </div>
+        <div style="background:var(--s-card);border:1px solid #2b4d57;border-radius:3px;padding:16px 16px">
+          <div style="display:flex;align-items:center;gap:9px;margin-bottom:7px">
+            <span style="font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--s-muted);border:1px solid var(--s-border);padding:2px 7px;border-radius:2px">EMNLP 2023</span>
+          </div>
+          <div style="font-family:'Young Serif',Georgia,serif;font-weight:400;font-size:17px;color:var(--s-text);line-height:1.35;margin-bottom:6px">Retrieval-Augmented Grounding for Long Documents</div>
+          <div style="font-size:12px;color:var(--s-muted);margin-bottom:10px"><span style="color:var(--s-pink)">Kevin Wei</span>, Yu-Ting Hsieh</div>
+          <div style="display:flex;gap:7px;align-items:center;font-size:12px">
+            <span style="color:var(--s-accent);border-bottom:1px solid rgba(127,182,192,.45)">PDF</span><span style="color:var(--s-muted)">·</span>
+            <span style="color:var(--s-accent);border-bottom:1px solid rgba(127,182,192,.45)">BibTeX</span>
+          </div>
+        </div>
+      </div>
+      <ul class="crit">
+        <li class="good">標題升到 17px 且第一眼就看到，venue 退成上方小標</li>
+        <li class="good">只有連結是 accent 加底線，其他都不是 —— 可點與否一眼分明</li>
+        <li class="good">作者列裡自己的名字改用粉紅，跟連結徹底分開（見 08）</li>
+      </ul>
+    </section>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

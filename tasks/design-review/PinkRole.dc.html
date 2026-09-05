@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Albert+Sans:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+  <style>
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:'Albert Sans','Noto Sans TC',system-ui,-apple-system,sans-serif;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  a{color:var(--mark);text-decoration:none} a:hover{color:#7d1c4a}
+  :root{
+    --paper:#e9ebed; --paper2:#dfe4e7; --ink:#15181b; --ink2:#4e565c; --ink3:#79838a;
+    --rule:#c5ccd1; --rule2:#aeb7bd; --mark:#a32863;
+    --s-bg:#0a1519; --s-bg2:#0f1f24; --s-card:#12242a; --s-text:#e4eef0;
+    --s-body:#93a9af; --s-muted:#7b9096; --s-nav:#89a0a6; --s-accent:#7fb6c0;
+    --s-border:#1f383f; --s-pink:#eaa9c8; --s-on:#08181d;
+  }
+  .board{padding:44px 48px;display:flex;flex-direction:column;gap:26px;height:100%}
+  .head{display:flex;flex-direction:column;gap:12px;
+    border-bottom:1px solid var(--rule2);padding-bottom:18px}
+  .head-top{display:flex;align-items:baseline;gap:14px}
+  .num{font-family:'Albert Sans',system-ui,sans-serif;font-size:13px;font-weight:700;
+    letter-spacing:.14em;color:var(--mark);font-variant-numeric:tabular-nums}
+  .title{font-family:'Young Serif',Georgia,serif;font-weight:400;font-size:27px;
+    margin:0;letter-spacing:-.01em;line-height:1.1}
+  .chip{margin-left:auto;font-size:11px;font-weight:600;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--ink3);border:1px solid var(--rule2);
+    padding:3px 9px;border-radius:2px}
+  .lede{margin:0;font-size:14px;line-height:1.65;color:var(--ink2);max-width:74ch}
+  .ev{display:flex;gap:26px;flex-wrap:wrap}
+  .ev span{font-size:12px;color:var(--ink3);display:flex;align-items:baseline;gap:6px}
+  .ev b{font-size:19px;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;
+    letter-spacing:-.01em}
+  .split{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;flex-grow:1}
+  .pane{display:flex;flex-direction:column;gap:12px;min-width:0}
+  .pane-h{display:flex;align-items:center;gap:10px}
+  .tag{font-size:11px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:2px}
+  .t-b{background:var(--paper2);color:var(--ink2);border:1px solid var(--rule2)}
+  .t-a{background:var(--mark);color:#fff}
+  .pane-note{font-size:12px;color:var(--ink3)}
+  .sample{background:var(--s-bg);border:1px solid #0d1c21;border-radius:3px;
+    padding:20px;flex-grow:1;
+    font-family:'Albert Sans','Noto Sans TC',system-ui,sans-serif}
+  .crit{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px}
+  .crit li{font-size:12px;line-height:1.55;color:var(--ink2);padding-left:14px;position:relative}
+  .crit li::before{content:"";position:absolute;left:0;top:7px;width:5px;height:5px;
+    background:var(--rule2)}
+  .crit li.good::before{background:var(--mark)}
+  .mono{font-variant-numeric:tabular-nums}
+  </style>
+</helmet>
+<div class="board">
+  <header class="head">
+    <div class="head-top">
+      <span class="num">08</span>
+      <h1 class="title">第二品牌色只出現在第一屏</h1>
+      <span class="chip">顏色</span>
+    </div>
+    <p class="lede">logo 裡粉紅佔 7.0%、teal 佔 9.1%，兩者幾乎等量，所以粉紅是第二品牌色而不是點綴。但網站上 teal 出現 27 次、粉紅 2 次，而且那 2 次都在 hero 裡。捲過第一屏，整站就變成單色的了。</p>
+    <div class="ev">
+      <span><b>7.0%</b> logo 裡的粉紅</span>
+      <span><b>9.1%</b> logo 裡的 teal</span>
+      <span><b>27 : 2</b> 網站上的使用比</span>
+    </div>
+  </header>
+
+  <div class="split">
+    <section class="pane">
+      <div class="pane-h"><span class="tag t-b">現況</span><span class="pane-note">粉紅止於 hero</span></div>
+      <div class="sample" style="font-synthesis-weight:none;padding:0;overflow:hidden;display:flex;flex-direction:column">
+        <div style="background:linear-gradient(135deg,#0e252e 0%,#1a4450 55%,#123742 100%);padding:18px 16px">
+          <div style="font-family:'Young Serif',Georgia,serif;font-size:21px;color:#fff;margin-bottom:4px">Kevin Wei</div>
+          <div style="font-size:11px;color:#9bcbd3;margin-bottom:8px">Adjunct Instructor @ National Taiwan University</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.76);line-height:1.65">6+ years at <span style="color:var(--s-pink);border-bottom:1px solid rgba(234,169,200,.5);font-style:italic">ShopBack</span>, <span style="color:var(--s-pink);border-bottom:1px solid rgba(234,169,200,.5);font-style:italic">Junyi</span> and <span style="color:var(--s-pink);border-bottom:1px solid rgba(234,169,200,.5);font-style:italic">KKStream</span>.</div>
+        </div>
+        <div style="padding:16px;display:flex;flex-direction:column;gap:11px;flex-grow:1">
+          <div style="font-family:'Young Serif',Georgia,serif;font-size:17px;color:var(--s-text)">Selected <span style="color:var(--s-accent)">Publications</span></div>
+          <div style="font-size:11px;color:var(--s-muted)"><span style="color:var(--s-accent);font-weight:600">Kevin Wei</span>, Chen-Yu Lin, Wei-Han Chao</div>
+          <div style="display:flex;gap:8px;align-items:center">
+            <span style="background:var(--s-accent);color:var(--s-on);font-size:10px;font-weight:700;padding:2px 7px;border-radius:3px">ACL 2024</span>
+            <span style="color:var(--s-accent);font-size:11px">PDF</span>
+          </div>
+          <div style="font-family:'Young Serif',Georgia,serif;font-size:17px;color:var(--s-text);margin-top:4px">Recent <span style="color:var(--s-accent)">Notes</span></div>
+          <div style="font-size:11px;color:var(--s-muted)">2026-08-14 · 6 min</div>
+          <div style="margin-top:auto;padding-top:10px;border-top:1px solid var(--s-border);font-size:10px;color:var(--s-muted)">從這條線以下，粉紅出現 0 次</div>
+        </div>
+      </div>
+      <ul class="crit">
+        <li>hero 之外整站沒有第二個顏色，識別度停在第一屏</li>
+        <li>粉紅目前只用在 hero 的斜體連結與一個標籤，都是裝飾性位置</li>
+        <li>logo 裡的兩個色幾乎等量，網站上卻是 13 比 1</li>
+      </ul>
+    </section>
+
+    <section class="pane">
+      <div class="pane-h"><span class="tag t-a">提案</span><span class="pane-note">三個固定職務，往下延伸</span></div>
+      <div class="sample" style="font-synthesis-weight:none;padding:0;overflow:hidden;display:flex;flex-direction:column">
+        <div style="background:linear-gradient(135deg,#0e252e 0%,#1a4450 55%,#123742 100%);padding:18px 16px">
+          <div style="font-family:'Young Serif',Georgia,serif;font-size:21px;color:#fff;margin-bottom:4px">Kevin Wei</div>
+          <div style="font-size:11px;color:#9bcbd3;margin-bottom:8px">Adjunct Instructor @ National Taiwan University</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.76);line-height:1.65">6+ years at <span style="color:var(--s-pink);border-bottom:1px solid rgba(234,169,200,.5);font-style:italic">ShopBack</span>, <span style="color:var(--s-pink);border-bottom:1px solid rgba(234,169,200,.5);font-style:italic">Junyi</span> and <span style="color:var(--s-pink);border-bottom:1px solid rgba(234,169,200,.5);font-style:italic">KKStream</span>.</div>
+        </div>
+        <div style="padding:16px;display:flex;flex-direction:column;gap:11px;flex-grow:1">
+          <div style="font-family:'Young Serif',Georgia,serif;font-size:17px;color:var(--s-text)">Selected <span style="color:var(--s-pink)">Publications</span></div>
+          <div style="font-size:11px;color:var(--s-muted)"><span style="color:var(--s-pink)">Kevin Wei</span>, Chen-Yu Lin, Wei-Han Chao</div>
+          <div style="display:flex;gap:8px;align-items:center">
+            <span style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--s-muted);border:1px solid var(--s-border);padding:2px 6px;border-radius:2px">ACL 2024</span>
+            <span style="color:var(--s-accent);font-size:11px;border-bottom:1px solid rgba(127,182,192,.45)">PDF</span>
+          </div>
+          <div style="font-family:'Young Serif',Georgia,serif;font-size:17px;color:var(--s-text);margin-top:4px">Recent <span style="color:var(--s-pink)">Notes</span></div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="font-size:11px;color:var(--s-muted);font-variant-numeric:tabular-nums">2026-08-14 · 6 min</span>
+            <span style="font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--s-pink);border:1px solid rgba(234,169,200,.4);padding:1px 6px;border-radius:2px">Present</span>
+          </div>
+          <div style="margin-top:auto;padding-top:10px;border-top:1px solid #2b4d57;font-size:10px;color:var(--s-muted)">粉紅：自己的名字、標題強調字、進行中標記</div>
+        </div>
+      </div>
+      <ul class="crit">
+        <li class="good">三個職務都有語意，不是隨機灑色</li>
+        <li class="good">「Kevin Wei」在作者列裡用粉紅，跟可點的 PDF 徹底分開</li>
+        <li class="good">#eaa9c8 在頁面底上是 <b>9.71</b>、卡片上 <b>8.39</b>，遠超 AA</li>
+      </ul>
+    </section>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

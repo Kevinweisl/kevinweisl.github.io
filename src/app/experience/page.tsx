@@ -13,7 +13,7 @@ export const metadata = pageMetadata({
 
 export default function ExperiencePage() {
   return (
-    <Section id="full-experience" title="Experience" alt>
+    <Section id="full-experience" title="Experience">
       <ExperienceList />
     </Section>
   );

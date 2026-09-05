@@ -1,0 +1,168 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Albert+Sans:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+  <style>
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:'Albert Sans','Noto Sans TC',system-ui,-apple-system,sans-serif;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  a{color:var(--mark);text-decoration:none} a:hover{color:#7d1c4a}
+  :root{
+    --paper:#e9ebed; --paper2:#dfe4e7; --ink:#15181b; --ink2:#4e565c; --ink3:#79838a;
+    --rule:#c5ccd1; --rule2:#aeb7bd; --mark:#a32863;
+    --s-bg:#0a1519; --s-bg2:#0f1f24; --s-card:#12242a; --s-text:#e4eef0;
+    --s-body:#93a9af; --s-muted:#7b9096; --s-nav:#89a0a6; --s-accent:#7fb6c0;
+    --s-border:#1f383f; --s-pink:#eaa9c8; --s-on:#08181d;
+  }
+  .board{padding:44px 48px;display:flex;flex-direction:column;gap:26px;height:100%}
+  .head{display:flex;flex-direction:column;gap:12px;
+    border-bottom:1px solid var(--rule2);padding-bottom:18px}
+  .head-top{display:flex;align-items:baseline;gap:14px}
+  .num{font-family:'Albert Sans',system-ui,sans-serif;font-size:13px;font-weight:700;
+    letter-spacing:.14em;color:var(--mark);font-variant-numeric:tabular-nums}
+  .title{font-family:'Young Serif',Georgia,serif;font-weight:400;font-size:27px;
+    margin:0;letter-spacing:-.01em;line-height:1.1}
+  .chip{margin-left:auto;font-size:11px;font-weight:600;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--ink3);border:1px solid var(--rule2);
+    padding:3px 9px;border-radius:2px}
+  .lede{margin:0;font-size:14px;line-height:1.65;color:var(--ink2);max-width:74ch}
+  .ev{display:flex;gap:26px;flex-wrap:wrap}
+  .ev span{font-size:12px;color:var(--ink3);display:flex;align-items:baseline;gap:6px}
+  .ev b{font-size:19px;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;
+    letter-spacing:-.01em}
+  .split{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;flex-grow:1}
+  .pane{display:flex;flex-direction:column;gap:12px;min-width:0}
+  .pane-h{display:flex;align-items:center;gap:10px}
+  .tag{font-size:11px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:2px}
+  .t-b{background:var(--paper2);color:var(--ink2);border:1px solid var(--rule2)}
+  .t-a{background:var(--mark);color:#fff}
+  .pane-note{font-size:12px;color:var(--ink3)}
+  .sample{background:var(--s-bg);border:1px solid #0d1c21;border-radius:3px;
+    padding:20px;flex-grow:1;
+    font-family:'Albert Sans','Noto Sans TC',system-ui,sans-serif}
+  .crit{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px}
+  .crit li{font-size:12px;line-height:1.55;color:var(--ink2);padding-left:14px;position:relative}
+  .crit li::before{content:"";position:absolute;left:0;top:7px;width:5px;height:5px;
+    background:var(--rule2)}
+  .crit li.good::before{background:var(--mark)}
+  .mono{font-variant-numeric:tabular-nums}
+  </style>
+</helmet>
+<div class="board">
+  <header class="head">
+    <div class="head-top">
+      <span class="num">06</span>
+      <h1 class="title">主色分工</h1>
+      <span class="chip">顏色</span>
+    </div>
+    <p class="lede">#7fb6c0 一個顏色同時代表連結、標題強調字、分類標籤、機構名、venue 底色、作者名、focus ring 與引用邊框。當一個顏色什麼都是，它就什麼都不是 —— 最明顯的後果是機構名長得像連結，但點不下去。</p>
+    <div class="ev">
+      <span><b>27</b> 處使用 accent</span>
+      <span><b>12</b> 個檔案</span>
+      <span><b>8</b> 種不同意義</span>
+    </div>
+  </header>
+
+  <div class="split">
+    <section class="pane">
+      <div class="pane-h"><span class="tag t-b">現況</span><span class="pane-note">同一個 teal 代表八件事</span></div>
+      <div class="sample" style="font-synthesis-weight:none;display:flex;flex-direction:column;gap:0;padding:0;overflow:hidden">
+        <div style="padding:14px 16px;border-bottom:1px solid var(--s-border);display:flex;gap:20px;align-items:center">
+          <span style="font-size:12px;color:var(--s-nav)">Home</span>
+          <span style="font-size:12px;color:var(--s-accent)">Publications</span>
+          <span style="font-size:12px;color:var(--s-nav)">Notes</span>
+          <span style="margin-left:auto;font-size:10px;color:var(--s-pink)">hover 態</span>
+        </div>
+        <div style="padding:16px;display:flex;flex-direction:column;gap:11px">
+          <div style="display:flex;align-items:baseline;gap:10px">
+            <span style="font-family:'Young Serif',Georgia,serif;font-size:18px;color:var(--s-text)">Selected <span style="color:var(--s-accent)">Publications</span></span>
+            <span style="font-size:10px;color:var(--s-pink);margin-left:auto">標題強調</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="background:var(--s-accent);color:var(--s-on);font-size:11px;font-weight:700;padding:2px 8px;border-radius:3px">ACL 2024</span>
+            <span style="color:var(--s-accent);font-size:12px">PDF</span>
+            <span style="color:var(--s-muted);font-size:12px">·</span>
+            <span style="color:var(--s-accent);font-size:12px">DOI</span>
+            <span style="font-size:10px;color:var(--s-pink);margin-left:auto">底色 + 連結</span>
+          </div>
+          <div style="display:flex;align-items:baseline;gap:10px">
+            <span style="font-size:12px;color:var(--s-muted)"><span style="color:var(--s-accent);font-weight:600">Kevin Wei</span>, Chen-Yu Lin</span>
+            <span style="font-size:10px;color:var(--s-pink);margin-left:auto">作者名</span>
+          </div>
+          <div style="display:flex;align-items:baseline;gap:10px">
+            <span style="font-family:'Young Serif',Georgia,serif;font-size:12px;color:var(--s-accent)">Teaching</span>
+            <span style="font-size:10px;color:var(--s-pink);margin-left:auto">分類標籤</span>
+          </div>
+          <div style="display:flex;align-items:baseline;gap:10px">
+            <span style="font-size:12px;color:var(--s-accent)">Center of General Education, NTU</span>
+            <span style="font-size:10px;color:var(--s-pink);margin-left:auto">機構名（不可點）</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;border-left:3px solid var(--s-accent);padding-left:10px">
+            <span style="font-size:12px;color:var(--s-body);font-style:italic">引用區塊</span>
+            <span style="font-size:10px;color:var(--s-pink);margin-left:auto">引用邊框</span>
+          </div>
+        </div>
+      </div>
+      <ul class="crit">
+        <li>七個標註全部指向同一個色票</li>
+        <li>機構名與 PDF 連結同色同重，一個可點一個不可點</li>
+        <li>venue 徽章把 accent 當背景用，連「這是前景色」都不成立</li>
+      </ul>
+    </section>
+
+    <section class="pane">
+      <div class="pane-h"><span class="tag t-a">提案</span><span class="pane-note">三職分離，各有各的處理</span></div>
+      <div class="sample" style="font-synthesis-weight:none;display:flex;flex-direction:column;gap:0;padding:0;overflow:hidden">
+        <div style="padding:14px 16px;border-bottom:1px solid #2b4d57;display:flex;gap:20px;align-items:center">
+          <span style="font-size:12px;color:var(--s-nav)">Home</span>
+          <span style="font-size:12px;color:var(--s-accent);border-bottom:1px solid var(--s-accent);padding-bottom:1px">Publications</span>
+          <span style="font-size:12px;color:var(--s-nav)">Notes</span>
+        </div>
+        <div style="padding:16px;display:flex;flex-direction:column;gap:11px">
+          <div style="display:flex;align-items:baseline;gap:10px">
+            <span style="font-family:'Young Serif',Georgia,serif;font-size:18px;color:var(--s-text)">Selected <span style="color:var(--s-pink)">Publications</span></span>
+            <span style="font-size:10px;color:var(--s-muted);margin-left:auto">品牌 → 粉紅</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--s-muted);border:1px solid var(--s-border);padding:2px 7px;border-radius:2px">ACL 2024</span>
+            <span style="color:var(--s-accent);font-size:12px;border-bottom:1px solid rgba(127,182,192,.45)">PDF</span>
+            <span style="color:var(--s-muted);font-size:12px">·</span>
+            <span style="color:var(--s-accent);font-size:12px;border-bottom:1px solid rgba(127,182,192,.45)">DOI</span>
+            <span style="font-size:10px;color:var(--s-muted);margin-left:auto">標籤 → muted</span>
+          </div>
+          <div style="display:flex;align-items:baseline;gap:10px">
+            <span style="font-size:12px;color:var(--s-muted)"><span style="color:var(--s-pink)">Kevin Wei</span>, Chen-Yu Lin</span>
+            <span style="font-size:10px;color:var(--s-muted);margin-left:auto">品牌 → 粉紅</span>
+          </div>
+          <div style="display:flex;align-items:baseline;gap:10px">
+            <span style="font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--s-muted)">Teaching</span>
+            <span style="font-size:10px;color:var(--s-muted);margin-left:auto">標籤 → muted</span>
+          </div>
+          <div style="display:flex;align-items:baseline;gap:10px">
+            <span style="font-size:12px;color:var(--s-body)">Center of General Education, NTU</span>
+            <span style="font-size:10px;color:var(--s-muted);margin-left:auto">內文 → body</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;border-left:3px solid var(--s-border);padding-left:10px">
+            <span style="font-size:12px;color:var(--s-body);font-style:italic">引用區塊</span>
+            <span style="font-size:10px;color:var(--s-muted);margin-left:auto">結構 → border</span>
+          </div>
+        </div>
+      </div>
+      <ul class="crit">
+        <li class="good">畫面上只剩兩個 teal，兩個都可以點</li>
+        <li class="good">標籤靠大寫與字距分辨，把顏色這個維度空出來給互動用</li>
+        <li class="good">品牌強調交給粉紅，順便解決 08 的單色問題</li>
+      </ul>
+    </section>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

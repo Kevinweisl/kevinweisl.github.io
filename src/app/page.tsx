@@ -21,7 +21,7 @@ export default function HomePage() {
       <Section
         id="publications"
         title="Selected Publications"
-        gradientWord="Publications"
+        emphasis="Publications"
         subtitle="Recent research in Natural Language Processing and Large Language Models"
         viewAllHref="/publications"
       >
@@ -32,9 +32,8 @@ export default function HomePage() {
         <Section
           id="notes"
           title="Recent Notes"
-          gradientWord="Notes"
+          emphasis="Notes"
           viewAllHref="/notes"
-          alt
         >
           <CardList>
             {recentNotes.map((note) => (
@@ -55,7 +54,7 @@ export default function HomePage() {
       <Section id="contact" title="">
         <div className="text-center">
           <p className="text-[20px] font-medium mb-8 max-w-xl mx-auto">
-            <span className="accent-text">Open to research collaborations, talks, and teaching.</span>
+            <span className="text-[var(--text-primary)]">Open to research collaborations, talks, and teaching.</span>
           </p>
           <ContactLinks />
         </div>

@@ -99,7 +99,7 @@ const ContactLinks: React.FC = () => {
               <div className="accent-bg p-2.5 rounded-[var(--radius)]">
                 <Mail size={20} className="text-[var(--text-on-primary)]" />
               </div>
-              <h3 className="font-serif text-[20px] font-semibold text-[var(--text-primary)]">Email</h3>
+              <h3 className="font-serif text-[20px] text-[var(--text-primary)]">Email</h3>
             </div>
             <p className="text-[var(--text-body)] text-[16px] font-mono select-all">
               {obfuscatedEmail}

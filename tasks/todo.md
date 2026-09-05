@@ -1,32 +1,68 @@
-# Todo — 2026-09-05 Teaching 學期清單加上總數
+# Todo — 2026-09-05 套用八個改版方向
 
-## 起因
-Kevin：「teaching 有列出每個學期，是否應該要在最前面做個統計，例如 N semesters: xxx, xxx」
-且「兩門課分別加」、「這個資訊要粗體」。
+計畫全文：`~/.claude/plans/sprightly-riding-flask.md`。提案原稿：`tasks/design-review/`，
+畫布 https://claude.ai/code/artifact/162bdf86-ee2e-4220-b6c5-fbde204ca9e4。
 
-左欄的 `2021 - Present` 只講跨度不講密度。右邊是 120 字元、13px 灰字、十個長得
-幾乎一樣的 token，沒有人會去數。數字才是重點，清單是佐證。
+## 共用基礎（globals.css）
+- [x] 07 `--border` / `--border-card` → `#2b4d57`
+- [x] 08 新增 `--brand: #eaa9c8`；`--hero-label` / `--hero-link` 改引用
+- [x] 02 刪 `--bg-secondary`；新增 `main > section + section { border-top }`
+- [x] 01 新增 `.label` utility；08 新增 `.brand-text`
+- [x] 03 刪 `.prose h1–h4` 的 `font-weight: 600`
+- [x] 06 `.prose blockquote` border-left → `var(--border)`
 
-## 改動
-- [x] `data/experience.ts`：`note?: string` → `semesters?: string[]`，兩筆資料拆成陣列
-- [x] `ExperienceItem.tsx`：`{semesters.length} semesters` 包 `<strong className="font-semibold">`，
-      後面接 `: ` 與 `semesters.join(', ')`
-- [x] 單複數：`length === 1` 時輸出 `semester`
+## 逐元件
+- [x] `Section.tsx`：刪 alt、720px、`gradientWord`→`emphasis`、brand-text、刪 font-semibold
+- [x] `app/page.tsx`：刪 alt、prop 改名、Contact 句子 → text-primary
+- [x] `app/experience/page.tsx`：刪 alt
+- [x] `app/publications/page.tsx`、`app/notes/page.tsx`：720px、brand-text、刪 font-semibold
+- [x] `app/notes/[year]/[slug]/page.tsx`：h1 刪 font-bold
+- [x] `ExperienceList.tsx`：分類升成 `.label` 列 + hairline，刪 100px 欄
+- [x] `ExperienceItem.tsx`：刪 font-semibold、機構名 14px body、Present 粉紅
+- [x] `PublicationItem.tsx`：刪 font-semibold、venue 描邊移到標題上方、作者名 brand-text
+- [x] `NoteCard.tsx`：刪 font-semibold、摘要 14px body
+- [x] `Hero.tsx`：刪 font-bold、Research Interests → `.label`
+- [x] `Navbar.tsx`、`ContactLinks.tsx`：刪 serif 上的 font-semibold
+- [x] `not-found.tsx`：code chip 改 card/border/primary
 
-**為什麼要改資料型別**：數字若手打，之後加一個學期要同時改清單和數字兩個地方，
-遲早不同步。改成陣列後數量由 `.length` 導出，加學期是單點編輯。
+## 契約測試
+- [x] 新增 `src/lib/typography.test.ts`（serif 不得帶字重；synthesis 鎖仍在）
 
-## 有意不做
-- 不做 Teaching 區塊層級的總計。兩門課相加是 15，但去重後的日曆學期只有 10
-  （ECON1024 每次都與 GenEdu5010 撞同一個春季）。Kevin 指定分別加，正好避開這題。
-- 不壓縮清單本身（例如 `Spring 2022–2026`）。GenEdu5010 缺 2024 Fall，
-  不是連續區間，壓縮寫法哪天補了秋季班就崩。
+## 文件
+- [x] `.impeccable.md`
+- [x] 本檔 Review 段
 
 ## 驗證
-- [x] `npm test` 29 綠；`npm run build` 綠
-- [x] `grep -rn "\bnote\b" src/` 沒有殘留的 `note` prop（命中的都是文章 note，無關）
-- [x] `out/experience.html` 純文字：`10 semesters: 2021 Spring, …` / `5 semesters: 2022 Spring, …`
-- [x] CSS bundle：`.font-semibold{font-weight:var(--font-weight-semibold)}` = 600，
-      class 特異性勝過 Tailwind preflight 的 `strong{font-weight:bolder}`
-- [x] `--text-muted` `#7b9096` on `--bg-card` `#12242a` = **4.78**，過 AA
-- [ ] 瀏覽器目視 — 擴充功能未連線，改以 build 後的純文字與 CSS 規則驗證
+- [x] `npm test` 綠；`npm run build` 綠
+- [x] 契約 grep 歸零（bg-secondary / gradientWord / alt / grid-cols-[100px / 舊徽章 class）
+- [x] 對比腳本
+- [x] build 輸出純文字檢查
+- [ ] 瀏覽器目視 — Chrome 擴充功能未連線，改以 build 輸出與 CSS bundle 驗證
+- [x] commit + push + `gh run watch`
+
+## Review
+
+**共用基礎**：兩個新東西撐起八條 —— `.label` utility（12/600/大寫/.08em/muted）與 `--brand`
+（#eaa9c8）。01、04、05 收斂到 `.label`；08 收斂到 `--brand`；06 的規則「非可點擊不用 accent」
+是靠這兩個東西才能執行，否則拿掉 accent 之後那些元素會沒有身份。
+
+**刪掉的**：`--bg-secondary`、Section 的 `alt` prop 與 inline background、`gradientWord`（改名
+`emphasis`）、Experience 外層 100px 欄、venue 徽章的實心底、12 個 serif 元素上的無效字重宣告、
+`.prose h1–h4` 的 `font-weight: 600`。
+
+**視覺上真的變了的**（03 是純刪除，畫面不變）：
+- 區塊之間多了一條 hairline，交替底色沒了；內容欄 900 → 720
+- 邊框 #1f383f → #2b4d57，卡片、CardList 分隔線、hairline 一起變清楚
+- Experience 分類從左側小字變成卡片上方的標籤列，機構名不再是 teal
+- venue 徽章從連結列的實心色塊變成標題上方的描邊小標
+- 「Publications」「Notes」強調字、作者列的 Sheng-Lun Wei、期間欄的 Present 變粉紅
+- Contact 區的句子從 teal 變白；NoteCard 摘要 13px muted → 14px body
+
+**契約測試**：`typography.test.ts` 三條 —— synthesis 鎖仍在、tsx 裡 font-serif 不帶字重、
+CSS 裡選 serif 的規則不設 font-weight。29 → 32。
+
+**與畫布不同的兩處**（已寫在 plan 裡）：不加區塊 eyebrow（與標題重複）；venue 描邊用 muted
+不用 accent（總覽表寫錯，06 的規則不允許）。
+
+**沒做到的**：瀏覽器目視。Chrome 擴充功能兩次都連不上。改以 build 輸出純文字（標籤、徽章位置、
+brand-text 位置、Present）與 CSS bundle（三條新規則）驗證。

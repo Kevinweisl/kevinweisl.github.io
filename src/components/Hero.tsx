@@ -38,7 +38,7 @@ const Hero = () => {
         {/* Left column — hero text */}
         <div>
           <h1
-            className="font-serif font-bold leading-[1.15] mb-2"
+            className="font-serif leading-[1.15] mb-2"
             style={{ fontSize: 'clamp(34px, 5vw, 48px)', color: 'var(--hero-heading)' }}
           >
             {fullName}
@@ -97,7 +97,7 @@ const Hero = () => {
             />
             <div className="p-3.5">
               <p
-                className="text-[13px] font-bold uppercase tracking-[1px] mb-1.5"
+                className="label mb-1.5"
                 style={{ color: 'var(--hero-label)' }}
               >
                 Research Interests

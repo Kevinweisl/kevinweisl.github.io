@@ -58,7 +58,7 @@ export default async function NotePage({ params }: Props) {
         </Link>
 
         <header className="mb-10">
-          <h1 className="font-serif text-[28px] font-bold text-[var(--text-primary)] leading-[1.2] mb-3">
+          <h1 className="font-serif text-[28px] text-[var(--text-primary)] leading-[1.2] mb-3">
             {note.title}
           </h1>
           <p className="text-[var(--text-muted)] text-[13px]" style={{ fontVariantNumeric: 'tabular-nums' }}>

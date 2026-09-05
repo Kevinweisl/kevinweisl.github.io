@@ -38,7 +38,10 @@ const PublicationItem: React.FC<Publication> = ({
       className={`py-[18px] px-5 bg-[var(--bg-card)] transition-colors duration-200 ${abstract ? 'cursor-pointer' : 'cursor-default'} hover:bg-[var(--accent-light)]`}
       onClick={handleMainClick}
     >
-      <p className="font-serif text-[16px] font-semibold text-[var(--text-primary)] leading-[1.4] mb-1">
+      <span className="label inline-block border border-[var(--border)] px-2 py-[2px] rounded-[2px] mb-2">
+        {venueAcronym || `${venue} ${year}`}
+      </span>
+      <p className="font-serif text-[16px] text-[var(--text-primary)] leading-[1.4] mb-1">
         {title}
       </p>
       <p className="text-[13px] text-[var(--text-muted)] mb-2">
@@ -46,7 +49,7 @@ const PublicationItem: React.FC<Publication> = ({
           <React.Fragment key={author}>
             {i > 0 && ', '}
             {author.startsWith(publicationName) ? (
-              <strong className="accent-text font-semibold">{author}</strong>
+              <strong className="brand-text font-semibold">{author}</strong>
             ) : (
               author
             )}
@@ -54,9 +57,6 @@ const PublicationItem: React.FC<Publication> = ({
         ))}
       </p>
       <div className="flex items-center gap-2.5 flex-wrap">
-        <span className="accent-bg text-[var(--text-on-primary)] text-[13px] font-bold px-2.5 py-[3px] rounded-[var(--radius)]">
-          {venueAcronym || `${venue} ${year}`}
-        </span>
         <div className="flex gap-2 items-center">
           {links.map((link, i) => (
             <React.Fragment key={link.label}>

@@ -12,9 +12,9 @@ export const metadata = pageMetadata({
 export default function PublicationsPage() {
   return (
     <section className="py-[72px] px-6" style={{ background: 'var(--bg-primary)' }}>
-      <div className="max-w-[900px] mx-auto">
-        <h1 className="font-serif text-[28px] font-semibold text-center mb-3 text-[var(--text-primary)]">
-          <span className="accent-text">Publications</span>
+      <div className="max-w-[720px] mx-auto">
+        <h1 className="font-serif text-[28px] text-center mb-3 text-[var(--text-primary)]">
+          <span className="brand-text">Publications</span>
         </h1>
         <PublicationSearch />
       </div>

@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Albert+Sans:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+  <style>
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:'Albert Sans','Noto Sans TC',system-ui,-apple-system,sans-serif;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  a{color:var(--mark);text-decoration:none} a:hover{color:#7d1c4a}
+  :root{
+    --paper:#e9ebed; --paper2:#dfe4e7; --ink:#15181b; --ink2:#4e565c; --ink3:#79838a;
+    --rule:#c5ccd1; --rule2:#aeb7bd; --mark:#a32863;
+    --s-bg:#0a1519; --s-bg2:#0f1f24; --s-card:#12242a; --s-text:#e4eef0;
+    --s-body:#93a9af; --s-muted:#7b9096; --s-nav:#89a0a6; --s-accent:#7fb6c0;
+    --s-border:#1f383f; --s-pink:#eaa9c8; --s-on:#08181d;
+  }
+  .board{padding:44px 48px;display:flex;flex-direction:column;gap:26px;height:100%}
+  .head{display:flex;flex-direction:column;gap:12px;
+    border-bottom:1px solid var(--rule2);padding-bottom:18px}
+  .head-top{display:flex;align-items:baseline;gap:14px}
+  .num{font-family:'Albert Sans',system-ui,sans-serif;font-size:13px;font-weight:700;
+    letter-spacing:.14em;color:var(--mark);font-variant-numeric:tabular-nums}
+  .title{font-family:'Young Serif',Georgia,serif;font-weight:400;font-size:27px;
+    margin:0;letter-spacing:-.01em;line-height:1.1}
+  .chip{margin-left:auto;font-size:11px;font-weight:600;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--ink3);border:1px solid var(--rule2);
+    padding:3px 9px;border-radius:2px}
+  .lede{margin:0;font-size:14px;line-height:1.65;color:var(--ink2);max-width:74ch}
+  .ev{display:flex;gap:26px;flex-wrap:wrap}
+  .ev span{font-size:12px;color:var(--ink3);display:flex;align-items:baseline;gap:6px}
+  .ev b{font-size:19px;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;
+    letter-spacing:-.01em}
+  .split{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;flex-grow:1}
+  .pane{display:flex;flex-direction:column;gap:12px;min-width:0}
+  .pane-h{display:flex;align-items:center;gap:10px}
+  .tag{font-size:11px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:2px}
+  .t-b{background:var(--paper2);color:var(--ink2);border:1px solid var(--rule2)}
+  .t-a{background:var(--mark);color:#fff}
+  .pane-note{font-size:12px;color:var(--ink3)}
+  .sample{background:var(--s-bg);border:1px solid #0d1c21;border-radius:3px;
+    padding:20px;flex-grow:1;
+    font-family:'Albert Sans','Noto Sans TC',system-ui,sans-serif}
+  .crit{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px}
+  .crit li{font-size:12px;line-height:1.55;color:var(--ink2);padding-left:14px;position:relative}
+  .crit li::before{content:"";position:absolute;left:0;top:7px;width:5px;height:5px;
+    background:var(--rule2)}
+  .crit li.good::before{background:var(--mark)}
+  .mono{font-variant-numeric:tabular-nums}
+  </style>
+</helmet>
+<div class="board">
+  <header class="head">
+    <div class="head-top">
+      <span class="num">03</span>
+      <h1 class="title">Young Serif 沒有粗體</h1>
+      <span class="chip">字體</span>
+    </div>
+    <p class="lede">這條不是品味問題，是 CSS 在說謊。Young Serif 只出 400 一個字重，而 body 設了 font-synthesis-weight: none 禁止瀏覽器造假。所以 serif 元素上每一個 font-semibold 與 font-bold 都是空宣告。</p>
+    <div class="ev">
+      <span><b>400</b> Young Serif 唯一的字重</span>
+      <span><b>5</b> 個元件寫了無效的字重</span>
+      <span><b>0</b> 實際生效的</span>
+    </div>
+  </header>
+
+  <div class="split">
+    <section class="pane">
+      <div class="pane-h"><span class="tag t-b">現況</span><span class="pane-note">左邊是 CSS，右邊是螢幕</span></div>
+      <div class="sample" style="font-synthesis-weight:none;display:flex;flex-direction:column;gap:15px;justify-content:center">
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <span style="font-size:11px;color:var(--s-muted);font-family:ui-monospace,SFMono-Regular,Menlo,monospace">Hero h1 · font-serif font-bold</span>
+          <span style="font-family:'Young Serif',Georgia,serif;font-weight:700;font-size:31px;color:var(--s-text);line-height:1.1">Kevin Wei</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <span style="font-size:11px;color:var(--s-muted);font-family:ui-monospace,SFMono-Regular,Menlo,monospace">Section h2 · font-serif font-semibold</span>
+          <span style="font-family:'Young Serif',Georgia,serif;font-weight:600;font-size:24px;color:var(--s-text);line-height:1.2">Selected Publications</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <span style="font-size:11px;color:var(--s-muted);font-family:ui-monospace,SFMono-Regular,Menlo,monospace">NoteCard h3 · font-serif font-semibold</span>
+          <span style="font-family:'Young Serif',Georgia,serif;font-weight:600;font-size:19px;color:var(--s-text);line-height:1.3">ccClub 十年記・下</span>
+        </div>
+        <div style="margin-top:6px;padding:10px 12px;border:1px solid var(--s-border);background:var(--s-card);border-radius:3px">
+          <span style="font-size:11px;color:var(--s-muted);line-height:1.6">三行宣告了 700、600、600，螢幕上三行都是 400。字重完全沒有參與階層。</span>
+        </div>
+      </div>
+      <ul class="crit">
+        <li>階層其實只剩尺寸在扛，但 CSS 讀起來像有三段字重</li>
+        <li>之後有人換字體，這些宣告會突然「醒過來」，版面無預警改變</li>
+        <li>font-synthesis-weight: none 是對的，不該拿掉來換假粗體</li>
+      </ul>
+    </section>
+
+    <section class="pane">
+      <div class="pane-h"><span class="tag t-a">提案</span><span class="pane-note">刪掉宣告，階層交給尺寸與留白</span></div>
+      <div class="sample" style="font-synthesis-weight:none;display:flex;flex-direction:column;gap:15px;justify-content:center">
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <span style="font-size:11px;color:var(--s-muted);font-family:ui-monospace,SFMono-Regular,Menlo,monospace">Hero h1 · font-serif</span>
+          <span style="font-family:'Young Serif',Georgia,serif;font-weight:400;font-size:34px;color:var(--s-text);line-height:1.05;letter-spacing:-.015em">Kevin Wei</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <span style="font-size:11px;color:var(--s-muted);font-family:ui-monospace,SFMono-Regular,Menlo,monospace">Section h2 · font-serif</span>
+          <span style="font-family:'Young Serif',Georgia,serif;font-weight:400;font-size:24px;color:var(--s-text);line-height:1.2">Selected Publications</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <span style="font-size:11px;color:var(--s-muted);font-family:ui-monospace,SFMono-Regular,Menlo,monospace">NoteCard h3 · font-serif</span>
+          <span style="font-family:'Young Serif',Georgia,serif;font-weight:400;font-size:19px;color:var(--s-text);line-height:1.3">ccClub 十年記・下</span>
+        </div>
+        <div style="margin-top:6px;padding:10px 12px;border:1px solid var(--s-border);background:var(--s-card);border-radius:3px">
+          <span style="font-size:11px;color:var(--s-muted);line-height:1.6">畫面完全一樣，因為本來就是這樣渲染的。差別是 CSS 現在說的是實話，而且 hero 加大到 34px 拉開了與區塊標題的距離。</span>
+        </div>
+      </div>
+      <ul class="crit">
+        <li class="good">純刪除，零視覺風險 —— 現在的畫面就是刪除後的畫面</li>
+        <li class="good">Young Serif 400 本來就比一般 serif 重，不需要再加粗</li>
+        <li>另外兩條路：換一個有多字重的展示字體，或標題改用 Albert Sans 600、Young Serif 只留給 hero 的名字</li>
+      </ul>
+    </section>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

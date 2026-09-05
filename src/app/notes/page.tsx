@@ -16,9 +16,9 @@ export default function NotesPage() {
 
   return (
     <section className="py-[72px] px-6" style={{ background: 'var(--bg-primary)' }}>
-      <div className="max-w-[900px] mx-auto">
-        <h1 className="font-serif text-[28px] font-semibold text-center mb-8 text-[var(--text-primary)]">
-          <span className="accent-text">Notes</span>
+      <div className="max-w-[720px] mx-auto">
+        <h1 className="font-serif text-[28px] text-center mb-8 text-[var(--text-primary)]">
+          <span className="brand-text">Notes</span>
         </h1>
 
         {notes.length === 0 ? (

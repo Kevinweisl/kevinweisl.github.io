@@ -1,0 +1,100 @@
+<div class="board">
+  <header class="head">
+    <div class="head-top">
+      <span class="num">04</span>
+      <h1 class="title">Experience 的兩層標籤欄</h1>
+      <span class="chip">排版</span>
+    </div>
+    <p class="lede">外層 grid 留 100px 給分類，內層 grid 再留 120px 給期間。桌機上左側 220px 幾乎都是空的，而分類總共只有三個：Education、Teaching、Work。</p>
+    <div class="ev">
+      <span><b>220px</b> 兩層標籤欄合計</span>
+      <span><b>3</b> 個分類</span>
+      <span><b>2</b> 層巢狀 grid</span>
+    </div>
+  </header>
+
+  <div class="split">
+    <section class="pane">
+      <div class="pane-h"><span class="tag t-b">現況</span><span class="pane-note">100px 分類欄 + 120px 期間欄</span></div>
+      <div class="sample" style="padding:18px 16px">
+        <div style="display:flex;gap:0;margin-bottom:6px">
+          <div style="width:74px;flex-shrink:0;border-top:1px dashed rgba(234,169,200,.45);height:0"></div>
+          <div style="width:88px;flex-shrink:0;border-top:1px dashed rgba(234,169,200,.45);height:0"></div>
+        </div>
+        <div style="display:flex;gap:0;margin-bottom:10px">
+          <span style="width:74px;flex-shrink:0;font-size:10px;color:var(--s-pink);text-align:center">100px</span>
+          <span style="width:88px;flex-shrink:0;font-size:10px;color:var(--s-pink);text-align:center">120px</span>
+          <span style="font-size:10px;color:var(--s-muted);padding-left:8px">內容</span>
+        </div>
+        <div style="display:flex;gap:0">
+          <div style="width:74px;flex-shrink:0;padding-right:12px;padding-top:14px;text-align:right">
+            <span style="font-family:'Young Serif',Georgia,serif;font-size:12px;color:var(--s-accent)">Teaching</span>
+          </div>
+          <div style="flex-grow:1;background:var(--s-card);border:1px solid var(--s-border);border-radius:3px;overflow:hidden">
+            <div style="display:flex;padding:14px 14px;border-bottom:1px solid var(--s-border)">
+              <span style="width:74px;flex-shrink:0;font-size:11px;color:var(--s-muted);font-variant-numeric:tabular-nums">2021 - Present</span>
+              <div style="display:flex;flex-direction:column;gap:2px;min-width:0">
+                <span style="font-family:'Young Serif',Georgia,serif;font-size:13px;color:var(--s-text)">Adjunct Instructor</span>
+                <span style="font-size:11px;color:var(--s-accent)">Center of General Education, NTU</span>
+                <span style="font-size:12px;color:var(--s-body)">Programming and Web Scraping</span>
+              </div>
+            </div>
+            <div style="display:flex;padding:14px 14px">
+              <span style="width:74px;flex-shrink:0;font-size:11px;color:var(--s-muted);font-variant-numeric:tabular-nums">2022 - Present</span>
+              <div style="display:flex;flex-direction:column;gap:2px;min-width:0">
+                <span style="font-family:'Young Serif',Georgia,serif;font-size:13px;color:var(--s-text)">Adjunct Instructor</span>
+                <span style="font-size:11px;color:var(--s-accent)">Department of Economics, NTU</span>
+                <span style="font-size:12px;color:var(--s-body)">Programming</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ul class="crit">
+        <li>左邊兩欄相加超過整列的五分之一，裡面只有一個詞和一個年份</li>
+        <li>分類標題用 accent 色，跟連結同色，看起來可點但不是</li>
+        <li>手機上兩層 grid 都塌掉，桌機與手機的結構其實不一樣</li>
+      </ul>
+    </section>
+
+    <section class="pane">
+      <div class="pane-h"><span class="tag t-a">提案</span><span class="pane-note">分類升成跨全寬的標籤列</span></div>
+      <div class="sample" style="padding:18px 16px">
+        <div style="display:flex;gap:0;margin-bottom:6px">
+          <div style="width:88px;flex-shrink:0;border-top:1px dashed rgba(234,169,200,.45);height:0"></div>
+        </div>
+        <div style="display:flex;gap:0;margin-bottom:10px">
+          <span style="width:88px;flex-shrink:0;font-size:10px;color:var(--s-pink);text-align:center">120px</span>
+          <span style="font-size:10px;color:var(--s-muted);padding-left:8px">內容（多了 100px）</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
+          <span style="font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--s-muted)">Teaching</span>
+          <span style="flex-grow:1;height:1px;background:var(--s-border)"></span>
+        </div>
+        <div style="background:var(--s-card);border:1px solid var(--s-border);border-radius:3px;overflow:hidden">
+          <div style="display:flex;padding:14px 14px;border-bottom:1px solid var(--s-border)">
+            <span style="width:74px;flex-shrink:0;font-size:11px;color:var(--s-muted);font-variant-numeric:tabular-nums">2021 - Present</span>
+            <div style="display:flex;flex-direction:column;gap:3px;min-width:0">
+              <span style="font-family:'Young Serif',Georgia,serif;font-size:14px;color:var(--s-text)">Adjunct Instructor</span>
+              <span style="font-size:12px;color:var(--s-body)">Center of General Education, National Taiwan University</span>
+              <span style="font-size:12px;color:var(--s-body)">Programming and Web Scraping (GenEdu5010)</span>
+            </div>
+          </div>
+          <div style="display:flex;padding:14px 14px">
+            <span style="width:74px;flex-shrink:0;font-size:11px;color:var(--s-muted);font-variant-numeric:tabular-nums">2022 - Present</span>
+            <div style="display:flex;flex-direction:column;gap:3px;min-width:0">
+              <span style="font-family:'Young Serif',Georgia,serif;font-size:14px;color:var(--s-text)">Adjunct Instructor</span>
+              <span style="font-size:12px;color:var(--s-body)">Department of Economics, National Taiwan University</span>
+              <span style="font-size:12px;color:var(--s-body)">Programming (ECON1024)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ul class="crit">
+        <li class="good">100px 還給內容，機構全名不再需要縮寫</li>
+        <li class="good">分類變成 01 定義的 LABEL 角色，不再借用 accent 色</li>
+        <li class="good">桌機與手機是同一個結構，只有期間欄會塌</li>
+      </ul>
+    </section>
+  </div>
+</div>

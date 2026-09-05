@@ -18,7 +18,6 @@
 */
 :root {
   --bg-primary: #0a1519;
-  --bg-secondary: #0f1f24;
   --bg-card: #12242a;
   --bg-nav: rgba(10, 21, 25, 0.9);
   --bg-footer: #050e11;
@@ -35,8 +34,13 @@
   --accent-hover: #9bcbd3;
   --accent-light: #143038;
 
-  --border: #1f383f;
-  --border-card: #1f383f;
+  /* Second brand colour. Three jobs only: the author's own name in a byline,
+     the emphasised word in a section title, and an in-progress marker. Never a link. */
+  --brand: #eaa9c8;
+
+  /* Brightened so cards read as cards: 1.76 against the card, 2.03 against the page. Was #1f383f (1.29 / 1.50). */
+  --border: #2b4d57;
+  --border-card: #2b4d57;
 
   --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.3);
   --shadow-card-hover: 0 12px 32px rgba(127, 182, 192, 0.12);
@@ -62,13 +66,12 @@
   --hero-card-bg: rgba(255, 255, 255, 0.07);
   --hero-card-border: rgba(255, 255, 255, 0.13);
   --hero-card-img-bg: rgba(255, 255, 255, 0.05);
-  --hero-label: #eaa9c8;
+  --hero-label: var(--brand);
   --hero-tag-bg: rgba(255, 255, 255, 0.09);
   --hero-tag-text: #b6d5db;
   --hero-tag-border: rgba(255, 255, 255, 0.09);
-  /* The hero's italic links own their colour rather than borrowing --accent:
-     they are pink, the one place the second brand colour carries text. */
-  --hero-link: #eaa9c8;
+  /* The hero's italic links are the one place the brand colour carries a link. */
+  --hero-link: var(--brand);
   --hero-link-border: rgba(234, 169, 200, 0.5);
   --hero-link-hover: #f3cddf;
 }
@@ -89,7 +92,8 @@ body {
   background: var(--bg-primary);
   color: var(--text-body);
   transition: background var(--transition), color var(--transition);
-  /* Young Serif only ships weight 400 — never let the browser fake-bold it */
+  /* Young Serif only ships weight 400 — never let the browser fake-bold it.
+     Corollary, enforced by typography.test.ts: no serif element declares a weight. */
   font-synthesis-weight: none;
 }
 
@@ -107,6 +111,12 @@ h1, h2, h3 {
   text-wrap: balance;
 }
 
+/* Sections are separated by a hairline, not by alternating grounds: the two grounds this
+   replaced were 1.09 apart, which nobody could see. */
+main > section + section {
+  border-top: 1px solid var(--border);
+}
+
 /* ===== Utility Classes ===== */
 .accent-text {
   color: var(--accent);
@@ -114,6 +124,22 @@ h1, h2, h3 {
 
 .accent-bg {
   background: var(--accent);
+}
+
+.brand-text {
+  color: var(--brand);
+}
+
+/* Label role: category names, venue badges, the hero's tag heading. Told apart by case and
+   tracking, so colour stays free for interaction. Unlayered, so it beats Tailwind utilities
+   on the same element — don't stack text-[…] or font-* classes alongside it. */
+.label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  line-height: 1.4;
 }
 
 /* ===== Hero Link ===== */
@@ -142,7 +168,6 @@ h1, h2, h3 {
 .prose h1, .prose h2, .prose h3, .prose h4 {
   font-family: var(--font-serif);
   color: var(--text-primary);
-  font-weight: 600;
   margin-top: 2em;
   margin-bottom: 0.75em;
   line-height: 1.3;
@@ -158,7 +183,7 @@ h1, h2, h3 {
 }
 .prose a:hover { color: var(--accent-hover); }
 .prose blockquote {
-  border-left: 3px solid var(--accent);
+  border-left: 3px solid var(--border);
   padding-left: 1em;
   margin: 1.5em 0;
   color: var(--text-body);

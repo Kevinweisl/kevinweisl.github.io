@@ -32,8 +32,9 @@ export default function NotFound() {
         <code
           className="font-mono"
           style={{
-            background: 'var(--accent-light)',
-            color: 'var(--accent)',
+            background: 'var(--bg-card)',
+            border: '1px solid var(--border)',
+            color: 'var(--text-primary)',
             padding: '2px 6px',
             borderRadius: 'var(--radius)',
             fontSize: '12px',
