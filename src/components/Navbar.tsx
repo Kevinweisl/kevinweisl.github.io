@@ -14,7 +14,7 @@ const Navbar: React.FC = () => {
 
   return (
     <nav
-      className="sticky top-0 z-50 bg-[var(--bg-nav)] backdrop-blur-[20px] border-b border-[var(--border)]"
+      className="nav-shell sticky top-0 z-50 bg-[var(--bg-nav)] backdrop-blur-[20px] border-b border-[var(--border)]"
       style={{ padding: '14px 0' }}
     >
       <div className="mx-auto flex items-center justify-between px-6" style={{ maxWidth: '1100px' }}>

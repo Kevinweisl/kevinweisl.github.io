@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from 'next';
 import '@/styles/globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import Spotlight from '@/components/Spotlight';
 import React from 'react';
 import { siteUrl, siteName, fullName, socialLinks, jobTitle, affiliation, researchInterests } from '@/data/profile';
 
@@ -96,6 +97,7 @@ export default function RootLayout({
         />
       </head>
       <body className="flex flex-col min-h-screen font-sans antialiased">
+        <Spotlight />
         <Navbar />
         <main className="flex-grow">
           {children}

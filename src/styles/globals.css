@@ -190,6 +190,119 @@ code, pre {
   font-family: var(--font-mono);
 }
 
+/* ===== Rows: M1 =====
+   Four things at once — a 2px bar scaling in from the top, the row shifting
+   6px right, the ground lifting, the badge lighting up — plus a spotlight
+   that follows the cursor.
+
+   No lift. That belongs to the separate-card model this list is not: the bar
+   needs rows that run continuously, and a shift plus a lift sends the row
+   diagonally. Buttons lift; rows shift. Seeing translateY should mean you are
+   looking at a button, and padding-left that you are looking at a row.
+
+   The shift moves padding-left rather than the box so the ::before bar stays
+   anchored while the content slides. padding is off the compositor path, but
+   one row moves at a time and the distance is 6px. If that ever costs frames,
+   wrap the content and translateX the wrapper, leaving the bar outside. */
+.row {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  padding: 18px 20px 18px 18px;
+  background: var(--bg-card);
+  transition: background var(--dur-color) ease, padding-left var(--dur-move) var(--ease-move);
+}
+
+.row::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--accent);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform var(--dur-move) var(--ease-move);
+}
+
+.row .spot {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--dur-move) ease;
+  background: radial-gradient(220px circle at var(--mx, 50%) var(--my, 50%), var(--glow), transparent 60%);
+}
+
+/* Guarded, so a touch device never latches into a hover state it cannot leave. */
+@media (hover: hover) {
+  .row:hover {
+    background: var(--bg-card-hover);
+    padding-left: 24px;
+  }
+  .row:hover::before { transform: scaleY(1); }
+  .row:hover .spot { opacity: 1; }
+  .row:hover .label {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+}
+
+/* A keyboard gets the same "this row is the one" reading: the bar and the
+   ground, but not the shift (decoration) or the spotlight (there is no
+   cursor to follow). The global focus ring stays — it is the reliable,
+   conventional indicator and design does not get to trade it away. */
+.row:focus-visible,
+.row:has(:focus-visible) {
+  background: var(--bg-card-hover);
+}
+.row:focus-visible::before,
+.row:has(:focus-visible)::before {
+  transform: scaleY(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row { transition: background var(--dur-color) ease; }
+  .row::before { transition: none; }
+  .row:hover { padding-left: 18px; }
+  .row .spot { display: none; }
+}
+
+/* ===== Navbar =====
+   At the top of the page that hairline separates nothing. It arrives with the
+   scroll instead, driven by the scroll timeline rather than a listener — the
+   spotlight already owns the one global listener this site has, and a second
+   would need a better reason than a border. Where scroll-driven animation is
+   unsupported the rule simply stays on, which is what it does today. */
+@supports (animation-timeline: scroll()) {
+  .nav-shell {
+    border-bottom-color: transparent;
+    animation: nav-rule linear both;
+    animation-timeline: scroll();
+    animation-range: 0 80px;
+  }
+  @keyframes nav-rule {
+    to { border-bottom-color: var(--border); }
+  }
+}
+
+/* ===== Hero ambience =====
+   Ambience, not content: at 4.5% the grid registers without being read, and it
+   is masked out before it reaches the text. No animation, so nothing here ever
+   enters the compositor's hot path. */
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 44px 44px;
+  -webkit-mask-image: radial-gradient(circle at 50% 0%, #000 0%, transparent 70%);
+  mask-image: radial-gradient(circle at 50% 0%, #000 0%, transparent 70%);
+}
+
 /* ===== Hero Link ===== */
 .hero-link {
   color: var(--hero-link);

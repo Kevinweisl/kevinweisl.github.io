@@ -19,10 +19,12 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="relative overflow-hidden px-6 py-[72px]"
+      className="relative overflow-hidden px-6 pt-[112px] pb-[96px]"
       style={{ background: 'var(--hero-bg)' }}
     >
-      {/* Decorative gradient blobs */}
+      <div className="hero-grid" aria-hidden="true" />
+      {/* One bloom, in the accent's hue. The pink one it replaced was ambient
+          decoration, which is not among the brand colour's jobs. */}
       <div
         className="absolute -top-1/2 -right-[20%] w-[600px] h-[600px] rounded-full pointer-events-none"
         style={{ background: `radial-gradient(circle, var(--hero-blob) 0%, transparent 70%)` }}
@@ -44,7 +46,7 @@ const Hero = () => {
             {jobTitle} @ {affiliation}
           </p>
 
-          <p className="text-[16px] leading-[1.8] mb-7 max-w-[60ch]" style={{ color: 'var(--hero-body)' }}>
+          <p className="text-[16px] leading-[1.8] mb-7 max-w-[68ch]" style={{ color: 'var(--hero-body)' }}>
             I received my PhD in Computer Science from <span className="italic">{affiliation}</span> in {phdYear}, with research on {researchSummary}.
             With 6+ years of industry experience at{' '}
             <HeroLink href="https://www.shopback.sg/">ShopBack</HeroLink>,{' '}
