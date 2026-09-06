@@ -5,6 +5,7 @@ import { getAllNotes } from '@/lib/notes';
 import NoteCard from '@/components/NoteCard';
 import CardList from '@/components/CardList';
 import PageShell from '@/components/PageShell';
+import Rail from '@/components/Rail';
 
 export const metadata = pageMetadata({
   path: routes.notes.path,
@@ -16,7 +17,10 @@ export default function NotesPage() {
   const notes = getAllNotes();
 
   return (
-    <PageShell title={routes.notes.label}>
+    <PageShell
+      title={routes.notes.label}
+      rail={<Rail label={`${notes.length} ${notes.length === 1 ? 'Note' : 'Notes'}`} />}
+    >
       {notes.length === 0 ? (
         <p className="text-center text-[var(--text-muted)] py-8">No notes yet.</p>
       ) : (

@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { getAllNotes, getNoteBySlug, getAdjacentNotes, formatNoteDate, noteHref, noteUrl } from '@/lib/notes';
 import ProseContent from '@/components/ProseContent';
+import PageShell from '@/components/PageShell';
+import Rail from '@/components/Rail';
 import { siteUrl, fullName } from '@/data/profile';
 import { pageMetadata } from '@/lib/metadata';
 
@@ -46,26 +48,31 @@ export default async function NotePage({ params }: Props) {
   };
 
   return (
-    <section className="py-[72px] px-6" style={{ background: 'var(--bg-primary)' }}>
+    <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <div className="max-w-[68ch] mx-auto">
-        <Link
-          href="/notes"
-          className="inline-flex items-center gap-1.5 text-[13px] text-[var(--accent)] hover:underline mb-8"
-        >
-          <ArrowLeft size={14} />
-          Back to Notes
-        </Link>
-
-        <header className="mb-10">
-          <h1 className="font-serif text-[28px] text-[var(--text-primary)] leading-[1.2] mb-3">
-            {note.title}
-          </h1>
-          <p className="text-[var(--text-muted)] text-[13px]" style={{ fontVariantNumeric: 'tabular-nums' }}>
-            {formattedDate} · {note.readingMinutes} min read
-          </p>
-        </header>
-
+      <PageShell
+        title={note.title}
+        measure="68ch"
+        beforeTitle={
+          <Link
+            href="/notes"
+            className="inline-flex items-center gap-1.5 text-[13px] text-[var(--accent)] hover:underline mb-8"
+          >
+            <ArrowLeft size={14} />
+            Back to Notes
+          </Link>
+        }
+        // An article is located in time, so the rail carries its date and how
+        // long it takes — which also clears both off the title.
+        rail={
+          <Rail>
+            <div className="mono text-[11px] text-[var(--text-muted)] leading-[1.7]">
+              <div>{formattedDate}</div>
+              <div>{note.readingMinutes} min read</div>
+            </div>
+          </Rail>
+        }
+      >
         <ProseContent html={note.contentHtml} />
 
         {(older || newer) && (
@@ -95,7 +102,7 @@ export default async function NotePage({ params }: Props) {
             </div>
           </nav>
         )}
-      </div>
-    </section>
+      </PageShell>
+    </>
   );
 }

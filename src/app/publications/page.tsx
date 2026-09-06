@@ -3,6 +3,8 @@ import { routes } from '@/data/routes';
 import { fullName } from '@/data/profile';
 import PublicationSearch from '@/components/PublicationSearch';
 import PageShell from '@/components/PageShell';
+import Rail from '@/components/Rail';
+import { publicationsData } from '@/data/publications';
 
 export const metadata = pageMetadata({
   path: routes.publications.path,
@@ -12,7 +14,10 @@ export const metadata = pageMetadata({
 
 export default function PublicationsPage() {
   return (
-    <PageShell title={routes.publications.label}>
+    <PageShell
+      title={routes.publications.label}
+      rail={<Rail label={`${publicationsData.length} Papers`} />}
+    >
       <PublicationSearch />
     </PageShell>
   );

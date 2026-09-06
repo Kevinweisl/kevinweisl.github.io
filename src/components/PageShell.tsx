@@ -1,22 +1,39 @@
 import React from 'react';
+import RailGrid from './RailGrid';
 
 interface PageShellProps {
-  /** The page's one-word title. On a sub-page the whole title is the emphasis, so it wears the brand colour. */
   title: string;
+  /** What locates this page: a count on a listing, the date on an article. */
+  rail?: React.ReactNode;
+  /** Listings read at 720px; an article at 68ch. */
+  measure?: '720px' | '68ch';
+  /** Anything above the title — the article's back link, for instance. */
+  beforeTitle?: React.ReactNode;
   children: React.ReactNode;
 }
 
 /**
- * The shell every listing sub-page shares — Notes, Publications, Experience: a centred h1
- * over the 720px content column. Home-page sections use `Section` (h2, left-aligned,
- * optional "View all"); this is the other shape, and the only place it is written down.
+ * The shell every page but the home page shares — Notes, Publications,
+ * Experience, and an article.
+ *
+ * The heading is serif, left, 28px, --text-primary, everywhere. Four pages once
+ * had four sizes and alignments, and the article page hand-copied this file's
+ * padding and type rather than importing it; unifying the heading removed the
+ * reason they had diverged.
  */
-const PageShell: React.FC<PageShellProps> = ({ title, children }) => (
-  <section className="py-[72px] px-6">
-    <div className="max-w-[720px] mx-auto">
-      <h1 className="font-serif text-[28px] text-center mb-8 brand-text">{title}</h1>
+const PageShell: React.FC<PageShellProps> = ({
+  title,
+  rail,
+  measure = '720px',
+  beforeTitle,
+  children,
+}) => (
+  <section className="py-[96px] px-6">
+    <RailGrid rail={rail} measure={measure}>
+      {beforeTitle}
+      <h1 className="font-serif text-[28px] text-[var(--text-primary)] mb-8">{title}</h1>
       {children}
-    </div>
+    </RailGrid>
   </section>
 );
 

@@ -1,11 +1,17 @@
 import React from 'react';
 import Link from 'next/link';
+import RailGrid from './RailGrid';
+import Rail from './Rail';
 
 interface SectionProps {
   id: string;
   title: string;
   /** A word inside `title` to set in the brand colour, e.g. "Publications" in "Selected Publications". */
   emphasis?: string;
+  /** Position on this page, zero-padded. Computed by the page from the sections it renders. */
+  index?: string;
+  /** The rail's category word: Research, Writing, Career, Contact. */
+  railLabel?: string;
   subtitle?: string;
   viewAllHref?: string;
   children: React.ReactNode;
@@ -15,6 +21,8 @@ const Section: React.FC<SectionProps> = ({
   id,
   title,
   emphasis,
+  index,
+  railLabel,
   subtitle,
   viewAllHref,
   children,
@@ -31,9 +39,18 @@ const Section: React.FC<SectionProps> = ({
     );
   };
 
+  const railId = `${id}-rail`;
+  const rail = (index || railLabel) && <Rail id={railId} index={index} label={railLabel} />;
+
   return (
-    <section id={id} className="py-[72px] px-6">
-      <div className="max-w-[720px] mx-auto">
+    <section
+      id={id}
+      className="py-[96px] px-6"
+      // A section with no accessible name is not a landmark. Contact renders no
+      // heading at all, so its rail is its name.
+      aria-labelledby={title ? undefined : railId}
+    >
+      <RailGrid rail={rail}>
         {(title || subtitle || viewAllHref) && (
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-2 sm:gap-4 mb-8">
             <div>
@@ -53,7 +70,7 @@ const Section: React.FC<SectionProps> = ({
           </div>
         )}
         {children}
-      </div>
+      </RailGrid>
     </section>
   );
 };
