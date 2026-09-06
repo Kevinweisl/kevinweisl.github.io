@@ -19,7 +19,7 @@ export default function NotFound() {
 
       <h1
         className="font-serif italic text-[var(--text-primary)]"
-        style={{ fontSize: '32px', lineHeight: 1.4, maxWidth: '520px', marginBottom: '20px' }}
+        style={{ fontSize: '28px', lineHeight: 1.4, maxWidth: '520px', marginBottom: '20px' }}
       >
         This page appears to be a hallucination.
       </h1>
@@ -30,14 +30,13 @@ export default function NotFound() {
       >
         —{' '}
         <code
-          className="font-mono"
+          className="label"
           style={{
             background: 'var(--bg-card)',
             border: '1px solid var(--border)',
             color: 'var(--text-primary)',
             padding: '2px 6px',
             borderRadius: 'var(--radius)',
-            fontSize: '12px',
           }}
         >
           404 NOT_FOUND
@@ -48,7 +47,7 @@ export default function NotFound() {
       <div className="flex gap-3 flex-wrap justify-center">
         <Link
           href="/"
-          className="text-[14px] font-medium text-[var(--text-on-primary)] no-underline transition-transform duration-200 hover:-translate-y-px"
+          className="text-[13px] font-medium text-[var(--text-on-primary)] no-underline transition-transform duration-200 hover:-translate-y-px"
           style={{
             background: 'var(--accent)',
             padding: '11px 24px',
@@ -60,7 +59,7 @@ export default function NotFound() {
         </Link>
         <Link
           href="/notes"
-          className="text-[14px] font-medium text-[var(--text-body)] no-underline transition-colors duration-200 hover:text-[var(--accent)]"
+          className="text-[13px] font-medium text-[var(--text-body)] no-underline transition-colors duration-200 hover:text-[var(--accent)]"
           style={{
             border: '1px solid var(--border)',
             padding: '11px 24px',

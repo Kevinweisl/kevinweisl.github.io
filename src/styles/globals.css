@@ -177,10 +177,17 @@ main > section + section {
 }
 
 /* Figures that stack and must align: rail numbers, years, dates. tabular-nums is
-   the point of this class — the family alone is what .label and .prose code take. */
+   the point of this class; code takes the family without it. */
 .mono {
   font-family: var(--font-mono);
   font-variant-numeric: tabular-nums;
+}
+
+/* Code gets the family by being code — no class to remember, and nothing to
+   forget on the next <pre> someone adds. Deliberately no tabular-nums:
+   aligning figures is right for a rail and wrong for source. */
+code, pre {
+  font-family: var(--font-mono);
 }
 
 /* ===== Hero Link ===== */
@@ -231,9 +238,6 @@ main > section + section {
   font-style: italic;
 }
 .prose code {
-  /* The family, deliberately without tabular-nums: aligning figures is right for a
-     rail and wrong for code. */
-  font-family: var(--font-mono);
   font-size: 0.8125em;
   background: var(--bg-card);
   border: 1px solid var(--border);

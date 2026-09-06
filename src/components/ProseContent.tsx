@@ -32,12 +32,12 @@ export default function ProseContent({ html }: { html: string }) {
 
       {lightboxSrc && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-[var(--overlay-lightbox)] backdrop-blur-sm p-4"
           onClick={() => setLightboxSrc(null)}
         >
           <button
             onClick={() => setLightboxSrc(null)}
-            className="absolute top-4 right-4 text-white/70 hover:text-white transition-colors cursor-pointer"
+            className="absolute top-4 right-4 text-[var(--overlay-control)] hover:text-[var(--overlay-control-hover)] transition-colors cursor-pointer"
             aria-label="Close"
           >
             <X size={24} />

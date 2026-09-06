@@ -22,7 +22,7 @@ const NoteCard: React.FC<NoteMeta> = ({ title, date, excerpt, year, slug, readin
           {formattedDate} · {readingMinutes} min
         </span>
       </div>
-      <p className="text-[14px] text-[var(--text-body)] leading-[1.5]">
+      <p className="text-[16px] text-[var(--text-body)] leading-[1.6]">
         {excerpt}
       </p>
     </Link>

@@ -9,14 +9,14 @@ export default function PublicationSearch() {
 
   return (
     <>
-      <div className="mb-8 max-w-xl mx-auto">
+      <div className="mb-8 max-w-[640px] mx-auto">
         <div className="relative">
           <input
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Search publications (title, author, venue...)"
-            className="w-full px-4 py-2 pl-10 border border-[var(--border)] bg-[var(--bg-card)] text-[var(--text-primary)] rounded-[var(--radius)] focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent outline-none transition-shadow placeholder:text-[var(--text-muted)]"
+            className="w-full px-4 py-2 pl-10 border border-[var(--border)] bg-[var(--bg-card)] text-[var(--text-primary)] rounded-[var(--radius)] placeholder:text-[var(--text-muted)]"
           />
           <div className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--text-muted)]">
             <Search size={20} />

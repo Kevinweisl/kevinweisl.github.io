@@ -34,7 +34,7 @@ const ExperienceItem: React.FC<ExperienceItemProps> = ({
         <div className="font-serif text-[16px] text-[var(--text-primary)]">
           {title}
         </div>
-        <div className="text-[14px] text-[var(--text-body)] mt-0.5">
+        <div className="text-[13px] text-[var(--text-body)] mt-0.5">
           {institution}
         </div>
         {description && (

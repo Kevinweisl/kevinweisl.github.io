@@ -81,7 +81,7 @@ const ContactLinks: React.FC = () => {
 
       {showEmail && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-[var(--overlay-scrim)] backdrop-blur-sm"
           onClick={() => setShowEmail(false)}
         >
           <div
@@ -101,7 +101,7 @@ const ContactLinks: React.FC = () => {
               </div>
               <h3 className="font-serif text-[20px] text-[var(--text-primary)]">Email</h3>
             </div>
-            <p className="text-[var(--text-body)] text-[16px] font-mono select-all">
+            <p className="mono text-[var(--text-body)] text-[16px] select-all">
               {obfuscatedEmail}
             </p>
           </div>

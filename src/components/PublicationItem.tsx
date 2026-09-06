@@ -21,11 +21,6 @@ const PublicationItem: React.FC<Publication> = ({
   const [showAbstract, setShowAbstract] = useState(false);
   const [showBibtex, setShowBibtex] = useState(false);
 
-  const handleMainClick = (e: React.MouseEvent) => {
-    if ((e.target as HTMLElement).closest('a, button')) return;
-    if (abstract) setShowAbstract(!showAbstract);
-  };
-
   const links: { label: string; href?: string; onClick?: () => void }[] = [];
   if (pdfLink) links.push({ label: 'PDF', href: pdfLink });
   if (doiLink) links.push({ label: 'DOI', href: doiLink });
@@ -34,13 +29,16 @@ const PublicationItem: React.FC<Publication> = ({
   if (bibtex) links.push({ label: 'BibTeX', onClick: () => setShowBibtex(!showBibtex) });
 
   return (
-    <div
-      className={`py-[18px] px-5 bg-[var(--bg-card)] transition-colors duration-200 ${abstract ? 'cursor-pointer' : 'cursor-default'} hover:bg-[var(--accent-light)]`}
-      onClick={handleMainClick}
-    >
-      <span className="label inline-block border border-[var(--border)] px-2 py-[2px] rounded-[2px] mb-2">
-        {venueAcronym || `${venue} ${year}`}
-      </span>
+    <div className="row" data-spotlight>
+      <span className="spot" aria-hidden="true" />
+      <div className="flex items-baseline justify-between gap-4 mb-2">
+        <span className="label inline-block border border-[var(--border)] px-2 py-[2px] rounded-[2px]">
+          {venueAcronym || venue}
+        </span>
+        {/* The year lives in one field now, right-aligned in tabular figures so a
+            column of them scans. It used to be baked into the acronym string. */}
+        <span className="mono text-[11px] text-[var(--text-muted)] whitespace-nowrap">{year}</span>
+      </div>
       <p className="font-serif text-[16px] text-[var(--text-primary)] leading-[1.4] mb-1">
         {title}
       </p>
@@ -84,7 +82,7 @@ const PublicationItem: React.FC<Publication> = ({
       </div>
 
       {showAbstract && abstract && (
-        <div className="mt-4 p-3 bg-[var(--bg-primary)] rounded-[var(--radius)] border border-[var(--border)] text-[14px] text-[var(--text-primary)]">
+        <div className="mt-4 p-3 bg-[var(--bg-primary)] rounded-[var(--radius)] border border-[var(--border)] text-[13px] text-[var(--text-primary)]">
           <h4 className="font-semibold mb-1 text-[var(--text-body)]">Abstract</h4>
           <p className="whitespace-pre-wrap leading-relaxed text-[var(--text-body)]">{abstract}</p>
           <button
@@ -97,14 +95,14 @@ const PublicationItem: React.FC<Publication> = ({
       )}
 
       {showBibtex && bibtex && (
-        <div className="mt-4 p-3 bg-[var(--bg-primary)] rounded-[var(--radius)] border border-[var(--border)] text-[14px] text-[var(--text-primary)]">
+        <div className="mt-4 p-3 bg-[var(--bg-primary)] rounded-[var(--radius)] border border-[var(--border)] text-[13px] text-[var(--text-primary)]">
           <h4 className="font-semibold mb-1 text-[var(--text-body)]">BibTeX</h4>
-          <pre className="bg-[var(--bg-card)] p-2 rounded-[var(--radius)] text-[13px] border border-[var(--border)] font-mono whitespace-pre-wrap break-words text-[var(--text-body)]">
+          <pre className="bg-[var(--bg-card)] p-2 rounded-[var(--radius)] text-[13px] border border-[var(--border)] whitespace-pre-wrap break-words text-[var(--text-body)]">
             <code>{bibtex}</code>
           </pre>
           <button
             onClick={() => navigator.clipboard.writeText(bibtex || '')}
-            className="text-[13px] bg-[var(--accent-light)] hover:opacity-80 text-[var(--accent)] px-2 py-0.5 rounded-[var(--radius)] mt-2 mr-2 transition-colors cursor-pointer"
+            className="text-[13px] bg-[var(--accent-light)] text-[var(--accent)] px-2 py-0.5 rounded-[var(--radius)] mt-2 mr-2 transition-colors cursor-pointer"
           >
             Copy
           </button>
