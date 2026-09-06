@@ -50,25 +50,29 @@ const Section: React.FC<SectionProps> = ({
       // heading at all, so its rail is its name.
       aria-labelledby={title ? undefined : railId}
     >
-      <RailGrid rail={rail}>
-        {(title || subtitle || viewAllHref) && (
-          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-2 sm:gap-4 mb-8">
-            <div>
-              {title && renderTitle()}
-              {subtitle && (
-                <p className="text-[var(--text-muted)] text-[13px] mt-1.5">{subtitle}</p>
+      <RailGrid
+        rail={rail}
+        heading={
+          (title || subtitle || viewAllHref) && (
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-2 sm:gap-4 mb-8">
+              <div>
+                {title && renderTitle()}
+                {subtitle && (
+                  <p className="text-[var(--text-muted)] text-[13px] mt-1.5">{subtitle}</p>
+                )}
+              </div>
+              {viewAllHref && (
+                <Link
+                  href={viewAllHref}
+                  className="text-[var(--accent)] text-[13px] font-medium hover:underline"
+                >
+                  View all →
+                </Link>
               )}
             </div>
-            {viewAllHref && (
-              <Link
-                href={viewAllHref}
-                className="text-[var(--accent)] text-[13px] font-medium hover:underline"
-              >
-                View all →
-              </Link>
-            )}
-          </div>
-        )}
+          )
+        }
+      >
         {children}
       </RailGrid>
     </section>

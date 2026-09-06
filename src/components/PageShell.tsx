@@ -29,9 +29,16 @@ const PageShell: React.FC<PageShellProps> = ({
   children,
 }) => (
   <section className="py-[96px] px-6">
-    <RailGrid rail={rail} measure={measure}>
-      {beforeTitle}
-      <h1 className="font-serif text-[28px] text-[var(--text-primary)] mb-8">{title}</h1>
+    <RailGrid
+      rail={rail}
+      measure={measure}
+      heading={
+        <>
+          {beforeTitle}
+          <h1 className="font-serif text-[28px] text-[var(--text-primary)] mb-8">{title}</h1>
+        </>
+      }
+    >
       {children}
     </RailGrid>
   </section>
