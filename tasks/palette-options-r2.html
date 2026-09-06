@@ -1,0 +1,270 @@
+<meta charset="utf-8">
+<title>配色四案 R2 — 已套上「精密儀器排版 + 發光 hover」</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700&family=Young+Serif&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+
+<style>
+/* ============================================================
+   頁面外殼 —— 沿用 tasks/palette-options.html 的規則：
+   一個用來比較配色的工具，自己不能有主張色，否則會污染判斷。
+   中性灰（微偏冷）＋細線，其餘留給樣本。
+   ============================================================ */
+:root {
+  --ground: #f4f6f6;
+  --panel:  #ffffff;
+  --ink:    #14191b;
+  --muted:  #697276;
+  --rule:   #e0e4e5;
+  --rule-strong: #c8cfd1;
+  --chrome-shadow: 0 1px 2px rgba(20,25,27,.06);
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--ground); color: var(--ink);
+  font-family: "Albert Sans", "Noto Sans TC", system-ui, sans-serif;
+  line-height: 1.6; -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 1320px; margin: 0 auto; padding: 48px 32px 96px; }
+header h1 { font-family: "Young Serif", Georgia, serif; font-weight: 400; font-size: 30px; margin: 0 0 10px; }
+header p  { margin: 0 0 6px; max-width: 82ch; color: #3d4649; font-size: 15px; }
+header .hint { color: var(--muted); font-size: 13.5px; }
+hr.sep { border: 0; border-top: 1px solid var(--rule); margin: 32px 0; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(440px, 1fr)); gap: 26px; }
+
+.opt { background: var(--panel); border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; box-shadow: var(--chrome-shadow); }
+.opt > figcaption { padding: 16px 18px; border-bottom: 1px solid var(--rule); }
+.opt h2 { font-size: 16px; margin: 0 0 2px; font-weight: 600; }
+.opt .anchor { font-size: 12px; color: var(--muted); font-weight: 500; letter-spacing: .02em; }
+.opt .why { font-size: 13.5px; color: #3d4649; margin: 9px 0 0; line-height: 1.62; }
+
+/* ---------- 樣本本體 ---------- */
+.demo { font-family: "Albert Sans", "Noto Sans TC", system-ui, sans-serif; }
+.demo * { box-sizing: border-box; }
+.d-hero { padding: 22px 22px 20px; display: flex; gap: 15px; align-items: center; }
+.d-mark { width: 74px; height: 74px; border-radius: 4px; flex: 0 0 auto; display: grid; place-items: center; }
+.d-name { font-family: "Young Serif", Georgia, serif; font-size: 23px; font-weight: 400; line-height: 1.15; color: #fff; }
+.d-role { font-size: 12.5px; font-weight: 500; margin-top: 5px; }
+.d-body { padding: 20px 22px 22px; }
+
+/* A 排版語彙：等寬 metadata、區塊編號、髮絲線 */
+.d-idx { font: 500 10px/1 "JetBrains Mono", monospace; letter-spacing: .11em; display: block; margin-bottom: 8px; }
+.d-h { font-family: "Young Serif", Georgia, serif; font-size: 21px; font-weight: 400; }
+.d-h em { font-style: normal; }
+.d-headrow { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding-bottom: 12px; margin-bottom: 15px; }
+.d-va { font-size: 12.5px; font-weight: 500; text-decoration: none; white-space: nowrap; }
+.d-badge {
+  font: 600 10px/1.4 "JetBrains Mono", monospace; letter-spacing: .06em; text-transform: uppercase;
+  padding: 2px 6px; border-radius: 2px; display: inline-block; margin-bottom: 8px;
+  font-variant-numeric: tabular-nums; transition: color .18s, border-color .18s;
+}
+
+/* C hover：上浮 + 亮框 + 跟游標的聚光 */
+.d-row {
+  position: relative; padding: 15px 17px; border-radius: 5px; overflow: hidden;
+  transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s ease, border-color .25s ease;
+}
+.d-row .spot { position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .25s ease;
+  background: radial-gradient(210px circle at var(--mx,50%) var(--my,50%), var(--glow), transparent 60%); }
+.d-row:hover { transform: translateY(-3px); border-color: var(--bdH) !important; box-shadow: 0 14px 34px var(--glow); }
+.d-row:hover .spot { opacity: 1; }
+.d-row:hover .d-badge { color: var(--acc); border-color: var(--acc); }
+.d-t { font-family: "Young Serif", Georgia, serif; font-size: 14.5px; font-weight: 400; line-height: 1.4; margin: 0 0 6px; }
+.d-a { font-size: 12.5px; margin: 0 0 9px; }
+.d-a b { font-weight: 600; }
+.d-l { display: flex; gap: 7px; align-items: center; font-size: 12.5px; }
+.d-l a { text-decoration: none; font-weight: 500; }
+.d-l a:hover { text-decoration: underline; }
+
+/* ---------- 色票 + 對比數字 ---------- */
+.sw { display: flex; }
+.sw div { flex: 1; height: 42px; display: grid; place-items: center;
+          font: 500 9.5px/1 "JetBrains Mono", monospace; letter-spacing: .02em; }
+.ratios { padding: 11px 18px; border-top: 1px solid var(--rule); font-size: 12px; color: var(--muted);
+          font-family: "JetBrains Mono", monospace; letter-spacing: -.01em; }
+
+footer { margin-top: 44px; font-size: 14px; color: #3d4649; max-width: 82ch; }
+footer strong { color: var(--ink); }
+code { font-family: "JetBrains Mono", monospace; font-size: .92em; background: #eceff0; padding: 1px 5px; border-radius: 3px; }
+</style>
+
+<div class="wrap">
+<header>
+  <h1>配色四案 R2</h1>
+  <p>
+    四塊都已經套上先前選定的方向：<strong>A 精密儀器排版</strong>（等寬字接管 metadata、區塊編號、髮絲線分隔）
+    ＋ <strong>C 發光 hover</strong>（上浮、亮框、跟著游標的聚光）。所以這是在最終長相裡挑配色，不是挑色票。
+  </p>
+  <p>
+    每塊都保留 2026-09-05 定下的角色規則：teal 系 accent＝可點擊、粉紅只有三個工作、單一 ground ＋ 髮絲線分隔。
+  </p>
+  <p class="hint">滑鼠移到論文卡上 —— 這題有一半在看同一組光感落在不同底色上的差別。</p>
+</header>
+
+<hr class="sep">
+
+<div class="grid">
+
+  <!-- ============ 1 現況 ============ -->
+  <figure class="opt" style="margin:0">
+    <figcaption>
+      <h2>1 · 現況（對照組）</h2>
+      <div class="anchor">錨點：ccClub logo</div>
+      <p class="why">2026-09-05 核准的那套，原封不動。留著當基準線 —— 沒有它，你無法判斷另外三塊到底改善了什麼、又賠掉了什麼。</p>
+    </figcaption>
+    <div class="demo" style="--bg:#0a1519;--card:#12242a;--tp:#e4eef0;--muted:#7b9096;--acc:#7fb6c0;--brand:#eaa9c8;--bd:#2b4d57;--bdH:#4a7a86;--glow:rgba(127,182,192,.15);background:#0a1519">
+      <div class="d-hero" style="background:linear-gradient(135deg,#0e252e,#1a4450)">
+        <div class="d-mark" style="background:#a0cce7"><svg width="54" height="54" viewBox="0 0 100 100"><circle cx="50" cy="50" r="38" fill="none" stroke="#171e1d" stroke-width="8"/><text x="50" y="63" text-anchor="middle" font-family="Albert Sans,sans-serif" font-weight="700" font-size="33" fill="#171e1d">KW</text></svg></div>
+        <div><div class="d-name">Sheng-Lun (Kevin) Wei</div><div class="d-role" style="color:#9bcbd3">Adjunct Instructor @ National Taiwan University</div></div>
+      </div>
+      <div class="d-body">
+        <div class="d-headrow" style="border-bottom:1px solid #2b4d57">
+          <div><span class="d-idx" style="color:#7b9096">01 / RESEARCH</span>
+            <div class="d-h" style="color:#e4eef0">Selected <em style="color:#eaa9c8">Publications</em></div></div>
+          <a class="d-va" style="color:#7fb6c0" href="#">View all →</a>
+        </div>
+        <div class="d-row js-spot" style="background:#12242a;border:1px solid #2b4d57">
+          <span class="spot"></span>
+          <span class="d-badge" style="color:#7b9096;border:1px solid #2b4d57">Findings of ACL 2026</span>
+          <p class="d-t" style="color:#e4eef0">No One Fits All: From Fixed Prompting to Learned Routing in Multilingual LLMs</p>
+          <p class="d-a" style="color:#7b9096">Wei-Chi Wu, <b style="color:#eaa9c8">Sheng-Lun Wei</b>, Hen-Hsen Huang, Hsin-Hsi Chen</p>
+          <div class="d-l"><a style="color:#7fb6c0" href="#">PDF</a><span style="color:#7b9096">·</span><a style="color:#7fb6c0" href="#">DOI</a><span style="color:#7b9096">·</span><a style="color:#7fb6c0" href="#">Abstract</a></div>
+        </div>
+      </div>
+      <div class="sw">
+        <div style="background:#0a1519;color:#93a9af">#0A1519</div><div style="background:#12242a;color:#93a9af">#12242A</div>
+        <div style="background:#2b4d57;color:#e4eef0">#2B4D57</div><div style="background:#7fb6c0;color:#08181d">#7FB6C0</div>
+        <div style="background:#eaa9c8;color:#08181d">#EAA9C8</div>
+      </div>
+    </div>
+    <div class="ratios">muted/卡 4.78 · accent/卡 7.13 · 髮絲線/卡 1.76 · 卡/底 1.16</div>
+  </figure>
+
+  <!-- ============ 2 印記藍 ============ -->
+  <figure class="opt" style="margin:0">
+    <figcaption>
+      <h2>2 · 印記藍 Monogram</h2>
+      <div class="anchor">錨點：你自己的 KW 字標（#A0CCE7 佔 72%、#171E1D 佔 12%）</div>
+      <p class="why">現在的配色推導自一個<em>網站上根本看不到</em>的素材（ccClub logo 不在 repo 裡），而 hero 卡片放的正是 KW 字標。這案把錨點換成字標本身：ground 退成中性冷灰藍、少了綠味，accent 直接用字標的天空藍。結果是字標第一次「屬於」這套配色，而不是貼在上面。連結色 11:1，四案裡最亮。</p>
+    </figcaption>
+    <div class="demo" style="--bg:#0b1218;--card:#141d24;--tp:#e8eef2;--muted:#8496a2;--acc:#a0cce7;--brand:#eaa9c8;--bd:#354855;--bdH:#5a7f96;--glow:rgba(160,204,231,.17);background:#0b1218">
+      <div class="d-hero" style="background:linear-gradient(135deg,#111c26,#22394a)">
+        <div class="d-mark" style="background:#a0cce7"><svg width="54" height="54" viewBox="0 0 100 100"><circle cx="50" cy="50" r="38" fill="none" stroke="#171e1d" stroke-width="8"/><text x="50" y="63" text-anchor="middle" font-family="Albert Sans,sans-serif" font-weight="700" font-size="33" fill="#171e1d">KW</text></svg></div>
+        <div><div class="d-name">Sheng-Lun (Kevin) Wei</div><div class="d-role" style="color:#a0cce7">Adjunct Instructor @ National Taiwan University</div></div>
+      </div>
+      <div class="d-body">
+        <div class="d-headrow" style="border-bottom:1px solid #354855">
+          <div><span class="d-idx" style="color:#8496a2">01 / RESEARCH</span>
+            <div class="d-h" style="color:#e8eef2">Selected <em style="color:#eaa9c8">Publications</em></div></div>
+          <a class="d-va" style="color:#a0cce7" href="#">View all →</a>
+        </div>
+        <div class="d-row js-spot" style="background:#141d24;border:1px solid #354855">
+          <span class="spot"></span>
+          <span class="d-badge" style="color:#8496a2;border:1px solid #354855">Findings of ACL 2026</span>
+          <p class="d-t" style="color:#e8eef2">No One Fits All: From Fixed Prompting to Learned Routing in Multilingual LLMs</p>
+          <p class="d-a" style="color:#8496a2">Wei-Chi Wu, <b style="color:#eaa9c8">Sheng-Lun Wei</b>, Hen-Hsen Huang, Hsin-Hsi Chen</p>
+          <div class="d-l"><a style="color:#a0cce7" href="#">PDF</a><span style="color:#8496a2">·</span><a style="color:#a0cce7" href="#">DOI</a><span style="color:#8496a2">·</span><a style="color:#a0cce7" href="#">Abstract</a></div>
+        </div>
+      </div>
+      <div class="sw">
+        <div style="background:#0b1218;color:#96a8b4">#0B1218</div><div style="background:#141d24;color:#96a8b4">#141D24</div>
+        <div style="background:#354855;color:#e8eef2">#354855</div><div style="background:#a0cce7;color:#0b1218">#A0CCE7</div>
+        <div style="background:#eaa9c8;color:#0b1218">#EAA9C8</div>
+      </div>
+    </div>
+    <div class="ratios">muted/卡 5.58 · accent/卡 9.98 · 髮絲線/卡 1.79 · 卡/底 1.11</div>
+  </figure>
+
+  <!-- ============ 3 深空儀器 ============ -->
+  <figure class="opt" style="margin:0">
+    <figcaption>
+      <h2>3 · 深空儀器 Deep Instrument</h2>
+      <div class="anchor">錨點：不變，只調亮度範圍</div>
+      <p class="why">色相一個都沒動，只把 ground 壓到接近純黑、髮絲線再提亮一階。科技感全部來自<strong>對比範圍</strong>：底夠暗，C 的光暈和上浮才真的看得出來 —— 現況的底其實不夠暗，光打上去會糊成一團。改動最小、和既有決定衝突最少，但氣質變最多。</p>
+    </figcaption>
+    <div class="demo" style="--bg:#06090b;--card:#101a1f;--tp:#e6f0f2;--muted:#84999f;--acc:#7fb6c0;--brand:#eaa9c8;--bd:#33474f;--bdH:#517f8c;--glow:rgba(127,182,192,.19);background:#06090b">
+      <div class="d-hero" style="background:linear-gradient(135deg,#0a1116,#16323b)">
+        <div class="d-mark" style="background:#a0cce7"><svg width="54" height="54" viewBox="0 0 100 100"><circle cx="50" cy="50" r="38" fill="none" stroke="#171e1d" stroke-width="8"/><text x="50" y="63" text-anchor="middle" font-family="Albert Sans,sans-serif" font-weight="700" font-size="33" fill="#171e1d">KW</text></svg></div>
+        <div><div class="d-name">Sheng-Lun (Kevin) Wei</div><div class="d-role" style="color:#a8d8e0">Adjunct Instructor @ National Taiwan University</div></div>
+      </div>
+      <div class="d-body">
+        <div class="d-headrow" style="border-bottom:1px solid #33474f">
+          <div><span class="d-idx" style="color:#84999f">01 / RESEARCH</span>
+            <div class="d-h" style="color:#e6f0f2">Selected <em style="color:#eaa9c8">Publications</em></div></div>
+          <a class="d-va" style="color:#7fb6c0" href="#">View all →</a>
+        </div>
+        <div class="d-row js-spot" style="background:#101a1f;border:1px solid #33474f">
+          <span class="spot"></span>
+          <span class="d-badge" style="color:#84999f;border:1px solid #33474f">Findings of ACL 2026</span>
+          <p class="d-t" style="color:#e6f0f2">No One Fits All: From Fixed Prompting to Learned Routing in Multilingual LLMs</p>
+          <p class="d-a" style="color:#84999f">Wei-Chi Wu, <b style="color:#eaa9c8">Sheng-Lun Wei</b>, Hen-Hsen Huang, Hsin-Hsi Chen</p>
+          <div class="d-l"><a style="color:#7fb6c0" href="#">PDF</a><span style="color:#84999f">·</span><a style="color:#7fb6c0" href="#">DOI</a><span style="color:#84999f">·</span><a style="color:#7fb6c0" href="#">Abstract</a></div>
+        </div>
+      </div>
+      <div class="sw">
+        <div style="background:#06090b;color:#9aaeb4">#06090B</div><div style="background:#101a1f;color:#9aaeb4">#101A1F</div>
+        <div style="background:#33474f;color:#e6f0f2">#33474F</div><div style="background:#7fb6c0;color:#06090b">#7FB6C0</div>
+        <div style="background:#eaa9c8;color:#06090b">#EAA9C8</div>
+      </div>
+    </div>
+    <div class="ratios">muted/卡 5.92 · accent/卡 7.86 · 髮絲線/卡 1.81 · 卡/底 1.13</div>
+  </figure>
+
+  <!-- ============ 4 靛藍實驗室 ============ -->
+  <figure class="opt" style="margin:0">
+    <figcaption>
+      <h2>4 · 靛藍實驗室 Indigo Lab</h2>
+      <div class="anchor">錨點：換色相，脫離 ccClub</div>
+      <p class="why">ground 的色相從藍綠轉到靛藍，accent 往青色偏。離現況最遠，但有個具體好處：<strong>粉紅品牌色在靛藍上比在藍綠上自然得多</strong> —— 粉＋靛是經典配對，粉＋teal 一直有點打架。代價是整站不再讀作「ccClub 的延伸」。</p>
+    </figcaption>
+    <div class="demo" style="--bg:#0a0e1a;--card:#141a2b;--tp:#e6e9f2;--muted:#8189a3;--acc:#7fc2d6;--brand:#eaa9c8;--bd:#3a4366;--bdH:#5b67a0;--glow:rgba(127,194,214,.17);background:#0a0e1a">
+      <div class="d-hero" style="background:linear-gradient(135deg,#0e1424,#1e2a4a)">
+        <div class="d-mark" style="background:#a0cce7"><svg width="54" height="54" viewBox="0 0 100 100"><circle cx="50" cy="50" r="38" fill="none" stroke="#171e1d" stroke-width="8"/><text x="50" y="63" text-anchor="middle" font-family="Albert Sans,sans-serif" font-weight="700" font-size="33" fill="#171e1d">KW</text></svg></div>
+        <div><div class="d-name">Sheng-Lun (Kevin) Wei</div><div class="d-role" style="color:#a5dcea">Adjunct Instructor @ National Taiwan University</div></div>
+      </div>
+      <div class="d-body">
+        <div class="d-headrow" style="border-bottom:1px solid #3a4366">
+          <div><span class="d-idx" style="color:#8189a3">01 / RESEARCH</span>
+            <div class="d-h" style="color:#e6e9f2">Selected <em style="color:#eaa9c8">Publications</em></div></div>
+          <a class="d-va" style="color:#7fc2d6" href="#">View all →</a>
+        </div>
+        <div class="d-row js-spot" style="background:#141a2b;border:1px solid #3a4366">
+          <span class="spot"></span>
+          <span class="d-badge" style="color:#8189a3;border:1px solid #3a4366">Findings of ACL 2026</span>
+          <p class="d-t" style="color:#e6e9f2">No One Fits All: From Fixed Prompting to Learned Routing in Multilingual LLMs</p>
+          <p class="d-a" style="color:#8189a3">Wei-Chi Wu, <b style="color:#eaa9c8">Sheng-Lun Wei</b>, Hen-Hsen Huang, Hsin-Hsi Chen</p>
+          <div class="d-l"><a style="color:#7fc2d6" href="#">PDF</a><span style="color:#8189a3">·</span><a style="color:#7fc2d6" href="#">DOI</a><span style="color:#8189a3">·</span><a style="color:#7fc2d6" href="#">Abstract</a></div>
+        </div>
+      </div>
+      <div class="sw">
+        <div style="background:#0a0e1a;color:#9aa2ba">#0A0E1A</div><div style="background:#141a2b;color:#9aa2ba">#141A2B</div>
+        <div style="background:#3a4366;color:#e6e9f2">#3A4366</div><div style="background:#7fc2d6;color:#0a0e1a">#7FC2D6</div>
+        <div style="background:#eaa9c8;color:#0a0e1a">#EAA9C8</div>
+      </div>
+    </div>
+    <div class="ratios">muted/卡 4.98 · accent/卡 8.73 · 髮絲線/卡 1.79 · 卡/底 1.11</div>
+  </figure>
+
+</div>
+
+<footer>
+  <p>
+    <strong>對比度</strong>：四案的每個文字色都對它實際坐落的表面算過，全數通過 WCAG AA。
+    最低一項是 4 案的 muted 落在卡片上 4.98:1。髮絲線對比也都校到與現況同級（1.76–1.81）。
+  </p>
+  <p>
+    <strong>2 和 3 可以疊</strong> —— 字標藍 accent ＋ 近黑 ground 是合法組合，兩個都對味就直說。
+  </p>
+</footer>
+</div>
+
+<script>
+document.querySelectorAll('.js-spot').forEach(function (el) {
+  el.addEventListener('mousemove', function (e) {
+    var r = el.getBoundingClientRect();
+    el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    el.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  });
+});
+</script>

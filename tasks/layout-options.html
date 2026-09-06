@@ -1,0 +1,358 @@
+<meta charset="utf-8">
+<title>版面節奏三案 — 已鎖定配色（印記藍 + 深空）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700&family=Young+Serif&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+/* 外殼：中性，不帶主張色（沿用 tasks/palette-options.html 慣例） */
+:root{--ground:#f4f6f6;--panel:#fff;--ink:#14191b;--muted:#697276;--rule:#e0e4e5;--rule-strong:#c8cfd1;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:"Albert Sans","Noto Sans TC",system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1400px;margin:0 auto;padding:48px 32px 96px}
+h1{font-family:"Young Serif",Georgia,serif;font-weight:400;font-size:30px;margin:0 0 10px}
+header p{margin:0 0 6px;max-width:84ch;color:#3d4649;font-size:15px}
+header .hint{color:var(--muted);font-size:13.5px}
+hr.sep{border:0;border-top:1px solid var(--rule);margin:34px 0}
+h2.q{font-size:19px;margin:0 0 6px;font-weight:600}
+p.qs{margin:0 0 22px;color:#3d4649;font-size:14.5px;max-width:84ch}
+
+/* ---- 縮圖比較列 ---- */
+.thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.th{background:var(--panel);border:1px solid var(--rule);border-radius:10px;overflow:hidden;box-shadow:0 1px 2px rgba(20,25,27,.06)}
+.th > figcaption{padding:14px 16px;border-bottom:1px solid var(--rule)}
+.th h3{font-size:15px;margin:0 0 2px;font-weight:600}
+.th .sub{font-size:12px;color:var(--muted);font-weight:500}
+.th .why{font-size:12.5px;color:#3d4649;margin:8px 0 0;line-height:1.55}
+.sk{background:#06090b;padding:0}           /* schematic 畫布 = 鎖定的 ground */
+
+/* schematic 元素（1/3 比例尺：real px ÷ 3） */
+.sk-nav{height:16px;border-bottom:1px solid #33474f;display:flex;align-items:center;padding:0 8px;gap:5px}
+.sk-nav i{display:block;height:3px;background:#8ea4ab;border-radius:1px}
+.sk-hero{background:linear-gradient(135deg,#0a1116,#16323b);display:flex;gap:8px;align-items:center;padding:0 8px}
+.sk-mark{width:24px;height:24px;background:#a0cce7;border-radius:2px;flex:0 0 auto}
+.sk-l{display:block;background:#9aaeb4;border-radius:1px;height:2px}
+.sk-l.t{background:#e6f0f2;height:5px}
+.sk-l.acc{background:#a0cce7}
+.sk-l.brand{background:#eaa9c8}
+.sk-sec{border-top:1px solid #33474f;padding:0 8px}
+.sk-row{background:#101a1f;border-bottom:1px solid #06090b;padding:5px 6px}
+.sk-row:last-child{border-bottom:0}
+.sk-foot{background:#030506;border-top:1px solid #33474f;height:12px}
+.sk-rail{width:22px;flex:0 0 auto}
+.sk-mono{font:600 5px/1 "JetBrains Mono",monospace;color:#84999f;letter-spacing:.06em}
+.tick{font:500 9px/1 "JetBrains Mono",monospace;color:var(--muted);letter-spacing:.02em}
+.ruler{position:relative;padding-left:34px}
+.ruler .mk{position:absolute;left:0;font:500 9px/1 "JetBrains Mono",monospace;color:#a9b1b3}
+
+/* ---- 細部：真實尺寸 ---- */
+.detail{background:#06090b;border:1px solid var(--rule);border-radius:10px;overflow:hidden}
+.dl{font-family:"Albert Sans","Noto Sans TC",system-ui,sans-serif}
+.dl *{box-sizing:border-box}
+.d-mono{font:600 11px/1.4 "JetBrains Mono",monospace;letter-spacing:.07em;color:#84999f;text-transform:uppercase;font-variant-numeric:tabular-nums}
+.d-h{font-family:"Young Serif",Georgia,serif;font-size:28px;font-weight:400;color:#e6f0f2}
+.d-h em{font-style:normal;color:#eaa9c8}
+.d-sub{font-size:13px;color:#84999f;margin-top:6px}
+.d-va{font-size:13px;font-weight:500;color:#a0cce7;text-decoration:none;white-space:nowrap}
+.d-row{position:relative;background:#101a1f;border:1px solid #33474f;border-radius:5px;padding:15px 17px;overflow:hidden;
+  transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s ease,border-color .25s ease}
+.d-row .spot{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .25s ease;
+  background:radial-gradient(220px circle at var(--mx,50%) var(--my,50%),rgba(160,204,231,.17),transparent 60%)}
+.d-row:hover{transform:translateY(-3px);border-color:#57808f;box-shadow:0 14px 34px rgba(160,204,231,.17)}
+.d-row:hover .spot{opacity:1}
+.d-row:hover .badge{color:#a0cce7;border-color:#a0cce7}
+.badge{font:600 10px/1.4 "JetBrains Mono",monospace;letter-spacing:.06em;text-transform:uppercase;color:#84999f;
+  border:1px solid #33474f;padding:2px 6px;border-radius:2px;display:inline-block;margin-bottom:8px;
+  font-variant-numeric:tabular-nums;transition:color .18s,border-color .18s}
+.d-t{font-family:"Young Serif",Georgia,serif;font-size:15px;font-weight:400;line-height:1.4;color:#e6f0f2;margin:0 0 6px}
+.d-a{font-size:12.5px;color:#84999f;margin:0 0 9px}
+.d-a b{color:#eaa9c8;font-weight:600}
+.d-lk{display:flex;gap:7px;align-items:center;font-size:12.5px}
+.d-lk a{color:#a0cce7;text-decoration:none;font-weight:500}
+.d-lk a:hover{text-decoration:underline}
+.d-lk span{color:#84999f}
+
+.note{font-size:13.5px;color:#3d4649;margin-top:12px;max-width:84ch}
+code{font-family:"JetBrains Mono",monospace;font-size:.9em;background:#eceff0;padding:1px 5px;border-radius:3px}
+table.f{border-collapse:collapse;font-size:13.5px;margin-top:14px}
+table.f th,table.f td{border:1px solid var(--rule);padding:7px 11px;text-align:left;vertical-align:top}
+table.f th{background:#eceff0;font-weight:600}
+table.f td:first-child{white-space:nowrap;font-weight:500}
+
+/* ---- 等寬字候選 ---- */
+.mono-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:16px}
+.mono-c{background:#06090b;border:1px solid var(--rule);border-radius:8px;padding:18px}
+.mono-c .nm{font-size:12px;color:#84999f;margin-bottom:12px;letter-spacing:.04em}
+.mono-c .spec{font-size:11.5px;color:#697276;margin-top:14px;line-height:1.5}
+.sample{color:#84999f;text-transform:uppercase;letter-spacing:.07em;font-size:11px;font-weight:600;font-variant-numeric:tabular-nums}
+.sample b{display:block;color:#e6f0f2;font-size:11px;font-weight:500;text-transform:none;letter-spacing:.04em;margin-top:7px}
+</style>
+
+<div class="wrap">
+<header>
+  <h1>版面節奏三案</h1>
+  <p>配色已鎖定（<strong>印記藍 accent <code>#A0CCE7</code> ＋ 深空 ground <code>#06090B</code></strong>），字體語彙已鎖定（<strong>A 精密儀器</strong>），hover 已鎖定（<strong>C 發光</strong>）。剩下的是<strong>頁面層級</strong>：整頁的呼吸與骨架。</p>
+  <p class="hint">上排是四個首頁全頁縮圖（1/3 比例尺，垂直間距按真實比例畫），直接比節奏。下面是真實尺寸的細部。</p>
+</header>
+
+<hr class="sep">
+
+<h2 class="q">問題：現在整站只有一種節奏</h2>
+<p class="qs">
+  <code>py-[72px]</code> 用在每一頁的每一個區塊 —— hero、四筆論文的列表、一行字的 contact CTA，全部同一個間距；4/6 的頁面是同一個 720px 殼。
+  下面三案是三種解法，可以疊。
+</p>
+
+<div class="thumbs">
+
+  <!-- ===== 現況 ===== -->
+  <figure class="th" style="margin:0">
+    <figcaption>
+      <h3>現況</h3><div class="sub">對照組</div>
+      <p class="why">五個區塊、五個一樣的 72px。捲動時沒有任何段落感，因為沒有一個間距在告訴你「這裡換氣了」。</p>
+    </figcaption>
+    <div class="sk">
+      <div class="sk-nav"><i style="width:14px"></i><i style="width:9px;margin-left:auto"></i><i style="width:9px"></i><i style="width:9px"></i></div>
+      <div class="sk-hero" style="padding-top:24px;padding-bottom:24px">
+        <div><span class="sk-l t" style="width:74px"></span><span class="sk-l acc" style="width:52px;margin-top:4px"></span>
+          <span class="sk-l" style="width:88px;margin-top:6px"></span><span class="sk-l" style="width:84px;margin-top:3px"></span><span class="sk-l" style="width:70px;margin-top:3px"></span></div>
+        <div class="sk-mark" style="margin-left:auto"></div>
+      </div>
+      <div class="sk-sec" style="padding-top:24px;padding-bottom:24px">
+        <span class="sk-l t" style="width:56px"></span><span class="sk-l" style="width:80px;margin-top:4px"></span>
+        <div style="margin-top:11px"><div class="sk-row"><span class="sk-l" style="width:26px;background:#33474f"></span><span class="sk-l t" style="width:84px;margin-top:3px"></span><span class="sk-l" style="width:60px;margin-top:3px"></span></div>
+        <div class="sk-row"><span class="sk-l" style="width:26px;background:#33474f"></span><span class="sk-l t" style="width:78px;margin-top:3px"></span><span class="sk-l" style="width:60px;margin-top:3px"></span></div>
+        <div class="sk-row"><span class="sk-l" style="width:26px;background:#33474f"></span><span class="sk-l t" style="width:88px;margin-top:3px"></span><span class="sk-l" style="width:60px;margin-top:3px"></span></div></div>
+      </div>
+      <div class="sk-sec" style="padding-top:24px;padding-bottom:24px">
+        <span class="sk-l t" style="width:48px"></span>
+        <div style="margin-top:11px"><div class="sk-row"><span class="sk-l t" style="width:76px"></span><span class="sk-l" style="width:64px;margin-top:3px"></span></div>
+        <div class="sk-row"><span class="sk-l t" style="width:70px"></span><span class="sk-l" style="width:64px;margin-top:3px"></span></div></div>
+      </div>
+      <div class="sk-sec" style="padding-top:24px;padding-bottom:24px">
+        <span class="sk-l t" style="width:44px"></span>
+        <div style="margin-top:11px"><div class="sk-row"><span class="sk-l t" style="width:80px"></span></div><div class="sk-row"><span class="sk-l t" style="width:72px"></span></div></div>
+      </div>
+      <div class="sk-sec" style="padding-top:24px;padding-bottom:24px;text-align:center">
+        <span class="sk-l t" style="width:76px;margin:0 auto"></span>
+        <div style="display:flex;gap:4px;justify-content:center;margin-top:9px"><span class="sk-l acc" style="width:20px;height:7px"></span><span class="sk-l acc" style="width:20px;height:7px"></span><span class="sk-l acc" style="width:20px;height:7px"></span></div>
+      </div>
+      <div class="sk-foot"></div>
+    </div>
+  </figure>
+
+  <!-- ===== L1 ===== -->
+  <figure class="th" style="margin:0">
+    <figcaption>
+      <h3>L1 · 節奏分級</h3><div class="sub">間距與寬度分三級</div>
+      <p class="why">不動結構，只讓間距與量測寬度<strong>跟著份量走</strong>：hero 112 / 內容區 96 / 收尾 72；列表放寬到 880，contact 收窄到 640。捲動時終於有段落。</p>
+    </figcaption>
+    <div class="sk">
+      <div class="sk-nav"><i style="width:14px"></i><i style="width:9px;margin-left:auto"></i><i style="width:9px"></i><i style="width:9px"></i></div>
+      <div class="sk-hero" style="padding-top:37px;padding-bottom:32px">
+        <div><span class="sk-l t" style="width:80px;height:6px"></span><span class="sk-l acc" style="width:52px;margin-top:5px"></span>
+          <span class="sk-l" style="width:92px;margin-top:7px"></span><span class="sk-l" style="width:88px;margin-top:3px"></span><span class="sk-l" style="width:70px;margin-top:3px"></span></div>
+        <div class="sk-mark" style="margin-left:auto"></div>
+      </div>
+      <div class="sk-sec" style="padding:32px 4px">
+        <span class="sk-l t" style="width:56px"></span><span class="sk-l" style="width:80px;margin-top:4px"></span>
+        <div style="margin-top:11px"><div class="sk-row"><span class="sk-l" style="width:26px;background:#33474f"></span><span class="sk-l t" style="width:92px;margin-top:3px"></span><span class="sk-l" style="width:66px;margin-top:3px"></span></div>
+        <div class="sk-row"><span class="sk-l" style="width:26px;background:#33474f"></span><span class="sk-l t" style="width:86px;margin-top:3px"></span><span class="sk-l" style="width:66px;margin-top:3px"></span></div>
+        <div class="sk-row"><span class="sk-l" style="width:26px;background:#33474f"></span><span class="sk-l t" style="width:96px;margin-top:3px"></span><span class="sk-l" style="width:66px;margin-top:3px"></span></div></div>
+      </div>
+      <div class="sk-sec" style="padding:32px 4px">
+        <span class="sk-l t" style="width:48px"></span>
+        <div style="margin-top:11px"><div class="sk-row"><span class="sk-l t" style="width:84px"></span><span class="sk-l" style="width:70px;margin-top:3px"></span></div>
+        <div class="sk-row"><span class="sk-l t" style="width:78px"></span><span class="sk-l" style="width:70px;margin-top:3px"></span></div></div>
+      </div>
+      <div class="sk-sec" style="padding:32px 4px">
+        <span class="sk-l t" style="width:44px"></span>
+        <div style="margin-top:11px"><div class="sk-row"><span class="sk-l t" style="width:88px"></span></div><div class="sk-row"><span class="sk-l t" style="width:80px"></span></div></div>
+      </div>
+      <div class="sk-sec" style="padding:24px 22px;text-align:center">
+        <span class="sk-l t" style="width:60px;margin:0 auto"></span>
+        <div style="display:flex;gap:4px;justify-content:center;margin-top:9px"><span class="sk-l acc" style="width:17px;height:7px"></span><span class="sk-l acc" style="width:17px;height:7px"></span><span class="sk-l acc" style="width:17px;height:7px"></span></div>
+      </div>
+      <div class="sk-foot"></div>
+    </div>
+  </figure>
+
+  <!-- ===== L2 ===== -->
+  <figure class="th" style="margin:0">
+    <figcaption>
+      <h3>L2 · 儀器欄</h3><div class="sub">左側 96px 標記欄</div>
+      <p class="why">把 <code>ExperienceItem</code> 已經在用的 <code>[120px_1fr]</code> 網格<strong>升格成全站骨架</strong>：左欄放編號與等寬分類標記，右欄放內容。這是 A 方向的結構化版本，整頁多一根脊椎。</p>
+    </figcaption>
+    <div class="sk">
+      <div class="sk-nav"><i style="width:14px"></i><i style="width:9px;margin-left:auto"></i><i style="width:9px"></i><i style="width:9px"></i></div>
+      <div class="sk-hero" style="padding-top:37px;padding-bottom:32px">
+        <div><span class="sk-l t" style="width:80px;height:6px"></span><span class="sk-l acc" style="width:52px;margin-top:5px"></span>
+          <span class="sk-l" style="width:92px;margin-top:7px"></span><span class="sk-l" style="width:88px;margin-top:3px"></span><span class="sk-l" style="width:70px;margin-top:3px"></span></div>
+        <div class="sk-mark" style="margin-left:auto"></div>
+      </div>
+      <div class="sk-sec" style="padding:32px 4px;display:flex;gap:7px">
+        <div class="sk-rail"><span class="sk-mono">01</span><span class="sk-l" style="width:18px;background:#33474f;margin-top:4px"></span></div>
+        <div style="flex:1">
+          <span class="sk-l t" style="width:56px"></span><span class="sk-l" style="width:76px;margin-top:4px"></span>
+          <div style="margin-top:11px"><div class="sk-row"><span class="sk-l" style="width:26px;background:#33474f"></span><span class="sk-l t" style="width:80px;margin-top:3px"></span><span class="sk-l" style="width:58px;margin-top:3px"></span></div>
+          <div class="sk-row"><span class="sk-l" style="width:26px;background:#33474f"></span><span class="sk-l t" style="width:74px;margin-top:3px"></span><span class="sk-l" style="width:58px;margin-top:3px"></span></div>
+          <div class="sk-row"><span class="sk-l" style="width:26px;background:#33474f"></span><span class="sk-l t" style="width:84px;margin-top:3px"></span><span class="sk-l" style="width:58px;margin-top:3px"></span></div></div>
+        </div>
+      </div>
+      <div class="sk-sec" style="padding:32px 4px;display:flex;gap:7px">
+        <div class="sk-rail"><span class="sk-mono">02</span><span class="sk-l" style="width:14px;background:#33474f;margin-top:4px"></span></div>
+        <div style="flex:1"><span class="sk-l t" style="width:48px"></span>
+          <div style="margin-top:11px"><div class="sk-row"><span class="sk-l t" style="width:76px"></span><span class="sk-l" style="width:62px;margin-top:3px"></span></div>
+          <div class="sk-row"><span class="sk-l t" style="width:70px"></span><span class="sk-l" style="width:62px;margin-top:3px"></span></div></div>
+        </div>
+      </div>
+      <div class="sk-sec" style="padding:32px 4px;display:flex;gap:7px">
+        <div class="sk-rail"><span class="sk-mono">03</span><span class="sk-l" style="width:16px;background:#33474f;margin-top:4px"></span></div>
+        <div style="flex:1"><span class="sk-l t" style="width:44px"></span>
+          <div style="margin-top:11px"><div class="sk-row"><span class="sk-l t" style="width:80px"></span></div><div class="sk-row"><span class="sk-l t" style="width:72px"></span></div></div>
+        </div>
+      </div>
+      <div class="sk-sec" style="padding:24px 4px;display:flex;gap:7px">
+        <div class="sk-rail"><span class="sk-mono">04</span></div>
+        <div style="flex:1"><span class="sk-l t" style="width:64px"></span>
+          <div style="display:flex;gap:4px;margin-top:9px"><span class="sk-l acc" style="width:17px;height:7px"></span><span class="sk-l acc" style="width:17px;height:7px"></span><span class="sk-l acc" style="width:17px;height:7px"></span></div>
+        </div>
+      </div>
+      <div class="sk-foot"></div>
+    </div>
+  </figure>
+
+  <!-- ===== L3 ===== -->
+  <figure class="th" style="margin:0">
+    <figcaption>
+      <h3>L3 · 密度分區</h3><div class="sub">每種內容用自己的密度</div>
+      <p class="why">論文變成<strong>表格式</strong>（年份靠右、等寬對齊數字），筆記變成<strong>兩欄卡片</strong>，經歷維持網格列。節奏來自內容型態本身的差異，不是靠間距硬撐。</p>
+    </figcaption>
+    <div class="sk">
+      <div class="sk-nav"><i style="width:14px"></i><i style="width:9px;margin-left:auto"></i><i style="width:9px"></i><i style="width:9px"></i></div>
+      <div class="sk-hero" style="padding-top:37px;padding-bottom:32px">
+        <div><span class="sk-l t" style="width:80px;height:6px"></span><span class="sk-l acc" style="width:52px;margin-top:5px"></span>
+          <span class="sk-l" style="width:92px;margin-top:7px"></span><span class="sk-l" style="width:88px;margin-top:3px"></span><span class="sk-l" style="width:70px;margin-top:3px"></span></div>
+        <div class="sk-mark" style="margin-left:auto"></div>
+      </div>
+      <div class="sk-sec" style="padding:32px 4px">
+        <span class="sk-l t" style="width:56px"></span>
+        <div style="margin-top:11px">
+          <div class="sk-row" style="display:flex;align-items:center;gap:6px;padding:4px 6px"><span class="sk-l t" style="width:92px"></span><span class="sk-mono" style="margin-left:auto">2026</span></div>
+          <div class="sk-row" style="display:flex;align-items:center;gap:6px;padding:4px 6px"><span class="sk-l t" style="width:84px"></span><span class="sk-mono" style="margin-left:auto">2026</span></div>
+          <div class="sk-row" style="display:flex;align-items:center;gap:6px;padding:4px 6px"><span class="sk-l t" style="width:96px"></span><span class="sk-mono" style="margin-left:auto">2025</span></div>
+          <div class="sk-row" style="display:flex;align-items:center;gap:6px;padding:4px 6px"><span class="sk-l t" style="width:88px"></span><span class="sk-mono" style="margin-left:auto">2025</span></div>
+        </div>
+      </div>
+      <div class="sk-sec" style="padding:32px 4px">
+        <span class="sk-l t" style="width:48px"></span>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:11px">
+          <div class="sk-row" style="border:1px solid #33474f;border-radius:2px"><span class="sk-l t" style="width:56px"></span><span class="sk-l" style="width:48px;margin-top:3px"></span><span class="sk-l" style="width:40px;margin-top:2px"></span></div>
+          <div class="sk-row" style="border:1px solid #33474f;border-radius:2px"><span class="sk-l t" style="width:50px"></span><span class="sk-l" style="width:48px;margin-top:3px"></span><span class="sk-l" style="width:44px;margin-top:2px"></span></div>
+        </div>
+      </div>
+      <div class="sk-sec" style="padding:32px 4px">
+        <span class="sk-l t" style="width:44px"></span>
+        <div style="margin-top:11px">
+          <div class="sk-row" style="display:flex;gap:7px"><span class="sk-mono" style="flex:0 0 22px">2022–</span><span><span class="sk-l t" style="width:66px"></span><span class="sk-l" style="width:52px;margin-top:3px"></span></span></div>
+          <div class="sk-row" style="display:flex;gap:7px"><span class="sk-mono" style="flex:0 0 22px">2019–</span><span><span class="sk-l t" style="width:60px"></span><span class="sk-l" style="width:52px;margin-top:3px"></span></span></div>
+        </div>
+      </div>
+      <div class="sk-sec" style="padding:24px 22px;text-align:center">
+        <span class="sk-l t" style="width:60px;margin:0 auto"></span>
+        <div style="display:flex;gap:4px;justify-content:center;margin-top:9px"><span class="sk-l acc" style="width:17px;height:7px"></span><span class="sk-l acc" style="width:17px;height:7px"></span><span class="sk-l acc" style="width:17px;height:7px"></span></div>
+      </div>
+      <div class="sk-foot"></div>
+    </div>
+  </figure>
+
+</div>
+
+<p class="note">
+  <strong>三案不互斥。</strong>L1 是地基（間距與寬度分級），L2 加骨架（左側標記欄），L3 加變化（各內容型態自己的密度）。
+  我的建議是 <strong>L1 + L2</strong>：L1 解決「沒有段落感」，L2 把已經存在於 <code>ExperienceItem</code> 的網格升格成系統、也讓 A 方向的等寬 metadata 有地方住。
+  L3 的兩欄筆記卡片會讓 <code>CardList</code> 那套 1px 縫線分隔器整個重寫，收益（變化）比不上成本，建議只取它的<strong>論文年份靠右對齊</strong>那一項。
+</p>
+
+<hr class="sep">
+
+<h2 class="q">細部（真實尺寸）：L1+L2 長這樣</h2>
+<p class="qs">左欄 96px 放編號與等寬分類，右欄 720px 放內容。滑鼠移到論文列上看發光 hover。</p>
+
+<div class="detail" style="padding:44px 40px">
+  <div class="dl" style="display:grid;grid-template-columns:96px 1fr;gap:28px;max-width:880px">
+    <div>
+      <div class="d-mono">01</div>
+      <div class="d-mono" style="margin-top:6px;color:#5d7078;font-size:10px">RESEARCH</div>
+    </div>
+    <div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding-bottom:14px;border-bottom:1px solid #33474f;margin-bottom:18px">
+        <div><div class="d-h">Selected <em>Publications</em></div>
+          <div class="d-sub">Recent research in Natural Language Processing and Large Language Models</div></div>
+        <a class="d-va" href="#">View all →</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div class="d-row js-spot"><span class="spot"></span>
+          <span class="badge">Findings of ACL 2026</span>
+          <p class="d-t">No One Fits All: From Fixed Prompting to Learned Routing in Multilingual LLMs</p>
+          <p class="d-a">Wei-Chi Wu, <b>Sheng-Lun Wei</b>, Hen-Hsen Huang, Hsin-Hsi Chen</p>
+          <div class="d-lk"><a href="#">PDF</a><span>·</span><a href="#">DOI</a><span>·</span><a href="#">Abstract</a><span>·</span><a href="#">BibTeX</a></div>
+        </div>
+        <div class="d-row js-spot"><span class="spot"></span>
+          <span class="badge">Findings of EACL 2026</span>
+          <p class="d-t">Do Multimodal LLMs Understand Order? Measuring the Fragility of Multimodal Reasoning under Input Order Perturbations</p>
+          <p class="d-a"><b>Sheng-Lun Wei</b>, Yu-Ling Liao, Hen-Hsen Huang, Hsin-Hsi Chen</p>
+          <div class="d-lk"><a href="#">PDF</a><span>·</span><a href="#">DOI</a><span>·</span><a href="#">Abstract</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<table class="f">
+  <tr><th>值</th><th>現況</th><th>L1 + L2 提案</th></tr>
+  <tr><td>區塊垂直間距</td><td>72px（唯一值，全站）</td><td>112 / 96 / 72 三級，跟份量走</td></tr>
+  <tr><td>內容寬度</td><td>720px（4/6 頁）＋ 7 個零散值</td><td>1100 導覽與 hero / 880 列表（96 欄 + 28 溝 + 720 內容）/ 640 收尾 / 68ch 長文</td></tr>
+  <tr><td>h1 樣式</td><td>四頁四種尺寸與對齊</td><td>一種：serif、靠左、28px（hero 的 clamp 保留為唯一例外）</td></tr>
+  <tr><td>分隔機制</td><td>兩套（CardList 的 1px 縫 vs ExperienceItem 的 border-b）</td><td>一套：卡片間 8px 間隙 ＋ 各自描邊，hover 才需要獨立邊界</td></tr>
+  <tr><td>字級</td><td>9 級，13px 做 23 種工作</td><td>6 級：11 等寬標記 / 13 metadata / 16 內文 / 20 卡片標題 / 28 區塊標題 / clamp hero</td></tr>
+</table>
+
+<hr class="sep">
+
+<h2 class="q">等寬字型選哪個</h2>
+<p class="qs">A 方向要等寬字接管 metadata（會議名、年份、編號）。站上目前沒有等寬字，所以這是一次新的字型載入。</p>
+
+<div class="mono-grid">
+  <div class="mono-c">
+    <div class="nm">JetBrains Mono</div>
+    <div class="sample" style="font-family:'JetBrains Mono',monospace">FINDINGS OF ACL 2026<b>01 / RESEARCH &nbsp; 2019–2025</b></div>
+    <div class="spec">字腔大、x-height 高，小尺寸最清楚。字重完整。<br>+1 次字型載入（約 &lt;20KB，只取 400/500/600 拉丁子集）。</div>
+  </div>
+  <div class="mono-c">
+    <div class="nm">IBM Plex Mono</div>
+    <div class="sample" style="font-family:'IBM Plex Mono',monospace">FINDINGS OF ACL 2026<b>01 / RESEARCH &nbsp; 2019–2025</b></div>
+    <div class="spec">較窄、學術味重，和 Young Serif 的骨架比較合。11px 時略緊。<br>+1 次字型載入。</div>
+  </div>
+  <div class="mono-c">
+    <div class="nm">系統等寬（零載入）</div>
+    <div class="sample" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">FINDINGS OF ACL 2026<b>01 / RESEARCH &nbsp; 2019–2025</b></div>
+    <div class="spec">Mac 上是 SF Mono、Windows 上是 Consolas —— <strong>每台電腦看到的不一樣</strong>，你無法控制成品。<br>成本 0，但一致性也是 0。</div>
+  </div>
+</div>
+
+<p class="note">
+  建議 <strong>JetBrains Mono</strong>：這些字最常出現在 10–11px（徽章、編號、年份），那個尺寸下字腔大小直接決定看不看得清，而它是三者中字腔最大的。
+  站上已經載了三個字族（Young Serif / Albert Sans / Noto TC），第四個只取拉丁子集與三個字重，實際增量很小。
+</p>
+
+<script>
+document.querySelectorAll('.js-spot').forEach(function(el){
+  el.addEventListener('mousemove',function(e){
+    var r=el.getBoundingClientRect();
+    el.style.setProperty('--mx',(e.clientX-r.left)+'px');
+    el.style.setProperty('--my',(e.clientY-r.top)+'px');
+  });
+});
+</script>
+</div>
