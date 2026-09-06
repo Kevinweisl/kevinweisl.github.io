@@ -3,10 +3,10 @@
 Kevin：「Is there any way to make the design better? 包含排版、配色、或是一些網頁的小特效(when mouse hover) 讓網站更有科技感一些」
 
 規格：`docs/superpowers/specs/2026-09-06-tech-redesign-design.md`
-選項板（Kevin 據以決定的東西）：`tasks/palette-options-r2.html`、`tasks/layout-options.html`
+選項板（Kevin 據以決定的東西）：`tasks/palette-options-r2.html`、`tasks/layout-options.html`、`tasks/hover-merge.html`
 
 ## 已定案
-- 字體語彙 **A 精密儀器**、互動 **C 發光**
+- 字體語彙 **A 精密儀器**、互動 **M1**（A 的左側指示條與右推 + C 的聚光燈，不上浮）
 - 配色 **印記藍 + 深空**：accent `#A0CCE7`（KW 字標取色）、ground `#06090B`
 - 版面 **L1 節奏分級 + L2 儀器欄**，另取 L3 的論文年份靠右
 - 等寬字 **JetBrains Mono**
@@ -14,7 +14,7 @@ Kevin：「Is there any way to make the design better? 包含排版、配色、�
 
 ## 實作（五層，每層結束時網站都必須可部署）
 - [ ] 1 Token 層 — `globals.css` token、JetBrains Mono 載入、`.mono` 工具、`.impeccable.md` 同步
-- [ ] 2 尺度層 — 間距/寬度/字級三組尺度、h1 統一、分隔機制統一、Footer 對齊 1100
+- [ ] 2 尺度層 — 間距/寬度/字級三組尺度、h1 統一、Footer 對齊 1100
 - [ ] 3 骨架層 — 儀器欄進 `Section` 與 `PageShell`，各頁填入定位資訊
 - [ ] 4 互動層 — `Spotlight.tsx`、hover、減量動效、Hero 環境網格
 - [ ] 5 測試層 — 三個新測試 + 六頁人工驗收

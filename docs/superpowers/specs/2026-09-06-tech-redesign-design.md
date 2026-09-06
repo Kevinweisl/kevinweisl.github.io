@@ -23,7 +23,7 @@ Kevin 的原始需求：「排版、配色、hover 特效，讓網站更有科�
 | 決策 | 選擇 | 依據 |
 |---|---|---|
 | 字體語彙 | **A 精密儀器** — 等寬字接管 metadata、區塊編號、髮絲線分隔 | Kevin 從三案並排選擇（`tasks/` 對照板） |
-| 互動 | **C 發光** — 上浮、亮框、跟隨游標的聚光 | 同上 |
+| 互動 | **M1** — A 的左側指示條與右推 ＋ C 的聚光燈 | `tasks/hover-merge.html` 三案並排 |
 | 配色 | **印記藍 ＋ 深空** — accent `#A0CCE7`、ground `#06090B` | `tasks/palette-options-r2.html` 四案並排 |
 | 版面 | **L1 節奏分級 ＋ L2 儀器欄**，另取 L3 的論文年份靠右 | `tasks/layout-options.html` 三案並排 |
 | 等寬字型 | **JetBrains Mono**（400/500/600，拉丁子集） | 字腔最大，metadata 多落在 10–11px |
@@ -51,6 +51,7 @@ Kevin 的原始需求：「排版、配色、hover 特效，讓網站更有科�
 |---|---|---|---|
 | `--bg-primary` | `#06090B` | — | — |
 | `--bg-card` | `#101A1F` | 1.13 | — |
+| `--bg-card-hover` | `#152530` | 1.27 | 1.13 |
 | `--bg-footer` | `#030506` | — | — |
 | `--bg-nav` | `rgba(6, 9, 11, 0.9)` | — | — |
 | `--text-primary` | `#E6F0F2` | 17.22 | 15.22 |
@@ -63,16 +64,16 @@ Kevin 的原始需求：「排版、配色、hover 特效，讓網站更有科�
 | `--text-on-primary` | `#06090B` | 對 accent 11.68 | — |
 | `--brand` | `#EAA9C8` | 10.47 | 9.25 |
 | `--border` | `#33474F` | 2.05 | 1.81 |
-| `--border-hover` | `#57808F` | — | 4.11 |
 
 全數通過 WCAG AA。最低是 muted 落在卡片上 5.92 —— 現況是 4.78，**小字反而變好讀**，這對 A 方向大量使用 10–11px 等寬 metadata 是必要條件。
+
+`--bg-card-hover` 是 hover 時列的表面，所以它上面的五個文字色各自重驗過：text-primary 13.52、text-body 6.79、text-muted 5.26、accent 9.17、brand 8.22，全數通過 AA。色相 204.4°，與 ground 的 204.0° 同線。
 
 ### 新增的光感 token
 
 ```
---glow:           rgba(160, 204, 231, 0.17);   /* 聚光與 hover 陰影 */
---shadow-card-hover: 0 14px 34px var(--glow);
---grid-line:      rgba(160, 204, 231, 0.045);  /* hero 環境網格 */
+--glow:       rgba(160, 204, 231, 0.17);   /* 聚光 */
+--grid-line:  rgba(160, 204, 231, 0.045);  /* hero 環境網格 */
 ```
 
 `--grid-line` 的透明度刻意壓在 0.05 以下：網格是氛圍不是內容，看得出來就過頭了。
@@ -155,9 +156,13 @@ Kevin 的原始需求：「排版、配色、hover 特效，讓網站更有科�
 
 四頁四種尺寸與對齊，收斂成一種：**serif、靠左、28px、`--text-primary`**。Hero 的 clamp 是唯一例外（它是封面不是標題）。`PageShell` 現行的置中＋粉紅色 h1 取消——粉紅的三個工作不包含「整個頁面標題」。
 
-### 分隔機制統一
+### 分隔機制：維持現狀
 
-現行兩套並存：`CardList` 用 1px 間隙露出底色當縫線，`ExperienceItem` 用真的 `border-b`。C 方向的卡片要能上浮、要有自己的亮框，就必須各自有邊界。統一為：**卡片之間 8px 間隙，每張卡片自己的 1px 描邊**。`CardList` 的縫線機制移除。
+現行兩套並存：`CardList` 用 1px 間隙露出底色當縫線，`ExperienceItem` 用真的 `border-b`。兩者渲染結果一致，都是一條髮絲線。
+
+**不動它。** 這條原本要改成「8px 間隙 + 各張卡片自己的描邊」，理由是卡片要能上浮、要有自己的亮框——但 hover 定案為 M1（連續平列、左側指示條、不上浮）之後，這個理由消失了。左側指示條反而**需要**列與列連續：指示條貼著列的左緣由上往下展開，在有間隙的獨立卡片上會變成四段浮在空中的短線。
+
+保留現狀還讓這次改版少動一個元件。兩套機制的並存本身是個小債，但它不屬於這次改版要解決的三個問題，不順手夾帶。
 
 ### 頁尾
 
@@ -167,16 +172,24 @@ Kevin 的原始需求：「排版、配色、hover 特效，讓網站更有科�
 
 ## 三、互動
 
-### 卡片 hover
+### 列 hover（方案 M1）
+
+四件事同時發生，由 `tasks/hover-merge.html` 三案並排選出：
 
 ```
-transform:    translateY(-3px)
-border-color: --border → --border-hover (#57808F)
-box-shadow:   --shadow-card-hover
-badge:        --text-muted → --accent（文字與描邊同時）
-聚光:         radial-gradient(220px circle at var(--mx) var(--my), var(--glow), transparent 60%)
-transition:   transform .25s cubic-bezier(.2,.8,.2,1), box-shadow/border-color .25s ease
+左側指示條:  ::before，2px 寬、滿高、--accent
+             transform: scaleY(0) → scaleY(1)，transform-origin: top
+             .22s cubic-bezier(.2,.8,.2,1)          ← 由上往下展開，不是淡入
+整列右推:    padding-left 18px → 24px               ← 位移 6px，同一條曲線
+底色:        --bg-card → --bg-card-hover            .18s ease
+徽章:        --text-muted → --accent（文字與描邊同時）  .18s ease
+聚光:        radial-gradient(220px circle at var(--mx) var(--my), var(--glow), transparent 60%)
+             opacity 0 → 1                          .25s ease
 ```
+
+**沒有上浮、沒有外框轉亮。** 那是 C 原案獨立卡片模型的行為，與 M1 的連續平列不相容——右推與上浮同時做，列會斜著跑。
+
+右推用 `padding-left` 而非 `transform: translateX`：指示條是列的 `::before`，必須留在原位，動的是內容而不是整個盒子。代價是 `padding` 不在合成器路徑上，但這裡只有單一列在動、且 6px 的距離不會觸發文字重排以外的成本。若實測有掉幀，改用內層 wrapper 的 `translateX`，指示條留在外層。
 
 ### 聚光的實作：一個擁有者
 
@@ -195,7 +208,8 @@ transition:   transform .25s cubic-bezier(.2,.8,.2,1), box-shadow/border-color .
 
 ```css
 @media (prefers-reduced-motion: reduce) {
-  /* 位移與聚光全關，只留顏色變化 —— 狀態仍然看得出來 */
+  /* 右推與聚光全關；指示條改為直接顯示（不做 scaleY 展開），底色與徽章的顏色變化保留。
+     四件事降成兩件，但「這一列被選中」仍然明確。 */
 }
 ```
 
@@ -224,7 +238,7 @@ hover 的視覺效果一律包在 `@media (hover: hover)` 內，觸控裝置不�
 - `Section.tsx`、`PageShell.tsx` — 儀器欄網格、h1 統一
 - `Hero.tsx` — 節奏、字級、環境網格
 - `Navbar.tsx`、`Footer.tsx` — 對齊 1100 欄
-- `CardList.tsx` — 縫線改間隙
+- `CardList.tsx` — **不動**（M1 定案後，縫線機制保留）
 
 **列表元件**
 
@@ -271,7 +285,7 @@ hover 的視覺效果一律包在 `@media (hover: hover)` 內，觸控裝置不�
 配色是地基，版面坐在上面，互動坐在版面上面。順序即依賴：
 
 1. **Token 層** — `globals.css` 的 token、JetBrains Mono 載入、`.mono` 工具、`.impeccable.md` 同步更新。此時全站應該只是「換了顏色」，版面不動。
-2. **尺度層** — 三組尺度（間距、寬度、字級）、h1 統一、分隔機制統一、Footer 對齊。
+2. **尺度層** — 三組尺度（間距、寬度、字級）、h1 統一、Footer 對齊 1100 欄。
 3. **骨架層** — 儀器欄進 `Section` 與 `PageShell`，各頁填入定位資訊。
 4. **互動層** — `Spotlight`、hover、減量動效、Hero 環境網格。
 5. **測試層** — 三個新測試 ＋ 六頁人工驗收。

@@ -1,0 +1,246 @@
+<meta charset="utf-8">
+<title>Hover 合併三案 — A 的左側線 × C 的聚光燈</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700&family=Young+Serif&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root{--ground:#f4f6f6;--panel:#fff;--ink:#14191b;--muted:#697276;--rule:#e0e4e5;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:"Albert Sans","Noto Sans TC",system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1320px;margin:0 auto;padding:48px 32px 96px}
+h1{font-family:"Young Serif",Georgia,serif;font-weight:400;font-size:30px;margin:0 0 10px}
+header p{margin:0 0 6px;max-width:84ch;color:#3d4649;font-size:15px}
+header .hint{color:var(--muted);font-size:13.5px}
+hr.sep{border:0;border-top:1px solid var(--rule);margin:34px 0}
+
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.opt{background:var(--panel);border:1px solid var(--rule);border-radius:10px;overflow:hidden;box-shadow:0 1px 2px rgba(20,25,27,.06)}
+.opt>figcaption{padding:16px 18px;border-bottom:1px solid var(--rule)}
+.opt h2{font-size:16px;margin:0 0 3px;font-weight:600}
+.opt .sub{font-size:12px;color:var(--muted);font-weight:500}
+.opt .why{font-size:13px;color:#3d4649;margin:9px 0 0;line-height:1.6}
+.moves{margin:10px 0 0;padding:0;list-style:none;font-size:12.5px}
+.moves li{padding:2px 0 2px 15px;position:relative;color:#3d4649}
+.moves li::before{content:'';position:absolute;left:0;top:10px;width:7px;height:1px;background:#a9b1b3}
+.moves li.no{color:#8d9698;text-decoration:line-through}
+
+/* ---------- 樣本 ---------- */
+.stage{background:#06090b;padding:22px 20px 24px}
+.stage *{box-sizing:border-box}
+.mono{font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums}
+.badge{font:600 10px/1.4 "JetBrains Mono",monospace;letter-spacing:.06em;text-transform:uppercase;color:#84999f;
+  border:1px solid #33474f;padding:2px 6px;border-radius:2px;display:inline-block;margin-bottom:8px;
+  font-variant-numeric:tabular-nums;transition:color .18s,border-color .18s}
+.t{font-family:"Young Serif",Georgia,serif;font-size:14.5px;font-weight:400;line-height:1.4;color:#e6f0f2;margin:0 0 5px}
+.a{font-size:12px;color:#84999f;margin:0 0 8px}
+.a b{color:#eaa9c8;font-weight:600}
+.lk{display:flex;gap:6px;align-items:center;font-size:12px}
+.lk a{color:#a0cce7;text-decoration:none;font-weight:500}
+.lk a:hover{text-decoration:underline}
+.lk span{color:#84999f}
+.spot{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .25s ease;
+  background:radial-gradient(220px circle at var(--mx,50%) var(--my,50%),rgba(160,204,231,.17),transparent 60%)}
+
+/* ===== M1：A 的平列 + 左側線 + 右推 + 聚光 ===== */
+.M1 .list{border:1px solid #33474f;border-radius:4px;overflow:hidden}
+.M1 .row{position:relative;background:#101a1f;padding:14px 16px 14px 18px;border-bottom:1px solid #33474f;overflow:hidden;
+  transition:background .18s ease,padding-left .22s cubic-bezier(.2,.8,.2,1)}
+.M1 .row:last-child{border-bottom:0}
+.M1 .row::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:#a0cce7;
+  transform:scaleY(0);transform-origin:top;transition:transform .22s cubic-bezier(.2,.8,.2,1)}
+.M1 .row:hover{background:#14222a;padding-left:24px}
+.M1 .row:hover::before{transform:scaleY(1)}
+.M1 .row:hover .spot{opacity:1}
+.M1 .row:hover .badge{color:#a0cce7;border-color:#a0cce7}
+
+/* ===== M2：同上但不位移 ===== */
+.M2 .list{border:1px solid #33474f;border-radius:4px;overflow:hidden}
+.M2 .row{position:relative;background:#101a1f;padding:14px 16px 14px 18px;border-bottom:1px solid #33474f;overflow:hidden;
+  transition:background .18s ease}
+.M2 .row:last-child{border-bottom:0}
+.M2 .row::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:#a0cce7;
+  transform:scaleY(0);transform-origin:top;transition:transform .22s cubic-bezier(.2,.8,.2,1)}
+.M2 .row:hover{background:#14222a}
+.M2 .row:hover::before{transform:scaleY(1)}
+.M2 .row:hover .spot{opacity:1}
+.M2 .row:hover .badge{color:#a0cce7;border-color:#a0cce7}
+
+/* ===== M3：C 的獨立卡片 + 左側線 + 上浮 + 聚光 ===== */
+.M3 .list{display:flex;flex-direction:column;gap:8px}
+.M3 .row{position:relative;background:#101a1f;border:1px solid #33474f;border-radius:5px;
+  padding:14px 16px 14px 18px;overflow:hidden;
+  transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s ease,border-color .25s ease}
+.M3 .row::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:#a0cce7;
+  transform:scaleY(0);transform-origin:top;transition:transform .22s cubic-bezier(.2,.8,.2,1)}
+.M3 .row:hover{transform:translateY(-3px);border-color:#57808f;box-shadow:0 14px 34px rgba(160,204,231,.17)}
+.M3 .row:hover::before{transform:scaleY(1)}
+.M3 .row:hover .spot{opacity:1}
+.M3 .row:hover .badge{color:#a0cce7;border-color:#a0cce7}
+
+.note{font-size:13.5px;color:#3d4649;margin-top:14px;max-width:88ch;line-height:1.7}
+code{font-family:"JetBrains Mono",monospace;font-size:.9em;background:#eceff0;padding:1px 5px;border-radius:3px}
+table.f{border-collapse:collapse;font-size:13.5px;margin-top:18px;width:100%;max-width:900px}
+table.f th,table.f td{border:1px solid var(--rule);padding:8px 12px;text-align:left;vertical-align:top}
+table.f th{background:#eceff0;font-weight:600}
+table.f td:first-child{white-space:nowrap;font-weight:500}
+</style>
+
+<div class="wrap">
+<header>
+  <h1>Hover 合併三案</h1>
+  <p>
+    修正：先前的 spec 把 <strong>A 的 hover 弄丟了</strong>，只留下 C。這三案都把 A 的左側線放回來，
+    差別在<strong>還要不要位移</strong>、以及<strong>容器是連續平列還是獨立卡片</strong>。
+  </p>
+  <p class="hint">請把滑鼠移到每一列上，三塊互相對照。配色是已鎖定的印記藍 + 深空。</p>
+</header>
+
+<hr class="sep">
+
+<div class="grid">
+
+  <!-- ===== M1 ===== -->
+  <figure class="opt M1" style="margin:0">
+    <figcaption>
+      <h2>M1 · 完整的 A ＋ 聚光</h2>
+      <div class="sub">連續平列 · 有右推</div>
+      <ul class="moves">
+        <li>左側 2px 指示條由上往下展開</li>
+        <li>整列右推 6px</li>
+        <li>底色微亮、徽章亮起</li>
+        <li>跟游標的聚光</li>
+        <li class="no">上浮</li>
+      </ul>
+      <p class="why">最忠於第一張板子上 A 的行為，加掛 C 的聚光。列與列之間仍是髮絲線，<strong><code>CardList</code> 現有的分隔機制不用改</strong>。</p>
+    </figcaption>
+    <div class="stage">
+      <div class="list">
+        <div class="row js-spot"><span class="spot"></span>
+          <span class="badge">Findings of ACL 2026</span>
+          <p class="t">No One Fits All: From Fixed Prompting to Learned Routing in Multilingual LLMs</p>
+          <p class="a">Wei-Chi Wu, <b>Sheng-Lun Wei</b>, Hen-Hsen Huang, Hsin-Hsi Chen</p>
+          <div class="lk"><a href="#">PDF</a><span>·</span><a href="#">DOI</a><span>·</span><a href="#">Abstract</a></div>
+        </div>
+        <div class="row js-spot"><span class="spot"></span>
+          <span class="badge">Findings of EACL 2026</span>
+          <p class="t">Do Multimodal LLMs Understand Order? Measuring the Fragility of Multimodal Reasoning</p>
+          <p class="a"><b>Sheng-Lun Wei</b>, Yu-Ling Liao, Hen-Hsen Huang, Hsin-Hsi Chen</p>
+          <div class="lk"><a href="#">PDF</a><span>·</span><a href="#">DOI</a><span>·</span><a href="#">Abstract</a></div>
+        </div>
+        <div class="row js-spot"><span class="spot"></span>
+          <span class="badge">SIGIR 2025</span>
+          <p class="t">Enhancing Personalized Multi-Turn Dialogue with Curiosity Reward</p>
+          <p class="a"><b>Sheng-Lun Wei</b>, Hen-Hsen Huang, Hsin-Hsi Chen</p>
+          <div class="lk"><a href="#">PDF</a><span>·</span><a href="#">DOI</a></div>
+        </div>
+      </div>
+    </div>
+  </figure>
+
+  <!-- ===== M2 ===== -->
+  <figure class="opt M2" style="margin:0">
+    <figcaption>
+      <h2>M2 · A 的線 ＋ 聚光，不位移</h2>
+      <div class="sub">連續平列 · 無位移</div>
+      <ul class="moves">
+        <li>左側 2px 指示條由上往下展開</li>
+        <li>底色微亮、徽章亮起</li>
+        <li>跟游標的聚光</li>
+        <li class="no">右推</li>
+        <li class="no">上浮</li>
+      </ul>
+      <p class="why">同 M1，但整列不動。指示條與聚光已經足夠標示「這一列被選中」，位移只是額外的動。掃過長列表（<code>/publications</code> 有二十幾筆）時最不吵。</p>
+    </figcaption>
+    <div class="stage">
+      <div class="list">
+        <div class="row js-spot"><span class="spot"></span>
+          <span class="badge">Findings of ACL 2026</span>
+          <p class="t">No One Fits All: From Fixed Prompting to Learned Routing in Multilingual LLMs</p>
+          <p class="a">Wei-Chi Wu, <b>Sheng-Lun Wei</b>, Hen-Hsen Huang, Hsin-Hsi Chen</p>
+          <div class="lk"><a href="#">PDF</a><span>·</span><a href="#">DOI</a><span>·</span><a href="#">Abstract</a></div>
+        </div>
+        <div class="row js-spot"><span class="spot"></span>
+          <span class="badge">Findings of EACL 2026</span>
+          <p class="t">Do Multimodal LLMs Understand Order? Measuring the Fragility of Multimodal Reasoning</p>
+          <p class="a"><b>Sheng-Lun Wei</b>, Yu-Ling Liao, Hen-Hsen Huang, Hsin-Hsi Chen</p>
+          <div class="lk"><a href="#">PDF</a><span>·</span><a href="#">DOI</a><span>·</span><a href="#">Abstract</a></div>
+        </div>
+        <div class="row js-spot"><span class="spot"></span>
+          <span class="badge">SIGIR 2025</span>
+          <p class="t">Enhancing Personalized Multi-Turn Dialogue with Curiosity Reward</p>
+          <p class="a"><b>Sheng-Lun Wei</b>, Hen-Hsen Huang, Hsin-Hsi Chen</p>
+          <div class="lk"><a href="#">PDF</a><span>·</span><a href="#">DOI</a></div>
+        </div>
+      </div>
+    </div>
+  </figure>
+
+  <!-- ===== M3 ===== -->
+  <figure class="opt M3" style="margin:0">
+    <figcaption>
+      <h2>M3 · 全都要</h2>
+      <div class="sub">獨立卡片 · 上浮</div>
+      <ul class="moves">
+        <li>左側 2px 指示條由上往下展開</li>
+        <li>上浮 3px、外框轉亮</li>
+        <li>徽章亮起</li>
+        <li>跟游標的聚光</li>
+        <li class="no">右推（與上浮衝突，擇一）</li>
+      </ul>
+      <p class="why">維持我原本 spec 的獨立卡片模型（8px 間隙、各自描邊），再把左側線加回去。四件事同時發生，最華麗也最吵；<code>CardList</code> 的分隔機制仍要重寫。</p>
+    </figcaption>
+    <div class="stage">
+      <div class="list">
+        <div class="row js-spot"><span class="spot"></span>
+          <span class="badge">Findings of ACL 2026</span>
+          <p class="t">No One Fits All: From Fixed Prompting to Learned Routing in Multilingual LLMs</p>
+          <p class="a">Wei-Chi Wu, <b>Sheng-Lun Wei</b>, Hen-Hsen Huang, Hsin-Hsi Chen</p>
+          <div class="lk"><a href="#">PDF</a><span>·</span><a href="#">DOI</a><span>·</span><a href="#">Abstract</a></div>
+        </div>
+        <div class="row js-spot"><span class="spot"></span>
+          <span class="badge">Findings of EACL 2026</span>
+          <p class="t">Do Multimodal LLMs Understand Order? Measuring the Fragility of Multimodal Reasoning</p>
+          <p class="a"><b>Sheng-Lun Wei</b>, Yu-Ling Liao, Hen-Hsen Huang, Hsin-Hsi Chen</p>
+          <div class="lk"><a href="#">PDF</a><span>·</span><a href="#">DOI</a><span>·</span><a href="#">Abstract</a></div>
+        </div>
+        <div class="row js-spot"><span class="spot"></span>
+          <span class="badge">SIGIR 2025</span>
+          <p class="t">Enhancing Personalized Multi-Turn Dialogue with Curiosity Reward</p>
+          <p class="a"><b>Sheng-Lun Wei</b>, Hen-Hsen Huang, Hsin-Hsi Chen</p>
+          <div class="lk"><a href="#">PDF</a><span>·</span><a href="#">DOI</a></div>
+        </div>
+      </div>
+    </div>
+  </figure>
+
+</div>
+
+<table class="f">
+  <tr><th></th><th>M1</th><th>M2</th><th>M3</th></tr>
+  <tr><td>左側指示條</td><td>有</td><td>有</td><td>有</td></tr>
+  <tr><td>聚光燈</td><td>有</td><td>有</td><td>有</td></tr>
+  <tr><td>位移</td><td>右推 6px</td><td>無</td><td>上浮 3px</td></tr>
+  <tr><td>容器</td><td>連續平列、髮絲線</td><td>連續平列、髮絲線</td><td>獨立卡片、8px 間隙</td></tr>
+  <tr><td><code>CardList</code></td><td>不用改</td><td>不用改</td><td>分隔機制重寫</td></tr>
+  <tr><td>掃長列表時</td><td>列會跳動</td><td>安靜</td><td>卡片會跳動</td></tr>
+  <tr><td>減量動效降級成</td><td>只剩指示條與底色</td><td>幾乎不用降級</td><td>只剩指示條與外框</td></tr>
+</table>
+
+<p class="note">
+  <strong>我的建議：M2。</strong>你要的兩件事（A 的左側線、C 的聚光燈）它都完整保留，而且
+  <code>/publications</code> 那種二十幾筆的長列表滑過去時不會整排跳動 —— 指示條是「精密儀器」的語彙，
+  它的說服力來自<em>準確</em>而不是<em>幅度</em>。M2 也讓 spec 少改一件事：<code>CardList</code>
+  現有的 1px 髮絲線分隔可以原封不動留著，不需要改成間隙加描邊。
+</p>
+
+<script>
+document.querySelectorAll('.js-spot').forEach(function(el){
+  el.addEventListener('mousemove',function(e){
+    var r=el.getBoundingClientRect();
+    el.style.setProperty('--mx',(e.clientX-r.left)+'px');
+    el.style.setProperty('--my',(e.clientY-r.top)+'px');
+  });
+});
+</script>
+</div>
