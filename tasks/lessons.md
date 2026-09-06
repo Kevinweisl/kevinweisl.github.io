@@ -153,3 +153,23 @@ grid 容器裡？** 如果不會，那個對齊就要靠猜高度或負 margin�
 **做對的地方**：發現在寫 hack 的當下就停了，把它做成能動的狀態（期間改成列內的 mono metadata）、
 在 commit message 裡寫清楚為什麼沒做原案，並把那個決定放回 `tasks/todo.md` 讓 Kevin 決定要不要
 付重構成本。沒有硬幹，也沒有默默降級當作沒事。
+
+## 2026-09-06 — CSS grid 的 auto-placement 是 sparse 的，它不會往回填
+
+**Context**: `RailGrid` 把每一列拆成 rail 格（`col-start-1`）與 content 格（`col-start-2`），
+想靠 auto-placement 讓同一列的兩格自動落在同一個 grid row。DOM 順序是 content 先（為了
+螢幕閱讀器先聽到標題），rail 後。
+
+**Mistake**: 以為「指定了 column，row 交給 auto」就會填進第一個空格。實際上
+`grid-auto-flow: row` 的預設是 **sparse**：游標只會往前走，不會回頭找前面那列的空位。
+所以 content 放進 row 1 col 2 之後，接著的 rail 指定 col 1，游標已經過了 row 1，
+於是它落到 row 2。畫面上期間會整排往下錯開一列。
+
+**Rule**: 只要一個 grid 裡有「同一列但 DOM 順序與視覺順序不同」的格子，就**明確寫出
+`grid-row`**，不要依賴 auto-placement。`grid-auto-flow: dense` 也能填回去，但它會重排
+其他項目，對可及性與可預測性更糟。這次的作法是每格帶 `--rail-row` 變數，配一條
+`@media (min-width: 768px) { .rail-cell { grid-row: var(--rail-row) } }` ——
+窄螢幕單欄時規則自動失效，格子照 DOM 順序堆疊，正好是想要的行為。
+
+**順帶**：驗證「兩格是否真的在同一列」不能靠看畫面（我看不到），要解析 build 產出把每格的
+`--rail-row` 抓出來配對。這次就是這樣抓到 off-by-one 的：9 筆經歷、9 個期間、row 編號一一吻合。
