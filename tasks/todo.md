@@ -12,18 +12,34 @@ Kevin：「Is there any way to make the design better? 包含排版、配色、�
 - 等寬字 **JetBrains Mono**
 - 範圍：全站六頁
 
-## 實作（五層，每層結束時網站都必須可部署）
-- [ ] 1 Token 層 — `globals.css` token、JetBrains Mono 載入、`.mono` 工具、`.impeccable.md` 同步
-- [ ] 2 尺度層 — 間距/寬度/字級三組尺度、h1 統一、Footer 對齊 1100
-- [ ] 3 骨架層 — 儀器欄進 `Section` 與 `PageShell`，各頁填入定位資訊
-- [ ] 4 互動層 — `Spotlight.tsx`、hover、減量動效、Hero 環境網格
-- [ ] 5 測試層 — 三個新測試 + 六頁人工驗收
+計畫：`docs/superpowers/plans/2026-09-06-tech-redesign.md`
+
+## 實作（六層，每層結束時網站都可部署）
+- [x] 0 守門測試 — 字級白名單、顏色字面值、等寬字出口、`.label` 不得含 CJK
+- [x] 1 Token 層 — 配色、JetBrains Mono、`--font-mono`、`.label` / `.mono` / `code,pre`
+- [x] 2 尺度層 — 九級字階收成六級、`venueAcronym` 遷移、拿掉整列 onClick、Footer 對齊、搜尋框 focus
+- [x] 3 骨架層 — `RailGrid` / `Rail`、即時編號、子頁計數、文章頁收進 `PageShell`
+- [x] 4 互動層 — `Spotlight.tsx`、M1、focus、減量動效、Navbar 捲動線、Hero 網格
+- [ ] 5 驗收 — 六頁稽核 + Kevin 用瀏覽器看
+
+## 尚未定案（實作中浮現）
+- [ ] **Experience 的時間軸**：Q17(d)「兩欄合併成一根」在實作時發現結構成本比預估高
+      （列高不固定，誠實的合併是單一 grid 橫跨兩欄，但分類的外框卡片跨不過去）。
+      目前落地的是期間在列內、帶 `mono`。要不要付重構成本換那根時間軸，需要 Kevin 決定。
+- [ ] **`.impeccable.md` 尚未同步**（計畫 Task 5），等驗收結束一起做
+
+## 已知的既有限制（非本次造成）
+- 零篇筆記時 `npm run build` 會失敗：`generateStaticParams()` 回空陣列，`output: export` 不支援。
+  本次驗證編號改用 `getRecentNotes(0)` 繞過。
 
 ## 驗證
-- [ ] `npm test`、`npm run build` 綠
-- [ ] 新測試：字級白名單、元件無顏色字面值、等寬字只從 `.mono` 進來
-- [ ] 六頁實走：`/`、`/publications`、`/notes`、`/notes/2024/llm-selection-bias-part1`、`/experience`、404
-- [ ] hero 每個 gradient 停點與每個半透明表面合成後各驗一次對比
+- [x] `npm test`（36 passed）、`npm run build` 綠
+- [x] 四個守門測試全綠
+- [x] hero 每個 gradient 停點與每個半透明表面合成後各驗一次對比 —— **用 build 產出的實際值重算**，
+      最低 5.16（`--hero-muted` 疊在 hover 狀態的次要 CTA 上），無任何項目低於 AA
+- [x] 編號在區塊缺席時不跳號（實測 `getRecentNotes(0)`：01 Research / 02 Career / 03 Contact）
+- [ ] 六頁稽核 subagent 回報
+- [ ] Kevin 用瀏覽器實走六頁（Claude 這個 session 的 Chrome 擴充沒連上，判斷不了「看起來對不對」）
 - [ ] 開 `prefers-reduced-motion` 再走一次首頁與 `/publications`
 
 ---
