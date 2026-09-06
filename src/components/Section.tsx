@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import RailGrid from './RailGrid';
+import RailGrid, { type RailRow } from './RailGrid';
 import Rail from './Rail';
 
 interface SectionProps {
@@ -14,7 +14,9 @@ interface SectionProps {
   railLabel?: string;
   subtitle?: string;
   viewAllHref?: string;
-  children: React.ReactNode;
+  /** The body as one row; pass `bodyRows` instead when its items carry rails. */
+  children?: React.ReactNode;
+  bodyRows?: RailRow[];
 }
 
 const Section: React.FC<SectionProps> = ({
@@ -26,6 +28,7 @@ const Section: React.FC<SectionProps> = ({
   subtitle,
   viewAllHref,
   children,
+  bodyRows,
 }) => {
   const renderTitle = () => {
     if (!emphasis) {
@@ -51,30 +54,32 @@ const Section: React.FC<SectionProps> = ({
       aria-labelledby={title ? undefined : railId}
     >
       <RailGrid
-        rail={rail}
-        heading={
-          (title || subtitle || viewAllHref) && (
-            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-2 sm:gap-4 mb-8">
-              <div>
-                {title && renderTitle()}
-                {subtitle && (
-                  <p className="text-[var(--text-muted)] text-[13px] mt-1.5">{subtitle}</p>
+        rows={[
+          {
+            key: 'heading',
+            rail,
+            content: (title || subtitle || viewAllHref) && (
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-2 sm:gap-4 mb-8">
+                <div>
+                  {title && renderTitle()}
+                  {subtitle && (
+                    <p className="text-[var(--text-muted)] text-[13px] mt-1.5">{subtitle}</p>
+                  )}
+                </div>
+                {viewAllHref && (
+                  <Link
+                    href={viewAllHref}
+                    className="text-[var(--accent)] text-[13px] font-medium hover:underline"
+                  >
+                    View all →
+                  </Link>
                 )}
               </div>
-              {viewAllHref && (
-                <Link
-                  href={viewAllHref}
-                  className="text-[var(--accent)] text-[13px] font-medium hover:underline"
-                >
-                  View all →
-                </Link>
-              )}
-            </div>
-          )
-        }
-      >
-        {children}
-      </RailGrid>
+            ),
+          },
+          ...(bodyRows ?? [{ key: 'body', content: children }]),
+        ]}
+      />
     </section>
   );
 };

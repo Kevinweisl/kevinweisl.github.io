@@ -1,7 +1,7 @@
 import { pageMetadata } from '@/lib/metadata';
 import { routes } from '@/data/routes';
 import { fullName } from '@/data/profile';
-import ExperienceList from '@/components/ExperienceList';
+import { experienceRows } from '@/components/ExperienceList';
 import PageShell from '@/components/PageShell';
 import Rail from '@/components/Rail';
 import { experienceData } from '@/data/experience';
@@ -19,8 +19,7 @@ export default function ExperiencePage() {
     <PageShell
       title={routes.experience.label}
       rail={<Rail label={`${roleCount} ${roleCount === 1 ? 'Role' : 'Roles'}`} />}
-    >
-      <ExperienceList />
-    </PageShell>
+      bodyRows={experienceRows()}
+    />
   );
 }

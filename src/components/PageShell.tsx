@@ -1,5 +1,5 @@
 import React from 'react';
-import RailGrid from './RailGrid';
+import RailGrid, { type RailRow } from './RailGrid';
 
 interface PageShellProps {
   title: string;
@@ -9,7 +9,12 @@ interface PageShellProps {
   measure?: '720px' | '68ch';
   /** Anything above the title — the article's back link, for instance. */
   beforeTitle?: React.ReactNode;
-  children: React.ReactNode;
+  /**
+   * The body as one row. Most pages want this. Pass `bodyRows` instead when the
+   * body's own items each carry a rail, as Experience's periods do.
+   */
+  children?: React.ReactNode;
+  bodyRows?: RailRow[];
 }
 
 /**
@@ -27,20 +32,25 @@ const PageShell: React.FC<PageShellProps> = ({
   measure = '720px',
   beforeTitle,
   children,
+  bodyRows,
 }) => (
   <section className="py-[96px] px-6">
     <RailGrid
-      rail={rail}
       measure={measure}
-      heading={
-        <>
-          {beforeTitle}
-          <h1 className="font-serif text-[28px] text-[var(--text-primary)] mb-8">{title}</h1>
-        </>
-      }
-    >
-      {children}
-    </RailGrid>
+      rows={[
+        {
+          key: 'heading',
+          rail,
+          content: (
+            <>
+              {beforeTitle}
+              <h1 className="font-serif text-[28px] text-[var(--text-primary)] mb-8">{title}</h1>
+            </>
+          ),
+        },
+        ...(bodyRows ?? [{ key: 'body', content: children }]),
+      ]}
+    />
   </section>
 );
 

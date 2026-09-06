@@ -3,7 +3,7 @@ import Hero from '@/components/Hero';
 import Section from '@/components/Section';
 import ContactLinks from '@/components/ContactLinks';
 import PublicationList from '@/components/PublicationList';
-import ExperienceList from '@/components/ExperienceList';
+import { experienceRows } from '@/components/ExperienceList';
 import NoteCard from '@/components/NoteCard';
 import CardList from '@/components/CardList';
 import { getRecentNotes } from '@/lib/notes';
@@ -52,7 +52,7 @@ export default function HomePage() {
       title: 'Experience',
       railLabel: 'Career',
       viewAllHref: '/experience',
-      body: <ExperienceList highlight />,
+      bodyRows: experienceRows(true),
     },
     {
       id: 'contact',

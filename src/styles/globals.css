@@ -190,6 +190,16 @@ code, pre {
   font-family: var(--font-mono);
 }
 
+/* Rows of the instrument grid are placed by name, not by auto-flow: sparse
+   placement never backtracks, so a content cell in column 2 followed by a rail
+   cell in column 1 would land the rail on the next row. Below md the grid is a
+   single column and cells stack in DOM order, so the placement lifts. */
+@media (min-width: 768px) {
+  .rail-cell {
+    grid-row: var(--rail-row);
+  }
+}
+
 /* ===== Rows: M1 =====
    Four things at once — a 2px bar scaling in from the top, the row shifting
    6px right, the ground lifting, the badge lighting up — plus a spotlight
