@@ -4,73 +4,94 @@
 /*
   Dark only. One theme, no toggle, no prefers-color-scheme.
 
-  Palette derived from the ccClub logo by sampling the actual asset:
-  ice blue #CADFE3 (72.7% of the mark), teal #487981 (9.1%), pink #E288B3 (7.0%).
-  Pink and teal are near-equal in area, so pink is a second brand colour, not a
-  garnish. The page stands on a deep teal ground rather than a neutral black;
-  the logo's ice blue survives as the primary CTA fill.
+  The palette is anchored on the mark the site actually shows: the KW monogram
+  in public/avatar.ico, which sits in the hero card. Sampling it gives sky blue
+  #A0CCE7 (72% of the mark) and near-black #171E1D (12%). The ground answers it
+  at #06090B — hue 204.0 against the monogram's 202.8, so the two need no
+  reconciling. The whole set lands between 197 and 204 degrees; only the
+  low-saturation body and muted greys sit at 193.
 
-  Every text colour below was checked against the surface behind it (including
+  The palette this replaced was derived from the ccClub logo — ice blue #CADFE3
+  (72.7%), teal #487981 (9.1%), pink #E288B3 (7.0%). That asset is not in this
+  repo and appears on no page, while #A0CCE7 was on screen the whole time with
+  no token pointing at it. ccClub's ice blue survives as the primary CTA fill.
+
+  Every text colour below was checked against the surface behind it — including
   each stop of the hero gradient and each translucent hero surface composited
-  over it) and clears WCAG AA. The pink is the logo's hue and saturation with
-  only the lightness raised far enough to reach 4.5:1 — #EAA9C8. Raw #E288B3
-  fails as text on this ground.
+  over it — and clears WCAG AA. The pink keeps the logo's hue and saturation and
+  moves only lightness to reach 4.5:1: #EAA9C8. Raw #E288B3 fails as text here.
 */
 :root {
-  --bg-primary: #0a1519;
-  --bg-card: #12242a;
-  --bg-nav: rgba(10, 21, 25, 0.9);
-  --bg-footer: #050e11;
+  --bg-primary: #06090b;
+  --bg-card: #101a1f;
+  /* The surface a row wears while hovered. Its five text colours were each
+     re-checked on it; the lowest is --text-muted at 5.26. */
+  --bg-card-hover: #152530;
+  --bg-nav: rgba(6, 9, 11, 0.9);
+  --bg-footer: #030506;
 
-  --text-primary: #e4eef0;
-  --text-body: #93a9af;
-  --text-muted: #7b9096;
-  --text-nav: #89a0a6;
-  /* Text laid over --accent: ContactLinks hover, the venue badge, the 404 CTA. White there is 2.2:1. */
-  --text-on-primary: #08181d;
-  --text-footer: #7d9298;
+  --text-primary: #e6f0f2;
+  --text-body: #9aaeb4;
+  --text-muted: #84999f;
+  --text-nav: #8ea4ab;
+  /* Text laid over --accent: ContactLinks hover, the 404 CTA. */
+  --text-on-primary: #06090b;
+  --text-footer: #84999f;
 
-  --accent: #7fb6c0;
-  --accent-hover: #9bcbd3;
-  --accent-light: #143038;
+  /* Overlays that sit above the page, not on it: the email modal's scrim and
+     the figure lightbox. Their own ground, so they own their own tokens. */
+  --overlay-scrim: rgba(3, 5, 6, 0.72);
+  --overlay-lightbox: rgba(3, 5, 6, 0.88);
+  --overlay-control: rgba(230, 240, 242, 0.72);
+  --overlay-control-hover: #e6f0f2;
 
-  /* Second brand colour. Three jobs only: the author's own name in a byline,
-     the emphasised word in a section title, and an in-progress marker. Never a link. */
+  /* The monogram's sky blue. Means clickable — links, buttons, hover and focus
+     states — and nothing else. Non-clickable text never wears it. */
+  --accent: #a0cce7;
+  --accent-hover: #c6e3f5;
+  --accent-light: #10222e;
+
+  /* Second brand colour. Four jobs, no more: the author's own name in a byline,
+     the emphasised word in a section title, an in-progress marker (Present), and
+     the hero's italic links — the one place the brand colour carries a link. */
   --brand: #eaa9c8;
 
-  /* Brightened so cards read as cards: 1.76 against the card, 2.03 against the page. Was #1f383f (1.29 / 1.50). */
-  --border: #2b4d57;
-  --border-card: #2b4d57;
+  --border: #33474f;
 
-  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.3);
-  --shadow-card-hover: 0 12px 32px rgba(127, 182, 192, 0.12);
-  --shadow-contact-hover: 0 6px 16px rgba(127, 182, 192, 0.22);
+  --glow: rgba(160, 204, 231, 0.17);
+  --grid-line: rgba(160, 204, 231, 0.045);
 
   --radius: 4px;
-  --transition: 0.2s ease;
 
-  /* Hero section */
-  --hero-bg: linear-gradient(135deg, #0e252e 0%, #1a4450 55%, #123742 100%);
+  /* Two durations, two curves. Colour has no inertia; movement does. The rule
+     is legible in a diff: if it moves, it uses the movement curve. */
+  --dur-color: 0.18s;
+  --dur-move: 0.24s;
+  --ease-move: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* Hero is a brighter luminance environment, so it carries a text ramp of its
+     own — that is what this block has always been for. Every gradient stop and
+     every translucent surface composited over it was verified; the worst case
+     is 5.16 (--hero-muted on the hovered secondary CTA). */
+  --hero-bg: linear-gradient(135deg, #0c161d 0%, #1c3240 55%, #13242f 100%);
   --hero-heading: #ffffff;
-  --hero-subtitle: #9bcbd3;
+  --hero-subtitle: var(--accent);
   --hero-body: rgba(255, 255, 255, 0.76);
-  --hero-blob-1: rgba(127, 182, 192, 0.18);
-  --hero-blob-2: rgba(234, 169, 200, 0.1);
+  --hero-blob: rgba(160, 204, 231, 0.16);
+  /* Secondary text in the hero. The card's label and the tag chips are the same
+     role, so they share one value. --text-muted lands at 3.61 here and fails. */
+  --hero-muted: #b6d5db;
   --hero-cta-bg: #cadfe3;
-  --hero-cta-text: #0e252e;
-  --hero-cta-shadow: rgba(0, 0, 0, 0.25);
+  --hero-cta-text: #06090b;
+  --hero-cta-shadow: rgba(0, 0, 0, 0.35);
   --hero-cta2-bg: rgba(255, 255, 255, 0.08);
-  --hero-cta2-text: #b6d5db;
   --hero-cta2-border: rgba(255, 255, 255, 0.2);
   --hero-cta2-hover: rgba(255, 255, 255, 0.16);
   --hero-card-bg: rgba(255, 255, 255, 0.07);
   --hero-card-border: rgba(255, 255, 255, 0.13);
   --hero-card-img-bg: rgba(255, 255, 255, 0.05);
-  --hero-label: var(--brand);
   --hero-tag-bg: rgba(255, 255, 255, 0.09);
-  --hero-tag-text: #b6d5db;
   --hero-tag-border: rgba(255, 255, 255, 0.09);
-  /* The hero's italic links are the one place the brand colour carries a link. */
   --hero-link: var(--brand);
   --hero-link-border: rgba(234, 169, 200, 0.5);
   --hero-link-hover: #f3cddf;
@@ -80,6 +101,7 @@
 @theme inline {
   --font-sans: var(--font-albert-sans), var(--font-noto-sans-tc), ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-serif: var(--font-young-serif), var(--font-noto-serif-tc), Georgia, Cambria, serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
 /* ===== Base Styles ===== */
@@ -91,7 +113,6 @@ html {
 body {
   background: var(--bg-primary);
   color: var(--text-body);
-  transition: background var(--transition), color var(--transition);
   /* Young Serif only ships weight 400 — never let the browser fake-bold it.
      Corollary, enforced by typography.test.ts: no serif element declares a weight. */
   font-synthesis-weight: none;
@@ -130,16 +151,36 @@ main > section + section {
   color: var(--brand);
 }
 
-/* Label role: category names, venue badges, the hero's tag heading. Told apart by case and
-   tracking, so colour stays free for interaction. Unlayered, so it beats Tailwind utilities
-   on the same element — don't stack text-[…] or font-* classes alongside it. */
+/* Label role: category names, venue badges, the rail's category, the hero's tag heading.
+   It owns the mono family rather than borrowing it — being a label is a role, not a
+   utility to bolt on, and the family is part of what tells a label from body text.
+   Told apart by case, tracking and family, so colour stays free for interaction.
+   Unlayered, so it beats Tailwind utilities on the same element — don't stack
+   text-[…] or font-* classes alongside it.
+
+   The text that flows through here must stay Latin: JetBrains Mono has no CJK and
+   would fall back mid-string. design-system.test.ts guards the data fields. */
 .label {
-  font-size: 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-muted);
   line-height: 1.4;
+}
+
+/* The hero sits on a brighter ground, where --text-muted is 3.61 against the
+   translucent card. Same role, the luminance it actually needs. */
+#home .label {
+  color: var(--hero-muted);
+}
+
+/* Figures that stack and must align: rail numbers, years, dates. tabular-nums is
+   the point of this class — the family alone is what .label and .prose code take. */
+.mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
 }
 
 /* ===== Hero Link ===== */
@@ -190,6 +231,9 @@ main > section + section {
   font-style: italic;
 }
 .prose code {
+  /* The family, deliberately without tabular-nums: aligning figures is right for a
+     rail and wrong for code. */
+  font-family: var(--font-mono);
   font-size: 0.8125em;
   background: var(--bg-card);
   border: 1px solid var(--border);

@@ -1,4 +1,4 @@
-import { Albert_Sans, Young_Serif, Noto_Sans_TC, Noto_Serif_TC } from 'next/font/google';
+import { Albert_Sans, Young_Serif, Noto_Sans_TC, Noto_Serif_TC, JetBrains_Mono } from 'next/font/google';
 import type { Metadata, Viewport } from 'next';
 import '@/styles/globals.css';
 import Navbar from '@/components/Navbar';
@@ -18,10 +18,10 @@ export const metadata: Metadata = {
 };
 
 // Dark only: tell the browser so native scrollbars, form controls and the
-// mobile chrome match the page instead of flashing light. #0a1519 = --bg-primary.
+// mobile chrome match the page instead of flashing light. #06090b = --bg-primary.
 export const viewport: Viewport = {
   colorScheme: 'dark',
-  themeColor: '#0a1519',
+  themeColor: '#06090b',
 };
 
 const albertSans = Albert_Sans({
@@ -54,6 +54,15 @@ const notoSerifTC = Noto_Serif_TC({
   preload: false,
 });
 
+// Metadata, rail numbers and years. The Latin subset is enough: none of those
+// positions ever carries CJK, and .label is checked for it by design-system.test.ts.
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-jetbrains-mono',
+  weight: ['400', '500', '600'],
+  display: 'swap',
+});
+
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
@@ -79,7 +88,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${albertSans.variable} ${youngSerif.variable} ${notoSansTC.variable} ${notoSerifTC.variable} scroll-smooth`}>
+    <html lang="en" className={`${albertSans.variable} ${youngSerif.variable} ${notoSansTC.variable} ${notoSerifTC.variable} ${jetbrainsMono.variable} scroll-smooth`}>
       <head>
         <script
           type="application/ld+json"

@@ -99,6 +99,33 @@ describe('colour literals', () => {
  * `.mono`, and `.prose code`. A component that names a family of its own
  * is a fourth door nobody documented.
  */
+/**
+ * `.label` renders in JetBrains Mono, which has no CJK. A Chinese category
+ * name would fall back mid-string to Noto and break the line's rhythm, so the
+ * fields that flow into a label have to stay Latin. The site is bilingual
+ * everywhere else — note titles, the hero's bio — which is exactly why this
+ * needs saying out loud rather than being left to luck.
+ */
+const CJK = /[　-〿㐀-䶿一-鿿豈-﫿＀-￯]/;
+
+describe('label text stays Latin', () => {
+  it('no field rendered through .label carries CJK', () => {
+    const offenders: string[] = [];
+    const fields: Array<[string, RegExp]> = [
+      ['src/data/experience.ts', /categoryTitle:\s*['"](.+?)['"]/g],
+      ['src/data/publications.ts', /venueAcronym:\s*['"](.+?)['"]/g],
+      ['src/data/publications.ts', /venue:\s*['"](.+?)['"]/g],
+    ];
+    for (const [file, re] of fields) {
+      const source = readFileSync(join(SRC, file.replace('src/', '')), 'utf8');
+      for (const m of source.matchAll(re)) {
+        if (CJK.test(m[1])) offenders.push(`${file}: ${m[1]}`);
+      }
+    }
+    expect(offenders, offenders.join('\n')).toEqual([]);
+  });
+});
+
 describe('mono font ownership', () => {
   it('no component declares a font family or reaches for font-mono', () => {
     const offenders: string[] = [];

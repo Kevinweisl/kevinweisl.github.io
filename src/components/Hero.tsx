@@ -25,11 +25,7 @@ const Hero = () => {
       {/* Decorative gradient blobs */}
       <div
         className="absolute -top-1/2 -right-[20%] w-[600px] h-[600px] rounded-full pointer-events-none"
-        style={{ background: `radial-gradient(circle, var(--hero-blob-1) 0%, transparent 70%)` }}
-      />
-      <div
-        className="absolute -bottom-[30%] left-[10%] w-[500px] h-[500px] rounded-full pointer-events-none"
-        style={{ background: `radial-gradient(circle, var(--hero-blob-2) 0%, transparent 70%)` }}
+        style={{ background: `radial-gradient(circle, var(--hero-blob) 0%, transparent 70%)` }}
       />
 
       {/* Inner grid */}
@@ -72,7 +68,7 @@ const Hero = () => {
             <Link
               href="/experience"
               className="inline-flex items-center gap-2 px-7 py-3 rounded-[var(--radius)] font-semibold text-[16px] border hover:-translate-y-[2px] transition-transform duration-200"
-              style={{ background: 'var(--hero-cta2-bg)', color: 'var(--hero-cta2-text)', borderColor: 'var(--hero-cta2-border)' }}
+              style={{ background: 'var(--hero-cta2-bg)', color: 'var(--hero-muted)', borderColor: 'var(--hero-cta2-border)' }}
             >
               About Me
             </Link>
@@ -96,10 +92,7 @@ const Hero = () => {
               priority
             />
             <div className="p-3.5">
-              <p
-                className="label mb-1.5"
-                style={{ color: 'var(--hero-label)' }}
-              >
+              <p className="label mb-1.5">
                 Research Interests
               </p>
               <div className="flex flex-wrap gap-1">
@@ -107,7 +100,7 @@ const Hero = () => {
                   <span
                     key={tag}
                     className="text-[13px] px-2 py-[3px] rounded-[var(--radius)] font-medium"
-                    style={{ background: 'var(--hero-tag-bg)', color: 'var(--hero-tag-text)', border: '1px solid var(--hero-tag-border)' }}
+                    style={{ background: 'var(--hero-tag-bg)', color: 'var(--hero-muted)', border: '1px solid var(--hero-tag-border)' }}
                   >
                     {tag}
                   </span>

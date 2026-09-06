@@ -20,7 +20,7 @@ const ExperienceList: React.FC<ExperienceListProps> = ({ highlight = false }) =>
               <span className="label">{category.categoryTitle}</span>
               <span className="h-px flex-1 bg-[var(--border)]" aria-hidden="true" />
             </div>
-            <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[var(--radius)] overflow-hidden">
+            <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[var(--radius)] overflow-hidden">
               {items.map((item, j) => (
                 <ExperienceItem key={j} {...item} compact={highlight} />
               ))}
