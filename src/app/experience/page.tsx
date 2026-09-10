@@ -3,8 +3,6 @@ import { routes } from '@/data/routes';
 import { fullName } from '@/data/profile';
 import { experienceRows } from '@/components/ExperienceList';
 import PageShell from '@/components/PageShell';
-import Rail from '@/components/Rail';
-import { experienceData } from '@/data/experience';
 
 export const metadata = pageMetadata({
   path: routes.experience.path,
@@ -12,14 +10,11 @@ export const metadata = pageMetadata({
   description: `Academic, teaching, and professional experience of ${fullName}.`,
 });
 
+/**
+ * No rail beside the heading. The instrument column here is a timeline of
+ * periods; a count of roles is a different unit in the same column, and it
+ * would be the one thing in it that does not answer "when".
+ */
 export default function ExperiencePage() {
-  const roleCount = experienceData.reduce((n, category) => n + category.items.length, 0);
-
-  return (
-    <PageShell
-      title={routes.experience.label}
-      rail={<Rail label={`${roleCount} ${roleCount === 1 ? 'Role' : 'Roles'}`} />}
-      bodyRows={experienceRows()}
-    />
-  );
+  return <PageShell title={routes.experience.label} bodyRows={experienceRows()} />;
 }
