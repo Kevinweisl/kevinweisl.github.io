@@ -88,10 +88,9 @@ export interface ExperienceDetail {
 
         },
         {
-          title: "Senior Software Engineer, Applied Data Science Team",
+          title: "Software Engineer (Senior), Applied Data Science Team",
           institution: "KKStream Limited, KKBOX Group | Taipei, Taiwan",
           period: "2016/12 - 2020/01",
-          description: "Promoted from Software Engineer"
         },
         {
           title: "Software Engineer, College Intern",
