@@ -2,14 +2,24 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { fullName, siteName, affiliation, affiliationShort, phdYear, roles, researchInterests } from '@/data/profile';
 
-function HeroLink({ href, children }: { href: string; children: React.ReactNode }) {
+/** An organisation named in the bio. `logo` is a 64px square in public/logos, shown at 16px. */
+function HeroLink({ href, logo, children }: { href: string; logo?: string; children: React.ReactNode }) {
   return (
     <Link
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="font-semibold no-underline hero-link transition-colors italic"
+      className="font-semibold no-underline hero-link transition-colors italic whitespace-nowrap"
     >
+      {logo && (
+        <Image
+          src={logo}
+          alt=""
+          width={16}
+          height={16}
+          className="inline-block h-4 w-4 align-[-3px] mr-1.5 rounded-[3px]"
+        />
+      )}
       {children}
     </Link>
   );
@@ -50,15 +60,15 @@ const Hero = () => {
 
           <p className="text-[16px] leading-[1.8] mb-7 max-w-[68ch]" style={{ color: 'var(--hero-body)' }}>
             {fullName} is a {roles[0].title} at {roles[0].affiliation} and an {roles[1].title} at {roles[1].affiliation}.
-            Kevin received a PhD in Computer Science from <span className="italic">{affiliation}</span> in {phdYear},
+            Kevin received a PhD in Computer Science from <HeroLink href="https://www.ntu.edu.tw/" logo="/logos/ntu.png">{affiliation}</HeroLink> in {phdYear},
             with research on the reliability of large language models, including the biases they carry,
             how they behave when judging other models, and how multimodal models reason.
             Kevin also brings seven years of industry experience as a machine learning and data engineer at{' '}
-            <HeroLink href="https://blendvision.com/">KKStream</HeroLink>,{' '}
-            <HeroLink href="https://www.junyiacademy.org/">Junyi Academy</HeroLink>, and{' '}
-            <HeroLink href="https://www.shopback.sg/">ShopBack</HeroLink>, bridging research and production systems.
+            <HeroLink href="https://blendvision.com/" logo="/logos/kkcompany.png">KKStream</HeroLink>,{' '}
+            <HeroLink href="https://www.junyiacademy.org/" logo="/logos/junyi.png">Junyi Academy</HeroLink>, and{' '}
+            <HeroLink href="https://www.shopback.sg/" logo="/logos/shopback.png">ShopBack</HeroLink>, bridging research and production systems.
             From 2022 to 2025, Kevin co-founded and served as CTO of{' '}
-            <HeroLink href="https://orbit-next.com/">OrbitNext</HeroLink>, a creator economy AI startup.
+            <HeroLink href="https://orbit-next.com/" logo="/logos/orbitnext.png">OrbitNext</HeroLink>, a creator economy AI startup.
             Kevin teaches programming at {affiliationShort}&apos;s <span className="italic">Center of General Education</span> and <span className="italic">Department of Economics</span>,
             and in 2016 founded <HeroLink href="https://www.ccclub.io/">ccClub</HeroLink> (社團法人攜曦程式推廣學會),
             a non-profit for programming education that has served more than 4,500 learners.
