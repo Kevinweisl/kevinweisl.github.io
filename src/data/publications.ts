@@ -24,6 +24,7 @@ export const publicationsData: Publication[] = [
     venue: "IEEE/WIC/ACM International Conference on Web Intelligence and Intelligent Agent Technology",
     venueAcronym: "WI-IAT",
     year: 2026,
+    codeLink: "https://huggingface.co/datasets/ntunlplab/VERIDOC-QA",
   },
   {
     title: "No One Fits All: From Fixed Prompting to Learned Routing in Multilingual LLMs",
