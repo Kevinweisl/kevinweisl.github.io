@@ -93,10 +93,12 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Right column — card */}
-        <div className="max-w-[260px] mx-auto md:max-w-none">
+        {/* Right column — card. Below md it turns sideways: the portrait on the
+            left at 120px, the interests beside it, so the card is a band under
+            the bio rather than a tower. From md it stacks in its 280px column. */}
+        <div className="w-full max-w-[480px] mx-auto md:max-w-none">
           <div
-            className="rounded-[var(--radius)] overflow-hidden"
+            className="flex md:block rounded-[var(--radius)] overflow-hidden"
             style={{ background: 'var(--hero-card-bg)', border: '1px solid var(--hero-card-border)' }}
           >
             <Image
@@ -104,12 +106,12 @@ const Hero = () => {
               alt={siteName}
               width={256}
               height={256}
-              className="w-full aspect-square object-contain p-8"
+              className="w-[120px] min-h-[120px] shrink-0 object-contain p-4 md:w-full md:min-h-0 md:aspect-square md:p-8"
               style={{ background: 'var(--hero-card-img-bg)' }}
               unoptimized
               priority
             />
-            <div className="p-3.5">
+            <div className="p-3.5 min-w-0 flex-1 self-center md:self-auto">
               <p className="label mb-1.5">
                 Research Interests
               </p>
