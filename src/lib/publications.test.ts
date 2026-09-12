@@ -23,11 +23,23 @@ describe('searchPublications', () => {
 });
 
 describe('groupByYear', () => {
+  const paper = (year: number, title: string) =>
+    ({ title, authors: [], venue: '', year }) as (typeof publicationsData)[number];
+
   it('groups consecutive papers of one year and keeps the list order', () => {
+    const list = [paper(2026, 'a'), paper(2026, 'b'), paper(2025, 'c'), paper(2021, 'd')];
+    const groups = groupByYear(list);
+    expect(groups.map((g) => g.year)).toEqual([2026, 2025, 2021]);
+    expect(groups.map((g) => g.items.map((p) => p.title))).toEqual([['a', 'b'], ['c'], ['d']]);
+  });
+
+  it('loses nothing and splits the real list at every change of year', () => {
     const groups = groupByYear(publicationsData);
-    expect(groups.map((g) => g.year)).toEqual([2026, 2025, 2024, 2021, 2016, 2014]);
-    expect(groups.map((g) => g.items.length)).toEqual([3, 2, 2, 1, 1, 1]);
     expect(groups.flatMap((g) => g.items)).toEqual(publicationsData);
+    groups.forEach((g, i) => {
+      expect(g.items.every((p) => p.year === g.year)).toBe(true);
+      if (i > 0) expect(g.year).not.toBe(groups[i - 1].year);
+    });
   });
 
   it('is empty for an empty list', () => {

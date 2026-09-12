@@ -19,6 +19,13 @@ export interface Publication {
 
 export const publicationsData: Publication[] = [
   {
+    title: "VERIDOC-QA: A Benchmark for Verifiable Multi-Document, Multi-Span Evidence Grounding",
+    authors: ["Jui-I Wang", "Sheng-Lun Wei", "Hen-Hsen Huang", "Hsin-Hsi Chen"],
+    venue: "IEEE/WIC/ACM International Conference on Web Intelligence and Intelligent Agent Technology",
+    venueAcronym: "WI-IAT",
+    year: 2026,
+  },
+  {
     title: "No One Fits All: From Fixed Prompting to Learned Routing in Multilingual LLMs",
     authors: ["Wei-Chi Wu", "Sheng-Lun Wei", "Hen-Hsen Huang", "Hsin-Hsi Chen"],
     venue: "Findings of the Association for Computational Linguistics",
