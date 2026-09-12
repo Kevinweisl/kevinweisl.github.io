@@ -1,6 +1,7 @@
 import React from 'react';
 import { experienceData } from '@/data/experience';
-import ExperienceItem, { PeriodLabel } from './ExperienceItem';
+import ExperienceItem from './ExperienceItem';
+import { RailPeriod } from './Rail';
 import type { RailRow } from './RailGrid';
 
 /**
@@ -40,7 +41,7 @@ export function experienceRows(highlight = false): RailRow[] {
       rows.push({
         key: `item-${c}-${j}`,
         railFirst: true,
-        rail: <PeriodLabel period={item.period} />,
+        rail: <RailPeriod period={item.period} />,
         content: (
           <div
             className={[

@@ -6,13 +6,15 @@ import { ChevronUp } from 'lucide-react';
 import type { Publication } from '@/data/publications';
 import { publicationName } from '@/data/profile';
 
-const PublicationItem: React.FC<Publication> = ({
+/** `showYear` is off on the Publications page, where the year heads the row's group in the rail. */
+const PublicationItem: React.FC<Publication & { showYear?: boolean }> = ({
   title,
   authors,
   venue,
   venueAcronym,
   track,
   year,
+  showYear = true,
   abstract,
   bibtex,
   pdfLink,
@@ -42,9 +44,10 @@ const PublicationItem: React.FC<Publication> = ({
           </span>
           {track && <span className="label">{track}</span>}
         </span>
-        {/* The year lives in one field now, right-aligned in tabular figures so a
-            column of them scans. It used to be baked into the acronym string. */}
-        <span className="mono text-[11px] text-[var(--text-muted)] whitespace-nowrap">{year}</span>
+        {/* Right-aligned in tabular figures so a column of them scans. */}
+        {showYear && (
+          <span className="mono text-[11px] text-[var(--text-muted)] whitespace-nowrap">{year}</span>
+        )}
       </div>
       <p className="font-serif text-[16px] text-[var(--text-primary)] leading-[1.4] mb-1">
         {title}

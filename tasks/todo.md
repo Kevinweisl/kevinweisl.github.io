@@ -56,3 +56,24 @@ Adjunct Instructor，`src/data/profile.ts` 早就更新了）。分享到 Slack 
 
 - [ ] 依新配色重新產生 `public/og.png`，文案取自 `src/data/profile.ts` 而不是手寫
 - [ ] 找出當初產生它的方法；若無，考慮做成可重跑的腳本，避免下次改版又漂掉
+
+---
+
+# Publications 頁：年份時間軸（B 案，2026-09-12）
+
+Kevin 從 `tasks/publications-options.html` 三案中選 B。
+
+- [x] `src/lib/publications.ts`：`searchPublications`、`groupByYear`，先寫測試（紅）再實作（綠），5 個測試
+- [x] `RailPeriod` 從 `ExperienceItem` 搬進 `Rail.tsx`——rail 裡放的東西由 `Rail.tsx` 擁有；Experience 與 Publications 共用
+- [x] `PublicationTimeline`（client）取代 `PublicationSearch`：搜尋狀態在這裡，所以由它渲染 `PageShell` + `bodyRows`，
+      一條 grid、不巢狀；每年一列，rail 放年份、內容放該年的 `CardList`
+- [x] `PublicationItem` 加 `showYear`（預設 true）：`/publications` 關掉、首頁 Selected（依排名、年份交錯）保留
+- [x] 組與組之間 24px：rail 與內容兩格都帶 `mt-6`（否則年份與框錯位）；窄螢幕堆疊時只有 rail 帶（內容用 `md:mt-6`）
+- [x] 驗證（解析 build 產出）：rail 年份序 2026/2025/2024/2021/2016/2014；六組 rail 與內容同 row；
+      `/publications` 每列年份為 0、首頁為 5；搜尋框在第一個年份之前；Experience 11 個期間照常
+- [x] tsc、eslint、`npm test` 41 passed、build 綠
+
+## Review
+
+分組是空間上的：每年自己一個框、框間 24px，不花顏色。年份從十次減成六次。搜尋過濾後分組依顯示結果重算。
+`PublicationList` 只剩首頁在用，搜尋路徑拿掉了。

@@ -1,8 +1,7 @@
 import { pageMetadata } from '@/lib/metadata';
 import { routes } from '@/data/routes';
 import { fullName } from '@/data/profile';
-import PublicationSearch from '@/components/PublicationSearch';
-import PageShell from '@/components/PageShell';
+import PublicationTimeline from '@/components/PublicationTimeline';
 
 export const metadata = pageMetadata({
   path: routes.publications.path,
@@ -11,9 +10,5 @@ export const metadata = pageMetadata({
 });
 
 export default function PublicationsPage() {
-  return (
-    <PageShell title={routes.publications.label}>
-      <PublicationSearch />
-    </PageShell>
-  );
+  return <PublicationTimeline />;
 }

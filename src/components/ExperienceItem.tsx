@@ -5,30 +5,6 @@ interface ExperienceItemProps extends ExperienceDetail {
   compact?: boolean;
 }
 
-/** Periods are free text ("2021 - Present", "2022/05 - 2023/06"); an in-progress one ends in this. */
-const PRESENT = 'Present';
-
-/**
- * The period, rendered into the instrument column by `experienceRows` rather
- * than into a column of this component's own. Its old [120px_1fr] grid would
- * have run parallel to the section's rail — two vertical columns side by side.
- */
-export const PeriodLabel: React.FC<{ period: string }> = ({ period }) => {
-  const ongoing = period.endsWith(PRESENT);
-  return (
-    <div className="mono text-[11px] text-[var(--text-muted)] leading-[1.7] pt-[18px]">
-      {ongoing ? (
-        <>
-          {period.slice(0, -PRESENT.length)}
-          <span className="brand-text">{PRESENT}</span>
-        </>
-      ) : (
-        period
-      )}
-    </div>
-  );
-};
-
 const ExperienceItem: React.FC<ExperienceItemProps> = ({
   title,
   institution,

@@ -29,3 +29,27 @@ const Rail: React.FC<RailProps> = ({ index, label, children, id }) => (
 );
 
 export default Rail;
+
+/** Periods are free text ("2021 - Present", "2022/05 - 2023/06", "2026"); an in-progress one ends in this. */
+const PRESENT = 'Present';
+
+/**
+ * A point or span in time, level with the first line of the row beside it —
+ * the 18px is the row's own top padding. Experience's periods and
+ * Publications' years both go through here.
+ */
+export const RailPeriod: React.FC<{ period: string }> = ({ period }) => {
+  const ongoing = period.endsWith(PRESENT);
+  return (
+    <div className="mono text-[11px] text-[var(--text-muted)] leading-[1.7] pt-[18px]">
+      {ongoing ? (
+        <>
+          {period.slice(0, -PRESENT.length)}
+          <span className="brand-text">{PRESENT}</span>
+        </>
+      ) : (
+        period
+      )}
+    </div>
+  );
+};
