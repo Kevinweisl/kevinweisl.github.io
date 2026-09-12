@@ -187,3 +187,17 @@ Kevin 問「9 ROLES 是什麼意思？可以拿掉嗎」。
 sequence）。答不上同一個問題的東西不進去，即使它們在版面上都是「小小的灰字」。
 Notes 與 Publications 的 `N Notes`／`N Papers` 留著是因為那兩根欄裡沒有別的東西，
 count 就是它們的唯一單位——同一個規則、不同的答案。
+
+## 2026-09-12 — hover 動的是 padding，就是在動內容框的寬度
+
+**Context**: M1 hover 讓列往右縮：`padding-left` 18 → 24px。Kevin 發現剛好貼齊寬度的那些行
+會在 hover 時被擠到下一行。
+
+**Mistake**: 我把「往右位移」實作成「加左邊 padding」，沒想到 padding 是內容框的一部分：
+左邊多 6px，內容框就窄 6px，一行剛好滿的字就換行了。動畫過程中每一格都在重排版。
+
+**Rule**: hover / focus 的位移效果**不能改變內容框的寬度**。兩種做法擇一：
+(1) 左邊加多少、右邊就減多少，而且兩者要走同一條 transition 曲線（否則動畫中途寬度
+仍會變）；(2) 用 `transform: translateX` 移一個內層容器——transform 不參與 layout。
+這次用 (1)，因為列的右邊本來就有 20px 可以借，不用加 wrapper。
+驗證方式：hover 前後 `padding-left + padding-right` 的和必須相等（18+20 = 24+14）。

@@ -220,7 +220,10 @@ code, pre {
   display: block;
   padding: 18px 20px 18px 18px;
   background: var(--bg-card);
-  transition: background var(--dur-color) ease, padding-left var(--dur-move) var(--ease-move);
+  transition:
+    background var(--dur-color) ease,
+    padding-left var(--dur-move) var(--ease-move),
+    padding-right var(--dur-move) var(--ease-move);
 }
 
 .row::before {
@@ -247,9 +250,14 @@ code, pre {
 
 /* Guarded, so a touch device never latches into a hover state it cannot leave. */
 @media (hover: hover) {
+  /* The content shifts 6px right without reflowing: the right padding gives
+     back exactly what the left takes, and both move on the same curve, so
+     the content box is the same width at every instant of the transition.
+     Growing the left padding alone narrowed the box and rewrapped lines. */
   .row:hover {
     background: var(--bg-card-hover);
     padding-left: 24px;
+    padding-right: 14px;
   }
   .row:hover::before { transform: scaleY(1); }
   .row:hover .spot { opacity: 1; }
