@@ -76,6 +76,11 @@ export interface ExperienceDetail {
       categoryTitle: "Work",
       items: [
         {
+          title: "Postdoctoral Researcher",
+          institution: "Academia Sinica | Taipei, Taiwan",
+          period: "2026/09 - Present",
+        },
+        {
           title: "Co-founder & CTO",
           institution: "OrbitNext",
           period: "2022/07 - 2025/07",
