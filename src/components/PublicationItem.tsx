@@ -11,6 +11,7 @@ const PublicationItem: React.FC<Publication> = ({
   authors,
   venue,
   venueAcronym,
+  track,
   year,
   abstract,
   bibtex,
@@ -32,8 +33,14 @@ const PublicationItem: React.FC<Publication> = ({
     <div className="row" data-spotlight>
       <span className="spot" aria-hidden="true" />
       <div className="flex items-baseline justify-between gap-4 mb-2">
-        <span className="label inline-block border border-[var(--border)] px-2 py-[2px] rounded-[2px]">
-          {venueAcronym || venue}
+        {/* The venue boxed, the track beside it unboxed: a column of boxes scans
+            as ACL / EMNLP / SIGIR, and "Findings" reads as the modifier it is
+            rather than a second category standing level with the venue. */}
+        <span className="flex items-baseline gap-2">
+          <span className="label inline-block border border-[var(--border)] px-2 py-[2px] rounded-[2px]">
+            {venueAcronym || venue}
+          </span>
+          {track && <span className="label">{track}</span>}
         </span>
         {/* The year lives in one field now, right-aligned in tabular figures so a
             column of them scans. It used to be baked into the acronym string. */}

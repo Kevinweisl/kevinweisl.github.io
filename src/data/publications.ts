@@ -2,7 +2,10 @@ export interface Publication {
   title: string;
   authors: string[];
   venue: string;
+  /** The venue alone: "ACL", not "Findings of ACL". The track goes in `track`. */
   venueAcronym?: string;
+  /** Where in the venue: a closed set, so it renders one way and cannot be misspelt. */
+  track?: 'Findings' | 'Workshop';
   year: number;
   abstract?: string;
   bibtex?: string;
@@ -19,7 +22,8 @@ export const publicationsData: Publication[] = [
     title: "No One Fits All: From Fixed Prompting to Learned Routing in Multilingual LLMs",
     authors: ["Wei-Chi Wu", "Sheng-Lun Wei", "Hen-Hsen Huang", "Hsin-Hsi Chen"],
     venue: "Findings of the Association for Computational Linguistics",
-    venueAcronym: "Findings of ACL",
+    venueAcronym: "ACL",
+    track: "Findings",
     year: 2026,
     abstract: "Translation-based prompting is widely used in multilingual LLMs, yet its effectiveness varies across languages and tasks. Evaluating prompting strategies across ten languages of different resource levels and multiple benchmarks, we show that no single strategy is universally optimal: translation strongly benefits low-resource languages despite imperfect translation quality, while prompt-based self-routing fails. We formulate prompting strategy selection as a learned decision problem and introduce lightweight classifiers that predict whether native or translation-based prompting is optimal for each instance, achieving statistically significant improvements over fixed strategies across four benchmarks, including unseen task formats. Further analysis shows that language resource level, rather than translation quality, determines when translation is beneficial.",
     pdfLink: "https://aclanthology.org/2026.findings-acl.1864/",
@@ -56,7 +60,8 @@ export const publicationsData: Publication[] = [
     title: "Bias in the Ear of the Listener: Assessing Sensitivity in Audio Language Models Across Linguistic, Demographic, and Positional Variations",
     authors: ["Sheng-Lun Wei", "Yu-Ling Liao", "Yen-Hua Chang", "Hen-Hsen Huang", "Hsin-Hsi Chen"],
     venue: "Findings of the European Chapter of the Association for Computational Linguistics",
-    venueAcronym: "Findings of EACL",
+    venueAcronym: "EACL",
+    track: "Findings",
     year: 2026,
     abstract: "Recent multimodal large language models (MLLMs) extend language understanding beyond text to speech, enabling unified reasoning across modalities. While biases in text-based LLMs have been widely examined, their persistence and manifestation in spoken inputs remain underexplored. This work presents the first systematic investigation of speech bias in multilingual MLLMs. We construct and release the BiasInEar Dataset, a speech-augmented benchmark based on Global MMLU Lite, spanning English, Chinese, and Korean, balanced by gender and accent, and totaling 70.8 hours (\u22484,249 minutes) of speech with 11,200 questions. Using four complementary metrics (accuracy, entropy, APES, and Fleiss\u2019 \u03BA), we evaluate nine representative models under linguistic language and accent, demographic gender, and structural option order perturbations. Our findings reveal that MLLMs are relatively robust to demographic factors but highly sensitive to language and option order, suggesting that speech can amplify existing structural biases. Moreover, architectural design and reasoning strategy substantially affect robustness across languages. Overall, this study establishes a unified framework for assessing fairness and robustness in speech-integrated LLMs, bridging the gap between text- and speech-based evaluation.",
     pdfLink: "https://aclanthology.org/2026.findings-eacl.80/",
@@ -77,7 +82,8 @@ export const publicationsData: Publication[] = [
     title: "Do Before You Judge: Self-Reference as a Pathway to Better LLM Evaluation",
     authors: ["Wei-Hsiang Lin", "Sheng-Lun Wei", "Hen-Hsen Huang", "Hsin-Hsi Chen"],
     venue: "Findings of the Conference on Empirical Methods in Natural Language Processing",
-    venueAcronym: "Findings of EMNLP",
+    venueAcronym: "EMNLP",
+    track: "Findings",
     year: 2025,
     abstract: "LLM-as-Judge frameworks are increasingly popular for AI evaluation, yet research findings on the relationship between models' generation and judgment abilities remain inconsistent. We investigate this relationship through systematic dataset- and instance-level analyses across 11 models and 21 diverse tasks. Despite both capabilities relying on the same underlying knowledge, our analyses reveal they are only weakly correlated, primarily due to LLMs' sensitivity to the responses being judged. To address this, we propose a self-reference-guided evaluation strategy that leverages a model's own answers as references. This approach significantly strengthens the correlation between generation and judgment abilities, offering a practical path to align these skills and providing a reliable proxy for model selection in evaluation tasks.",
     pdfLink: "https://aclanthology.org/2025.findings-emnlp.1342/",
@@ -127,7 +133,8 @@ export const publicationsData: Publication[] = [
     title: "Unveiling Selection Biases: Exploring Order and Token Sensitivity in Large Language Models",
     authors: ["Sheng-Lun Wei", "Cheng-Kuang Wu", "Hen-Hsen Huang", "Hsin-Hsi Chen"],
     venue: "Findings of the Association for Computational Linguistics",
-    venueAcronym: "Findings of ACL",
+    venueAcronym: "ACL",
+    track: "Findings",
     year: 2024,
     abstract: "In this paper, we investigate the phenomena of \"selection biases\" in Large Language Models (LLMs), focusing on problems where models are tasked with choosing the optimal option from an ordered sequence. We delve into biases related to option order and token usage, which significantly impact LLMs' decision-making processes. We also quantify the impact of these biases through an extensive empirical analysis across multiple models and tasks. Furthermore, we propose mitigation strategies to enhance model performance. Our key contributions are threefold: 1) Precisely quantifying the influence of option order and token on LLMs, 2) Developing strategies to mitigate the impact of token and order sensitivity to enhance robustness, and 3) Offering a detailed analysis of sensitivity across models and tasks, which informs the creation of more stable and reliable LLM applications for selection problems.",
     bibtex: `@inproceedings{wei-etal-2024-unveiling,
@@ -174,7 +181,8 @@ export const publicationsData: Publication[] = [
     title: "NTUNLP Approaches to Recognizing and Disambiguating Entities in Long and Short Text at the ERD Challenge 2014",
     authors: ["Yen-Pin Chiu", "Yong-Siang Shih", "Yang-Yin Lee", "Chih-Chieh Shao", "Ming-Lun Cai", "Sheng-Lun Wei", "Hsin-Hsi Chen"],
     venue: "International ACM SIGIR Conference Workshop on Entity Recognition & Disambiguation",
-    venueAcronym: "SIGIR Workshop",
+    venueAcronym: "SIGIR",
+    track: "Workshop",
     year: 2014,
     abstract: "This paper presents the NTUNLP systems in the long track and the short track of the Entity Recognition and Disambiguation Challenge 2014. We first create a dictionary that contains the possible surface forms of Freebase Ids, then scan the given text from left to right with the longest match strategy to detect the mentions, and eliminate the unwanted surface forms based on a stop word list. Methods to link to the most relevant entities and select the best candidate are proposed for these two tracks, respectively. The outside resources such as DBpedia Spotlight and TAGME are integrated to our basic NTUNLP systems. Various experimental setups are presented and discussed with the development set. In the formal run, one NTUNLP system wins the first prize in the short track and another NTUNLP system gets the fourth place in the long track.",
     bibtex: `@inproceedings{10.1145/2633211.2634363,
