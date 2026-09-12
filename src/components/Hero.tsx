@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { fullName, siteName, jobTitle, affiliation, affiliationShort, phdYear, researchSummary, researchInterests } from '@/data/profile';
+import { fullName, siteName, jobTitle, affiliation, affiliationShort, phdYear, roles, researchSummary, researchInterests } from '@/data/profile';
 
 function HeroLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
@@ -42,9 +42,11 @@ const Hero = () => {
             {fullName}
           </h1>
 
-          <p className="text-[16px] font-medium mb-5" style={{ color: 'var(--hero-subtitle)' }}>
-            {jobTitle} @ {affiliation}
-          </p>
+          <div className="text-[16px] font-medium leading-[1.6] mb-5" style={{ color: 'var(--hero-subtitle)' }}>
+            {roles.map((role) => (
+              <p key={role.title}>{role.title} @ {role.affiliation}</p>
+            ))}
+          </div>
 
           <p className="text-[16px] leading-[1.8] mb-7 max-w-[68ch]" style={{ color: 'var(--hero-body)' }}>
             I received my PhD in Computer Science from <span className="italic">{affiliation}</span> in {phdYear}, with research on {researchSummary}.

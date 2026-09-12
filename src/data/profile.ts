@@ -11,6 +11,12 @@ export const affiliation = 'National Taiwan University';
 export const affiliationShort = 'NTU';
 export const phdYear = 2026;
 
+/** The hero's headline, one line per role, primary first. */
+export const roles = [
+  { title: 'Postdoctoral Researcher', affiliation: 'Academia Sinica' },
+  { title: jobTitle, affiliation },
+];
+
 /** One-line headline used for og:title / twitter:title on the homepage. */
 export const headline = `${siteName} — ${jobTitle} @ ${affiliationShort}`;
 
