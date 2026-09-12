@@ -1,0 +1,155 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Publications — three proposals</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700&family=Young+Serif&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-primary:#06090b; --bg-card:#101a1f; --bg-card-hover:#152530;
+    --text-primary:#e6f0f2; --text-body:#9aaeb4; --text-muted:#84999f;
+    --accent:#a0cce7; --accent-hover:#c6e3f5; --brand:#eaa9c8; --border:#33474f;
+    --glow:rgba(160,204,231,0.17); --radius:4px;
+    --dur-color:.18s; --dur-move:.24s; --ease-move:cubic-bezier(.2,.8,.2,1);
+    --sans:"Albert Sans",system-ui,sans-serif; --serif:"Young Serif",Georgia,serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg-primary);color:var(--text-body);font-family:var(--sans);font-size:16px;line-height:1.6}
+  a{color:var(--accent);text-decoration:none}
+  .intro{max-width:880px;margin:0 auto;padding:64px 24px 24px}
+  .intro h1{font-family:var(--serif);font-size:28px;color:var(--text-primary);margin:0 0 12px;font-weight:400}
+  .intro p{margin:0 0 10px;max-width:68ch}
+  .intro .rec{border-left:2px solid var(--accent);padding-left:14px;color:var(--text-primary)}
+  .option{border-top:1px solid var(--border);padding:64px 24px 80px}
+  .option-head{max-width:880px;margin:0 auto 40px}
+  .kicker{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--text-muted)}
+  .option-head h2{font-family:var(--serif);font-size:20px;color:var(--text-primary);margin:6px 0 10px;font-weight:400}
+  .option-head p{margin:0 0 6px;max-width:68ch;font-size:16px}
+  .option-head .cons{color:var(--text-muted)}
+  /* the page as it is: 128 rail + 32 gutter + 720 content */
+  .page{max-width:880px;margin:0 auto;display:grid;grid-template-columns:128px 1fr;column-gap:32px}
+  .rail{grid-column:1}
+  .content{grid-column:2;max-width:720px;min-width:0}
+  h1.page-title{font-family:var(--serif);font-size:28px;color:var(--text-primary);margin:0 0 32px;font-weight:400}
+  .search{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);color:var(--text-primary);font:inherit;font-size:13px;padding:10px 12px;margin-bottom:24px}
+  .search::placeholder{color:var(--text-muted)}
+  .label{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);line-height:1.4}
+  .badge{display:inline-block;border:1px solid var(--border);padding:2px 8px;border-radius:2px}
+  .mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+  .box{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+  .row{position:relative;overflow:hidden;display:block;padding:18px 20px 18px 18px;background:var(--bg-card);
+       transition:background var(--dur-color) ease,padding-left var(--dur-move) var(--ease-move),padding-right var(--dur-move) var(--ease-move)}
+  .row+.row{border-top:1px solid var(--border)}
+  .row::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--accent);transform:scaleY(0);transform-origin:top;transition:transform var(--dur-move) var(--ease-move)}
+  .row:hover{background:var(--bg-card-hover);padding-left:24px;padding-right:14px}
+  .row:hover::before{transform:scaleY(1)}
+  .row:hover .badge{color:var(--accent);border-color:var(--accent)}
+  .top{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:8px}
+  .top .left{display:flex;align-items:baseline;gap:8px}
+  .year{font-family:var(--mono);font-size:11px;color:var(--text-muted);white-space:nowrap}
+  .title{font-family:var(--serif);font-size:16px;color:var(--text-primary);line-height:1.4;margin:0 0 4px;font-weight:400}
+  .authors{font-size:13px;color:var(--text-muted);margin:0 0 8px}
+  .authors b{color:var(--brand);font-weight:600}
+  .links{display:flex;gap:8px;font-size:13px;font-weight:500}
+  .links span{color:var(--accent)}
+  .links span+span::before{content:'·';color:var(--text-muted);margin-right:8px;font-weight:400}
+  /* A: the accent rule where the year changes */
+  .a .row.year-start{border-top-color:var(--accent)}
+  /* B/C: one group per year, the year in the rail */
+  .group{display:contents}
+  .group .rail{padding-top:18px}
+  .group .year-label{font-family:var(--mono);font-size:11px;color:var(--text-muted);line-height:1.7}
+  .group .content{margin-bottom:24px}
+  .group:last-child .content{margin-bottom:0}
+  /* C: the selected marker and the live count */
+  .selected{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--brand);white-space:nowrap}
+  .count{font-family:var(--mono);font-size:11px;color:var(--text-muted);margin:-16px 0 24px;text-align:right}
+  .note{max-width:880px;margin:40px auto 0;font-size:13px;color:var(--text-muted)}
+  @media (max-width:767px){.page{grid-template-columns:1fr}.rail,.content{grid-column:1}.group .rail{padding-top:0;margin-bottom:8px}}
+</style>
+
+<div class="intro">
+  <h1>Publications 頁：三個提案</h1>
+  <p>同一份真實內容（十篇、真實 badge 與年份，作者縮寫）× 三種結構。字型、色票、hover 都是站上的 token，可以直接 hover 看。</p>
+  <p class="rec">我推薦 <b>B</b>。它讓這一頁的 rail 終於回答「when」——和 Experience 同一套語言——而且年份從十次減成五次，分組靠空間而不是靠花掉一個顏色。C 是 B 加兩個小東西，可以之後再決定。</p>
+</div>
+
+<section class="option a" id="a">
+  <div class="option-head">
+    <div class="kicker">A · Rule</div>
+    <h2>年份改變處，髮線換成 accent</h2>
+    <p>結構不動：一個框、十列、每列右上有年份。只有 2026→2025、2025→2024 那幾條線從灰變淺藍。</p>
+    <p class="cons">代價：rail 那一欄還是空的；年份仍然印十次，讀者要靠掃右上角才知道換年了，那條線只是輔助。改動最小。</p>
+  </div>
+  <div class="page">
+    <div class="rail"></div>
+    <div class="content">
+      <h1 class="page-title">Publications</h1>
+      <input class="search" placeholder="Search by title, author, or venue…">
+      <div class="box" id="list-a"></div>
+    </div>
+  </div>
+</section>
+
+<section class="option b" id="b">
+  <div class="option-head">
+    <div class="kicker">B · Timeline</div>
+    <h2>年份進 rail，每年一個框</h2>
+    <p>年份離開每一列，移到左邊那根欄，每年只印一次，和第一列對齊。每年是自己的一個框，框與框之間 24px。分組是空間上的，不需要顏色。</p>
+    <p class="cons">代價：搜尋過濾是 client 端的元件，要讓它的列進到頁面共用的 grid，需要重構那條路徑（PublicationSearch 改成產出 rows）。列的右上角空了出來。</p>
+  </div>
+  <div class="page" id="page-b">
+    <div class="rail"></div>
+    <div class="content">
+      <h1 class="page-title">Publications</h1>
+      <input class="search" placeholder="Search by title, author, or venue…">
+    </div>
+  </div>
+</section>
+
+<section class="option c" id="c">
+  <div class="option-head">
+    <div class="kicker">C · Timeline +</div>
+    <h2>B，加上「Selected」標記與搜尋計數</h2>
+    <p>B 空出來的右上角放 <span class="selected">Selected</span>：首頁 Selected Publications 那五篇在完整列表裡認得出來。搜尋框下方以 mono 顯示 <span class="mono">10 of 10</span>，過濾時即時更新——之前拿掉的 <span class="mono">10 Papers</span> 以「回答搜尋結果」的身分回來。</p>
+    <p class="cons">代價：粉紅色在這個站有四個固定的工作（monogram、Present、你的名字與強調字、hero 連結），「Selected」會是第五個——它算「你的選擇」，勉強是同一類，但規則就鬆了一格。也可以用 muted 灰做這個標記。</p>
+  </div>
+  <div class="page" id="page-c">
+    <div class="rail"></div>
+    <div class="content">
+      <h1 class="page-title">Publications</h1>
+      <input class="search" placeholder="Search by title, author, or venue…">
+      <div class="count">10 of 10</div>
+    </div>
+  </div>
+</section>
+
+<p class="note">tasks/publications-options.html · 2026-09-12</p>
+
+<script>
+const K='Sheng-Lun Wei';
+const rows=[
+  {y:2026,v:'ACL',t:'Findings',f:3,title:'No One Fits All: From Fixed Prompting to Learned Routing in Multilingual LLMs',a:['Wei-Chi Wu',K,'Hen-Hsen Huang','Hsin-Hsi Chen']},
+  {y:2026,v:'LREC',title:'Do Multimodal LLMs Understand Order? Measuring the Fragility of Multimodal Reasoning under Input Order Perturbations',a:[K,'Yu-Ling Liao','Hen-Hsen Huang','Hsin-Hsi Chen']},
+  {y:2026,v:'EACL',t:'Findings',f:2,title:'Bias in the Ear of the Listener: Assessing Sensitivity in Audio Language Models Across Linguistic, Demographic, and Positional Variations',a:[K,'Yu-Ling Liao','Yen-Hua Chang','Hen-Hsen Huang','Hsin-Hsi Chen']},
+  {y:2025,v:'EMNLP',t:'Findings',title:'Do Before You Judge: Self-Reference as a Pathway to Better LLM Evaluation',a:['Wei-Hsiang Lin',K,'Hen-Hsen Huang','Hsin-Hsi Chen']},
+  {y:2025,v:'SIGIR',f:5,title:'Retrieving the Right Law: Enhancing Legal Search with Style Translation',a:['Szu-Ju Chen','Jing Jin',K,'Hen-Hsen Huang','Hsin-Hsi Chen']},
+  {y:2024,v:'EMNLP',f:4,title:'Induct-Learn: Short Phrase Prompting with Instruction Induction',a:['Po-Chun Chen',K,'Hen-Hsen Huang','Hsin-Hsi Chen']},
+  {y:2024,v:'ACL',t:'Findings',f:1,title:'Unveiling Selection Biases: Exploring Order and Token Sensitivity in Large Language Models',a:[K,'Cheng-Kuang Wu','Hen-Hsen Huang','Hsin-Hsi Chen']},
+  {y:2021,v:'WI-IAT',title:'Disease Classification on Admission and on Discharge with Residual CNN-Transformer',a:['Yu-Ting Lin*',K+'*','Hen-Hsen Huang','Hsin-Hsi Chen']},
+  {y:2016,v:'COLING',title:'NL2KB: Resolving Vocabulary Gap between Natural Language and Knowledge Base in Knowledge Base Construction and Retrieval',a:[K,'Yen-Pin Chiu','Hen-Hsen Huang','Hsin-Hsi Chen']},
+  {y:2014,v:'SIGIR',t:'Workshop',title:'NTUNLP Approaches to Recognizing and Disambiguating Entities in Long and Short Text at the ERD Challenge 2014',a:['Yen-Pin Chiu','Yong-Siang Shih','Yang-Yin Lee','Chih-Chieh Shao','Ming-Lun Cai',K,'Hsin-Hsi Chen']},
+];
+const authors=r=>r.a.map(n=>n.startsWith(K)?`<b>${n}</b>`:n).join(', ');
+const badges=r=>`<span class="left"><span class="label badge">${r.v}</span>${r.t?`<span class="label">${r.t}</span>`:''}</span>`;
+const body=r=>`<p class="title">${r.title}</p><p class="authors">${authors(r)}</p><div class="links"><span>PDF</span><span>DOI</span><span>Abstract</span><span>BibTeX</span></div>`;
+// A
+document.getElementById('list-a').innerHTML=rows.map((r,i)=>`<div class="row${i>0&&rows[i-1].y!==r.y?' year-start':''}"><div class="top">${badges(r)}<span class="year">${r.y}</span></div>${body(r)}</div>`).join('');
+// B and C
+const groups=[];rows.forEach(r=>{const g=groups[groups.length-1];g&&g.y===r.y?g.rows.push(r):groups.push({y:r.y,rows:[r]})});
+const render=(id,right)=>{
+  const page=document.getElementById(id);
+  page.insertAdjacentHTML('beforeend',groups.map(g=>`<div class="group"><div class="rail"><span class="year-label">${g.y}</span></div><div class="content"><div class="box">${g.rows.map(r=>`<div class="row"><div class="top">${badges(r)}${right(r)}</div>${body(r)}</div>`).join('')}</div></div></div>`).join(''));
+};
+render('page-b',()=>'' );
+render('page-c',r=>r.f?`<span class="selected">Selected</span>`:'');
+</script>
