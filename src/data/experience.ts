@@ -76,6 +76,11 @@ export interface ExperienceDetail {
       categoryTitle: "Work",
       items: [
         {
+          title: "Co-founder & CTO",
+          institution: "OrbitNext",
+          period: "2022/07 - 2025/07",
+        },
+        {
           title: "Senior Machine Learning Engineer",
           institution: "ShopBack | Taipei, Taiwan",
           period: "2022/05 - 2023/06",
