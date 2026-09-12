@@ -70,7 +70,7 @@ const Hero = () => {
             From 2022 to 2025, Kevin co-founded and served as CTO of{' '}
             <HeroLink href="https://orbit-next.com/" logo="/logos/orbitnext.png">OrbitNext</HeroLink>, a creator economy AI startup.
             Kevin teaches programming at {affiliationShort}&apos;s <span className="italic">Center of General Education</span> and <span className="italic">Department of Economics</span>,
-            and in 2016 founded <HeroLink href="https://www.ccclub.io/">ccClub</HeroLink> (社團法人攜曦程式推廣學會),
+            and in 2016 founded <HeroLink href="https://www.ccclub.io/" logo="/logos/ccclub.png">ccClub</HeroLink> (社團法人攜曦程式推廣學會),
             a non-profit for programming education that has served more than 4,500 learners.
           </p>
 
