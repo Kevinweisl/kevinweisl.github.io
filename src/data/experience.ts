@@ -1,6 +1,10 @@
 export interface ExperienceDetail {
     title: string;
     institution: string;
+    /** The institution's site. Set on companies; NTU and Academia Sinica need no link. */
+    url?: string;
+    /** "Taipei, Taiwan". Rendered after the institution, separated from it. */
+    location?: string;
     period: string;
     description?: string;
     /** Semesters taught, one per entry. The count shown on the page is derived
@@ -77,34 +81,43 @@ export interface ExperienceDetail {
       items: [
         {
           title: "Postdoctoral Researcher",
-          institution: "Academia Sinica | Taipei, Taiwan",
+          institution: "Academia Sinica",
+          location: "Taipei, Taiwan",
           period: "2026/09 - Present",
         },
         {
           title: "Co-founder & CTO",
           institution: "OrbitNext",
+          url: "https://orbit-next.com/",
           period: "2022/07 - 2025/07",
         },
         {
           title: "Senior Machine Learning Engineer",
-          institution: "ShopBack | Taipei, Taiwan",
+          institution: "ShopBack",
+          url: "https://www.shopback.sg/",
+          location: "Taipei, Taiwan",
           period: "2022/05 - 2023/06",
 
         },
         {
           title: "Senior Data Engineer",
-          institution: "Junyi Academy | Taipei, Taiwan",
+          institution: "Junyi Academy",
+          url: "https://www.junyiacademy.org/",
+          location: "Taipei, Taiwan",
           period: "2020/02 - 2021/02",
 
         },
         {
           title: "(Senior) Software Engineer, Applied Data Science Team",
-          institution: "KKStream Limited, KKBOX Group | Taipei, Taiwan",
+          institution: "KKStream Limited, KKBOX Group",
+          url: "https://blendvision.com/",
+          location: "Taipei, Taiwan",
           period: "2016/12 - 2020/01",
         },
         {
           title: "Software Engineer, College Intern",
-          institution: "Hewlett Packard Enterprise | Taipei, Taiwan",
+          institution: "Hewlett Packard Enterprise",
+          location: "Taipei, Taiwan",
           period: "2015/08 - 2016/06",
 
         }

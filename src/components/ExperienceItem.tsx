@@ -32,6 +32,8 @@ export const PeriodLabel: React.FC<{ period: string }> = ({ period }) => {
 const ExperienceItem: React.FC<ExperienceItemProps> = ({
   title,
   institution,
+  url,
+  location,
   description,
   semesters,
   compact = false,
@@ -39,7 +41,21 @@ const ExperienceItem: React.FC<ExperienceItemProps> = ({
   <div className="row" data-spotlight>
     <span className="spot" aria-hidden="true" />
     <div className="font-serif text-[16px] text-[var(--text-primary)]">{title}</div>
-    <div className="text-[13px] text-[var(--text-body)] mt-0.5">{institution}</div>
+    <div className="text-[13px] text-[var(--text-body)] mt-0.5">
+      {url ? (
+        <a
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-medium text-[var(--accent)] hover:underline"
+        >
+          {institution}
+        </a>
+      ) : (
+        institution
+      )}
+      {location && <> | {location}</>}
+    </div>
     {description && (
       <div className="text-[16px] text-[var(--text-body)] mt-1 leading-[1.6]">{description}</div>
     )}

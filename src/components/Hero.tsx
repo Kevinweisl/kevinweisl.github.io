@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { fullName, siteName, jobTitle, affiliation, affiliationShort, phdYear, roles, researchSummary, researchInterests } from '@/data/profile';
+import { fullName, siteName, affiliation, affiliationShort, phdYear, roles, researchInterests } from '@/data/profile';
 
 function HeroLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
@@ -49,15 +49,19 @@ const Hero = () => {
           </div>
 
           <p className="text-[16px] leading-[1.8] mb-7 max-w-[68ch]" style={{ color: 'var(--hero-body)' }}>
-            I received my PhD in Computer Science from <span className="italic">{affiliation}</span> in {phdYear}, with research on {researchSummary}.
-            With 6+ years of industry experience at{' '}
-            <HeroLink href="https://www.shopback.sg/">ShopBack</HeroLink>,{' '}
+            {fullName} is a {roles[0].title} at {roles[0].affiliation} and an {roles[1].title} at {roles[1].affiliation}.
+            Kevin received a PhD in Computer Science from <span className="italic">{affiliation}</span> in {phdYear},
+            with research on the reliability of large language models, including the biases they carry,
+            how they behave when judging other models, and how multimodal models reason.
+            Kevin also brings seven years of industry experience as a machine learning and data engineer at{' '}
+            <HeroLink href="https://blendvision.com/">KKStream</HeroLink>,{' '}
             <HeroLink href="https://www.junyiacademy.org/">Junyi Academy</HeroLink>, and{' '}
-            <HeroLink href="https://blendvision.com/">KKStream</HeroLink>,
-            I bridge the gap between research and real-world applications.
-            I currently serve as an {jobTitle.toLowerCase()} at {affiliationShort}&apos;s <span className="italic">Center of General Education</span> and <span className="italic">Department of Economics</span>,
-            and founded <HeroLink href="https://www.ccclub.io/">ccClub</HeroLink> (社團法人攜曦程式推廣學會),
-            a non-profit organization dedicated to programming education, serving 4,000+ learners since 2016.
+            <HeroLink href="https://www.shopback.sg/">ShopBack</HeroLink>, bridging research and production systems.
+            From 2022 to 2025, Kevin co-founded and served as CTO of{' '}
+            <HeroLink href="https://orbit-next.com/">OrbitNext</HeroLink>, a creator economy AI startup.
+            Kevin teaches programming at {affiliationShort}&apos;s <span className="italic">Center of General Education</span> and <span className="italic">Department of Economics</span>,
+            and in 2016 founded <HeroLink href="https://www.ccclub.io/">ccClub</HeroLink> (社團法人攜曦程式推廣學會),
+            a non-profit for programming education that has served more than 4,500 learners.
           </p>
 
           {/* CTA group */}
